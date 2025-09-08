@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>HASSAN DISTRICT</title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial=scale=1.0">
   <style>
     body {
@@ -49,7 +50,7 @@
     }
 
     .image-container {
-      position: relative;
+     position: relative;
     }
 
     .tour-image {
@@ -98,14 +99,166 @@
       color: blue;
       text-decoration: none;
     }
-  </style>
+.back-to-top {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: blue;
+      text-decoration: none;
+    }
+    .search-container{
+      text-align: right;
+      
+    }
+    #searchBox {
+      padding: 8px;
+      width: 250px;
+      font-size: 16px;
+    }
+    #searchBtn {
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background: #f9f9f9;
+      display: none;
+    }
+    .result h3 {
+      margin: 0;
+    }
+    .result a {
+      text-decoration: none;
+      color: blue;
+    }
+    .result a:hover {
+      text-decoration: underline;
+    }
+    </style>
+
 </head>
 <body>
+<div id="google_translate_element"></div>
+
+<script>
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {pageLanguage: 'en', includedLanguages: 'kn,en,hi'},
+      'google_translate_element'
+    );
+  }
+  </script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
 
   <header>
     <h1>KA ADVENTURE</h1>
-  </header>
+    <div class="search-container">
+    <input type="text" id="searchBox" placeholder="Search places...">
+<button id="searchBtn">Search</button>
+</div>
+<div class="result" id="resultBox"></div>
+</header>
+<script>
+  const places = {
+    "maharaja park": {
+      description: "Click here to khow more about Maharaja Park",
+      link: ""
+    },
+    "sathyamangala park": {
+      description: "Click here to khow more about Sathyamangala Park",
+      link: ""
+    },
+    "hasanamba temple": {
+      description: "Click here to khow more about Hasanamba Temple",
+      link: ""
+    },
+    "malleshwara temple": {
+      description: "Click here to khow more about Malleshwara Temple",
+      link: ""
+    },
+    "shettihalli roasary church": {
+      description: "Click here to khow more about Shettihalli Roasary Church",
+      link: ""
+    },
+    "haluvagilu waterfalls": {
+      description: "Click here to khow more about Haluvagilu Waterfalls",
+      link: ""
+    },
+    "abhigandi waterfalls": {
+      description: "Click here to khow more about Abhigandi Waterfalls",
+      link: ""
+    },
+    "mookanamane abbi falls": {
+      description: "Click here to khow more about Mookanamane Abbi Falls",
+      link: ""
+    },
+    "hoysala emblem": {
+      description: "Click here to khow more about Hoysala Emblem",
+      link: ""
+    },
+    "goururu hemavathi reservoir": {
+      description: "Click here to khow more about Goururu Hemavathi Reservoir",
+      link: ""
+    },
+    "hunasinakere lake": {
+      description: "Click here to khow more about Hunasinakere Lake",
+      link: ""
+    },
+    "hemavathi nagare park": {
+      description: "Click here to khow more about Hemavathi Nagare Park",
+      link: ""
+    },
+    "back water": {
+      description: "Click here to khow more about Back Water",
+      link: ""
+    },
+    "gendekatte forest": {
+      description: "Click here to khow more about Gendekatte Forest",
+      link: ""
+    },
+    "chakenagalli dam": {
+      description: "Click here to khow more about Chakenagalli Dam",
+      link: ""
+    },
+    "sachin tendulkar park": {
+      description: "Click here to khow more about Sachin Tendulkar Park",
+      link: ""
+    },
+    "hemavathi backwater": {
+      description: "Click here to khow more about Hemavathi Backwater",
+      link: ""
+    },
 
+     };
+  const searchBox = document.getElementById("searchBox");
+  const resultBox = document.getElementById("resultBox");
+
+  searchBox.addEventListener("input", function() {
+    let query = searchBox.value.trim().toLowerCase();
+    if (query) {
+      let matchKey = Object.keys(places).find(place => place.includes(query));
+      if (matchKey) {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `
+          <h3><a href="${places[matchKey].link}">${matchKey.toUpperCase()}</a></h3>
+          <p>${places[matchKey].description}</p>
+        `;
+      } else {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = "<p>No details found for: ${query}</p>";
+      }
+    } else {
+      resultBox.style.display = "none";
+      resultBox.innerHTML = "";
+    }
+  });
+</script>
   <main>
     <h1 class="card-section-title">WELCOME TO HASSAN DISTRICT</h1>
     <h2 class="card-subtitle">Hassan, Karnataka, is a popular tourist destination known for its historical temples, rich Hoysala architecture, and lush greenery. It's often called the "temple city" due to its numerous ancient temples, including the Hoysala temples at Mosale and the Lakshmi Narasimha Temple. Hassan also serves as a gateway to hill stations like Sakleshpur and Chikmagalur.</h2>
