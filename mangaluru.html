@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="eng">
 <head>
   <title>MANGALURU DISTRICT</title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial=scale=1.0">
   <style>
     body {
@@ -98,13 +99,237 @@
       color: blue;
       text-decoration: none;
     }
-  </style>
+    .back-to-top {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: blue;
+      text-decoration: none;
+    }
+    .search-container{
+      text-align: right;
+      
+    }
+    #searchBox {
+      padding: 8px;
+      width: 250px;
+      font-size: 16px;
+    }
+    #searchBtn {
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background: #f9f9f9;
+      display: none;
+    }
+    .result h3 {
+      margin: 0;
+    }
+    .result a {
+      text-decoration: none;
+      color: blue;
+    }
+    .result a:hover {
+      text-decoration: underline;
+    }
+    </style>
+
 </head>
 <body>
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {pageLanguage: 'en', includedLanguages: 'kn,en,hi'},
+      'google_translate_element'
+    );
+  }
+  </script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
 
   <header>
     <h1>KA ADVENTURE</h1>
-  </header>
+    <div class="search-container">
+    <input type="text" id="searchBox" placeholder="Search places...">
+<button id="searchBtn">Search</button>
+</div>
+<div class="result" id="resultBox"></div>
+</header>
+<script>
+  const places = {
+    "kadri shree manjunathan temple": {
+      description: "Click here to khow more about Kadri Shree Manjunatha Temple",
+      link: ""
+    },
+    "mahatobhara sri mangaladevi temple": {
+      description: "Click here to khow more about Mahatobhara Sri Mangaladevi Temple",
+      link: ""
+    },
+    "st.aloysius chapel": {
+      description: "Click here to khow more about St.Aloysius Chapel",
+      link: ""
+    },
+    "shree nandaneshwara devasthana": {
+      description: "Click here to khow more about Shree Nandaneshwara Devasthana",
+      link: ""
+    },
+    "shri ananthapadmanabha kudupu temple": {
+      description: "Click here to khow more about Shri Ananthapadmanabha Kudupu Temple",
+      link: ""
+    },
+    "shree kalikamba vinayaka temple": {
+      description: "Click here to khow more about Shree Kalikamba Vinayaka Temple",
+      link: ""
+    },
+    "infant jesus shrine": {
+      description: "Click here to khow more about Infant Jesus Shrine",
+      link: ""
+    },
+    "maroli shree sooryanarayana temple": {
+      description: "Click here to khow more about Maroli Shree Sooryanarayana Temple",
+      link: ""
+    },
+    "kudroli shree bhagavathi temple": {
+      description: "Click here to khow more about Kudroli Shree Bhagavathi Temple",
+      link: ""
+    },
+    "shree hanuman temple (sri ramanjaneya temple)": {
+      description: "Click here to khow more about Shree Hanuman Temple (Sri Ramanjaneya temple)",
+      link: ""
+    },
+    "ullal juma masjid": {
+      description: "Click here to khow more about Ullal Juma Masjid",
+      link: ""
+    },
+    "shree sharavu mahaganapathi temple": {
+      description: "Click here to khow more about Shree Sharavu Mahaganapathi Temple",
+      link: ""
+    },
+    "noor masjid mangalore": {
+      description: "Click here to khow more about Noor Masjid Mangalore",
+      link: ""
+    },
+    "kudroli sri gokarnanatha kshetra": {
+      description: "Click here to khow more about Kudroli Sri Gokarnanatha Kshetra",
+      link: ""
+    },
+    "arbi falls": {
+      description: "Click here to khow more about Arbi falls",
+      link: ""
+    },
+    "chitrapura beach": {
+      description: "Click here to khow more about Chitrapura beach",
+      link: ""
+    },
+    "bengre beach": {
+      description: "Click here to khow more about Bengre Beach",
+      link: ""
+    },
+    "north bengre beach": {
+      description: "Click here to khow more about North bengre beach",
+      link: ""
+    },
+    "hosabettu beach": {
+      description: "Click here to khow more about Hosabettu Beach",
+      link: ""
+    },
+    "mukka beach": {
+      description: "Click here to khow more about Mukka Beach",
+      link: ""
+    },
+    "tannirbhavi beach": {
+      description: "Click here to khow more about Tannirbhavi Beach",
+      link: ""
+    },
+    "surathkal lighthouse beach": {
+      description: "Click here to khow more about Surathkal Lighthouse Beach",
+      link: ""
+    },
+    "panambur beach": {
+      description: "Click here to khow more about Panambur Beach",
+      link: ""
+    },
+    "pandava cave": {
+      description: "Click here to khow more about Pandava Cave",
+      link: ""
+    },
+    "dambel river side": {
+      description: "Click here to khow more about Dambel River Side",
+      link: ""
+    },
+    "kadri park": {
+      description: "Click here to khow more about Kadri Park",
+      link: ""
+    },
+    "sammilan shetty's butterfly park": {
+      description: "Click here to khow more about Sammilan Shetty's Butterfly Park",
+      link: ""
+    },
+    "tannirubavi tree park": {
+      description: "Click here to khow more about Tannirubavi Tree Park",
+      link: ""
+    },
+    "sulthan battheri": {
+      description: "Click here to khow more about Sulthan Battheri",
+      link: ""
+    },
+    "gandhi park": {
+      description: "Click here to khow more about Gandhi Park",
+      link: ""
+    },
+    "ullal darga pond": {
+      description: "Click here to khow more about ULLAL DARGA POND",
+      link: ""
+    },
+    "kadri park musical fountain": {
+      description: "Click here to khow more about Kadri Park Musical Fountain",
+      link: ""
+    },
+    "tagore park": {
+      description: "Click here to khow more about Tagore Park",
+      link: ""
+    },
+    "pilikula biological park": {
+      description: "Click here to khow more about Pilikula Biological Park",
+      link: ""
+    },
+
+     };
+  const searchBox = document.getElementById("searchBox");
+  const resultBox = document.getElementById("resultBox");
+
+  searchBox.addEventListener("input", function() {
+    let query = searchBox.value.trim().toLowerCase();
+    if (query) {
+      let matchKey = Object.keys(places).find(place => place.includes(query));
+      if (matchKey) {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `
+          <h3><a href="${places[matchKey].link}">${matchKey.toUpperCase()}</a></h3>
+          <p>${places[matchKey].description}</p>
+        `;
+      } else {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = "<p>No details found for: ${query}</p>";
+      }
+    } else {
+      resultBox.style.display = "none";
+      resultBox.innerHTML = "";
+    }
+  });
+</script>
+
+
+  
 
   <main>
     <h1 class="card-section-title">WELCOME TO MANGALURU DISTRICT</h1>
