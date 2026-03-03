@@ -1,565 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MANDYA DISTRICT</title>
-  
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-    }
+<title>MANDYA DISTRICT</title>
 
-    header, footer {
-      color: black;
-      padding: 1%;
-      text-align: center;
-      background-color: aliceblue;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
 
-    main {
-      padding: 20px;
-    }
+header, footer {
+  color: black;
+  padding: 1%;
+  text-align: center;
+  background-color: aliceblue;
+}
 
-    .card-section-title {
-      color: green;
-    }
+main { padding: 20px; }
 
-    .card-subtitle {
-      font-family: 'Courier New';
-    }
+.card-section-title { color: green; }
+.card-subtitle { font-family: 'Courier New'; }
 
+.search-container { text-align: right; }
 
-    .row-even {
-      flex-direction: row-reverse;
-    }
+#searchBox {
+  padding: 8px;
+  width: 250px;
+  font-size: 16px;
+}
 
-.tour-row {
-  display: flex;
-  flex-wrap: wrap;        /* Allow wrapping */
-  justify-content: center;
-  gap: 20px;              /* Space between cards */
-  margin-bottom: 30px;
+/* GRID FOR TOURIST PLACES */
+.places-wrapper {
+  display: grid;
+  gap: 25px;
+}
+
+@media (min-width: 769px) {
+  .places-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
 }
 
 .tour-card {
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
+  margin: auto;
   background: white;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 16px rgba(0,0,0,0.1);
 }
 
-    .image-container {
-      position: relative;
-    }
+.image-container { position: relative; }
+.tour-image { width: 100%; display: block; }
 
-    .tour-image {
-      width: 100%;
-      display: block;
-    }
-
-    .top-overlay {
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      right: 8px;
-      display: flex;
-      justify-content: space-between;
-      pointer-events: none;
-    }
-
-    .badge {
-      background: white;
-      color: green;
-      font-size: 12px;
-      font-weight: bold;
-      padding: 4px 6px;
-      border-radius: 4px;
-    }
-
-    .tour-info {
-      padding: 16px;
-    }
-
-    .state {
-      color: #00aa88;
-      font-size: 12px;
-      font-weight: bold;
-      margin: 0;
-    }
-
-    .title {
-      font-size: 18px;
-      margin: 4px 0 8px;
-    }
-    .back-to-top {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: blue;
-      text-decoration: none;
-    }
-    .search-container{
-      text-align: right;
-      
-    }
-    #searchBox {
-      padding: 8px;
-      width: 250px;
-      font-size: 16px;
-    }
-    #searchBtn {
-      padding: 8px 12px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .result {
-      margin-top: 15px;
-      padding: 10px;
-      border: 1px solid #ddd;
-      background: #f9f9f9;
-      display: none;
-    }
-    .result h3 {
-      margin: 0;
-    }
-    .result a {
-      text-decoration: none;
-      color: blue;
-    }
-    .result a:hover {
-      text-decoration: underline;
-    }
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .tour-row {
-    flex-direction: column;   /* Stack cards vertically */
-    align-items: center;
-  }
-
-  .tour-card {
-    width: 90%;               /* Full width on mobile */
-  }
+.top-overlay {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: space-between;
 }
-  </style>
-  </head>
-  <body>
-<div id="google_translate_element"></div>
 
-<script>
+.badge {
+  background: white;
+  color: green;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
 
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement(
-      {pageLanguage: 'en', includedLanguages: 'kn,en'},
-      'google_translate_element'
-    );
-  }
-  </script>
+.tour-info { padding: 16px; }
 
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-</script>
+.state {
+  color: #00aa88;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0;
+}
 
+.title { font-size: 18px; margin: 4px 0 8px; }
 
-  <header>
-    <h1>KA ADVENTURE</h1>
-    <div class="search-container">
-    <input type="text" id="searchBox" placeholder="Search places...">
-<button id="searchBtn">Search</button>
+@media (max-width:768px){
+  .tour-card { max-width: 90%; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>KA ADVENTURE</h1>
+<div class="search-container">
+<input type="text" id="searchBox" placeholder="Search places...">
 </div>
-<div class="result" id="resultBox"></div>
 </header>
+
+<main>
+
+<h1 class="card-section-title">WELCOME MANDYA DISTRICT</h1>
+<h2 class="card-subtitle">
+Mandya district in Karnataka is a treasure of cultural heritage, nature, and history.
+</h2>
+
+<div class="places-wrapper">
+
+<!-- Natural Attractions -->
+
+<div class="tour-card" data-name="krishna raja sagara dam">
+<div class="image-container">
+<a href="krsdamdetails.html"><img src="krs1.jpg" class="tour-image"></a>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Krishna Raja Sagara Dam</h3>
+</div>
+</div>
+
+<div class="tour-card" data-name="venugopalaswamy temple">
+<div class="image-container">
+<a href="venugopalswamytempledetails.html"><img src="vgs.jfif" class="tour-image"></a>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Venugoplaswamy Temple</h3>
+</div>
+</div>
+
+<div class="tour-card" data-name="shivanasamudra falls">
+<div class="image-container">
+<a href="shivanasamudradetails.html"><img src="sivfalls.jpg" class="tour-image"></a>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Shivanasamudra Falls</h3>
+</div>
+</div>
+
+<div class="tour-card" data-name="ranganthittu bird sanctuary">
+<div class="image-container">
+<a href="ranganathittubirdsanctuarydetails.html"><img src="rabgbird.jpg" class="tour-image"></a>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Ranganthittu Bird Sanctuary</h3>
+</div>
+</div>
+
+<div class="tour-card" data-name="kokkare bellur">
+<div class="image-container">
+<a href="kokkarebellurdetails.html"><img src="kbellur.avif" class="tour-image"></a>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Kokkare Bellur</h3>
+</div>
+</div>
+
+<div class="tour-card" data-name="thannur lake">
+<div class="image-container">
+<a href="tannurlakedetails.html"><img src="thannur.jpg" class="tour-image"></a>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Thannur Lake</h3>
+</div>
+</div>
+
+<div class="tour-card" data-name="kunti betta">
+<div class="image-container">
+<a href="kuntibetta.html"><img src="kuntibetta.JPG" class="tour-image"></a>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Kunti Betta</h3>
+</div>
+</div>
+
+<!-- Religious & Historical -->
+
+<div class="tour-card" data-name="ranganatha swamy temple">
+<div class="image-container">
+<a href="rspdetails.html"><img src="rsp.jfif" class="tour-image"></a>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Ranganatha Swamy Temple</h3>
+</div>
+</div>
+
+<div class="tour-card" data-name="jama masjid">
+<div class="image-container">
+<a href="jmsdetailes.html"><img src="jms.jpg" class="tour-image"></a>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Jama Masjid</h3>
+</div>
+</div>
+
+<div class="tour-card" data-name="tippu besige palace">
+<div class="image-container">
+<a href="tbadetails.html"><img src="tna.jfif" class="tour-image"></a>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Tippu Besige Palace</h3>
+</div>
+</div>
+
+<div class="tour-card" data-name="melukote temple">
+<div class="image-container">
+<a href="melukote.html"><img src="melukote.jpg" class="tour-image"></a>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Melukote Temple</h3>
+</div>
+</div>
+
+<div class="tour-card" data-name="adichunchanagiri hills">
+<div class="image-container">
+<a href="chunchanagiri.html"><img src="chunchangiri.jfif" class="tour-image"></a>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Adichunchanagiri Hills</h3>
+</div>
+</div>
+
+<div class="tour-card" data-name="mallikarjuna temple basaralu">
+<div class="image-container">
+<a href="mallikarjun.html"><img src="basralu.jfif" class="tour-image"></a>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Mallikarjuna Temple, Basaralu</h3>
+</div>
+</div>
+
+<div class="tour-card" data-name="mahalingeshvara temple santebachall">
+<div class="image-container">
+<a href="mahalingeshwara.html"><img src="santhebachalli.jpg" class="tour-image"></a>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Mahalingeshvara Temple, Santebachall</h3>
+</div>
+</div>
+
+<div class="tour-card" data-name="karighatta temple">
+<div class="image-container">
+<a href="karighatta.html"><img src="karighatta.jfif" class="tour-image"></a>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Karighatta Temple</h3>
+</div>
+</div>
+
+<!-- Towns -->
+
+<div class="tour-card" data-name="maddur">
+<div class="image-container">
+<a href="maddur.html"><img src="simsha.jpg" class="tour-image"></a>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Maddur</h3>
+</div>
+</div>
+
+<div class="tour-card" data-name="malavalli">
+<div class="image-container">
+<a href="malavalli.html"><img src="muttatti.jpg" class="tour-image"></a>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Malavalli</h3>
+</div>
+</div>
+
+</div>
+
+</main>
+
+<footer>
+<p>@ALL COPY RIGHTS ARE RESERVED 2025</p>
+</footer>
+
 <script>
-  const places = {
-    "krishna raja sagara dam ": {
-      description: "Click here to know more about krishna raja sagara dam ",
-      link: "krsdamdetails.html",
-    },
-    "venugopalaswamy temple": {
-      description: "Click here to know more about venugopalaswamy temple",
-      link: "venugopalswamytempledetails.html",
-    },
-    "shivanasamudra falls": {
-      description: "Click here to know more about shivanasamudra falls",
-      link: "smfalls.html",
-    },
-    "ranganthittu bird sanctuary": {
-      description: "Click here to know more about ranganthittu bird sanctuary",
-      link: "ranganathittubirdsanctuarydetails.html",
-    },
-    "kokkare bellur": {
-      description: "Click here to know more about kokkare bellur",
-      link: "kokkarebellurdetails.html",
-    },
-    "thannur lake": {
-      description: "Click here to know more about thannur lake",
-      link: "tannurlakedetails.html",
-    },
-    "kunti betta": {
-      description: "Click here to know more about kunti betta",
-      link: "kuntibettadetails.html",
-    },
-    "ranganatha swamy temple": {
-      description: "Click here to know more about ranganatha swamy temple",
-      link: "rspdetails.html",
-    },
-    "jama masjid": {
-      description: "Click here to know more about jama masjid",
-      link: "jmsdetailes.html",
-    },
-    "tippu besige palace": {
-      description: "Click here to know more about tippu besige palace",
-      link: "tbadetails.html",
-    },
-    "melukote temple": {
-      description: "Click here to know more about melukote temple",
-      link: "melukote.html",
-    },
-    "adichunchanagiri hills": {
-      description: "Click here to know more about adichunchanagiri hills",
-      link: "chunchanagiri.html",
-    },
-    "mallikarjuna temple basaralu": {
-      description: "Click here to know more about mallikarjuna temple basaralu",
-      link: "mallikarjun.html",
-    },
-    "mahalingeshvara temple santebachall": {
-      description: "Click here to know more about mahalingeshvara temple santebachall",
-      link: "mahalingeshwara.html",
-    },
-    "karighatta temple": {
-      description: "Click here to know more about karighatta temple",
-      link: "karighatta.html",
-    },
-    "maddur": {
-      description: "Click here to know more about maddur",
-      link: "maddur.html",
-    },
-    "malavalli": {
-      description: "Click here to know more about malavalli",
-      link: "malavalli.html",
-    },
+const searchBox = document.getElementById("searchBox");
+const cards = document.querySelectorAll(".tour-card");
 
+searchBox.addEventListener("input", function() {
+  const query = searchBox.value.toLowerCase().trim();
 
-     
-
-};
-  const searchBox = document.getElementById("searchBox");
-  const resultBox = document.getElementById("resultBox");
-
-  searchBox.addEventListener("input", function() {
-    let query = searchBox.value.trim().toLowerCase();
-    if (query) {
-      let matchKey = Object.keys(places).find(place => place.includes(query));
-      if (matchKey) {
-        resultBox.style.display = "block";
-        resultBox.innerHTML = `
-          <h3><a href="${places[matchKey].link}">${matchKey.toUpperCase()}</a></h3>
-          <p>${places[matchKey].description}</p>
-        `;
-      } else {
-        resultBox.style.display = "block";
-        resultBox.innerHTML = "<p>No details found for: ${query}</p>";
-      }
+  cards.forEach(card => {
+    const name = card.getAttribute("data-name");
+    if (name.includes(query) || query === "") {
+      card.style.display = "block";
     } else {
-      resultBox.style.display = "none";
-      resultBox.innerHTML = "";
+      card.style.display = "none";
     }
   });
+});
 </script>
-
-
-  <main>
-    <h1 class="card-section-title">WELCOME MANDYA DISTRICT</h1>
-    <h2 class="card-subtitle"> Mandya district in Karnataka is a treasure of cultural heritage, nature, and history.</h2>
-
-    <h1 style="text-align: center;"> Natural Attractions</h1>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="krsdamdetails.html">
-            <img src="krs1.jpg" alt="KRS" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Krishna Raja Sagara Dam</h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="venugopalswamytempledetails.html">
-            <img src="vgs.jfif" alt="KRS" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Venugoplaswamy Temple,Backwater</h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="shivanasamudradetails.html">
-            <img src="sivfalls.jpg" alt="Shivanasamudra" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Shivansamudra Falls</h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="ranganathittubirdsanctuarydetails.html">
-            <img src="rabgbird.jpg" alt="Ranganthittu" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Rangantihittu Bird Sanctuary</h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="kokkarebellurdetails.html">
-            <img src="kbellur.avif" alt="kokkare belluru" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Kokkare Bellur</h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="tannurlakedetails.html">
-            <img src="thannur.jpg" alt="Thannur lake" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Thannur Lake</h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="kuntibetta.html">
-            <img src="kuntibetta.JPG" alt="Kunti Betta" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Kunti Betta</h3>
-        </div>
-      </div>
-    </div>
-    <h1 style="text-align: center;">Religious & Historical Sites</h1>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="rspdetails.html">
-            <img src="rsp.jfif" alt="melukote" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Ranganatha Swamy Temple</h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="jmsdetailes.html">
-            <img src="jms.jpg" alt="jamia masjid" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Jama Masjid</h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="tbadetails.html">
-            <img src="tna.jfif" alt="melukote" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Tippu Besige Palace</h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="melukote.html">
-            <img src="melukote.jpg" alt="melukote" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Melukote Temple</h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="chunchanagiri.html">
-            <img src="chunchangiri.jfif" alt="adi chunchanagiri" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Adichunchanagiri Hills</h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="mallikarjun.html">
-            <img src="basralu.jfif" alt="Mallikarjuna Temple" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Mallikarjuna Temple, Basaralu</h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="mahalingeshwara.html">
-            <img src="santhebachalli.jpg" alt="mahalingeshwara temple" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title"> Mahalingeshvara Temple, Santebachall</h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="karighatta.html">
-            <img src="karighatta.jfif" alt="karighatta temple" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Karighatta Temple</h3>
-        </div>
-      </div>
-    </div> 
-    <h1 style="text-align: center;"> Cultural & Historical Towns</h1>
-   
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="maddur.html">
-            <img src="simsha.jpg" alt="Maddur" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Maddur</h3>
-        </div>
-      </div>
-    </div> 
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="malavalli.html">
-            <img src="muttatti.jpg" alt="malavalli" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Malavalli</h3>
-        </div>
-      </div>
-    </div> 
-    <h1 style="text-align: center;">Best Time Visit</h1>
-    <h2 style="text-align: center;"> October to March is ideal, especially during Dasara festival for cultural vibrancy</h2>
-  </main>
-
-  <footer>
-    <p>@ALL COPY RIGHTS ARE RESERVED 2025</p>
-  </footer>
 
 </body>
 </html>
-
