@@ -31,24 +31,26 @@
       font-family: 'Courier New';
     }
 
-    .tour-row {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 30px;
-    }
 
     .row-even {
       flex-direction: row-reverse;
     }
 
-    .tour-card {
-      width: 300px;
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-      margin: 0 20px;
-    }
+.tour-row {
+  display: flex;
+  flex-wrap: wrap;        /* Allow wrapping */
+  justify-content: center;
+  gap: 20px;              /* Space between cards */
+  margin-bottom: 30px;
+}
+
+.tour-card {
+  width: 300px;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
 
     .image-container {
       position: relative;
@@ -131,6 +133,18 @@
     .result a:hover {
       text-decoration: underline;
     }
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .tour-row {
+    flex-direction: column;   /* Stack cards vertically */
+    align-items: center;
+  }
+
+  .tour-card {
+    width: 90%;               /* Full width on mobile */
+  }
+}
   </style>
   </head>
   <body>
