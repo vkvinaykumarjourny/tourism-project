@@ -7,54 +7,83 @@
 
 <style>
 body{
-  font-family:Arial;
-  margin:0;
-  background:#e8f5e9;
-  padding:20px;
+  font-family: Arial;
+  margin: 0;
+  padding: 20px;
+  background: #e8f5e9;
 }
 
 header{
-  background:#2e7d32;
-  color:white;
-  padding:15px;
-  text-align:center;
+  background: #2e7d32;
+  color: white;
+  padding: 15px;
+  text-align: center;
 }
 
 .section{
-  background:white;
-  padding:15px;
-  margin:15px 0;
-  border-radius:10px;
+  background: white;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 10px;
 }
 
 button{
-  background:#2e7d32;
-  color:white;
-  padding:10px;
-  border:none;
-  border-radius:5px;
-  margin:5px;
-  cursor:pointer;
+  background: #2e7d32;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin: 5px 5px 0 0;
+  cursor: pointer;
+}
+
+/* BUTTON ROW */
+.button-row{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .card{
-  border:1px solid #ccc;
-  padding:10px;
-  margin:10px 0;
-  border-radius:8px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
 }
 
-textarea,select{
-  width:100%;
-  padding:8px;
-  margin-top:5px;
+textarea{
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+select{
+  padding: 5px;
+  margin-top: 5px;
 }
 
 footer{
-  text-align:center;
-  background:#2e7d32;
-  color:white;
-  padding:10px;
+  text-align: center;
+  background: #2e7d32;
+  color: white;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+/* SOS */
+#sosBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  font-size: 26px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  cursor: pointer;
 }
 </style>
 </head>
@@ -62,55 +91,64 @@ footer{
 <body>
 
 <header>
-<h1>Shivanasamudra Falls</h1>
+<h1 id="placeName">Shivanasamudra Falls</h1>
 </header>
 
-<!-- TICKET -->
+<!-- INFO -->
 <div class="section">
-<h2>Entry Fee</h2>
-<p>₹30 - ₹50 (Parking extra)</p>
+<h2>Entry Information</h2>
+<p>Free Entry (Natural Waterfalls)</p>
+</div>
+
+<!-- FACILITIES -->
+<div class="section">
+<h2>Facilities</h2>
+<p>🚗 Parking Available</p>
+<p>🚻 Basic Toilets</p>
+<p>🌊 View Points Available</p>
 </div>
 
 <!-- CROWD -->
 <div class="section">
 <h2>Crowd Status</h2>
-<p id="crowd">Click to check</p>
-<button onclick="checkCrowd()">Check Crowd</button>
+<p id="crowd">Click button</p>
+<button onclick="getCrowd()">Check Crowd</button>
 </div>
 
 <!-- HOTELS -->
 <div class="section">
 <h2>Nearby Hotels</h2>
-<div id="hotels"></div>
-<button onclick="loadHotels()">Load Hotels</button>
-</div>
-
-<!-- ESSENTIALS -->
-<div class="section">
-<h2>Essential Needs</h2>
-<div id="essentials"></div>
-<button onclick="loadEssentials()">Load Essentials</button>
+<div id="hotels">Click button</div>
+<button onclick="getHotels()">Load Hotels</button>
 </div>
 
 <!-- FOOD -->
 <div class="section">
 <h2>Famous Food Nearby</h2>
-<div id="food"></div>
-<button onclick="loadFood()">Load Food</button>
+<div id="food">Click button</div>
+<button onclick="getFood()">Load Food</button>
 </div>
 
-<!-- MAP -->
+<!-- ESSENTIALS -->
+<div class="section">
+<h2>Essential Needs</h2>
+<div id="essentials">Click button</div>
+<button onclick="getEssentials()">Check Essentials</button>
+</div>
+
+<!-- LOCATION -->
 <div class="section">
 <h2>Location</h2>
 <iframe width="100%" height="300"
-src="https://www.google.com/maps?q=Shivanasamudra+Falls&output=embed">
+src="https://maps.google.com/maps?q=Shivanasamudra%20Falls&output=embed">
 </iframe>
 </div>
 
 <!-- REVIEWS -->
 <div class="section">
-<h2>User Reviews</h2>
+<h2>User Reviews & Ratings</h2>
 
+<label>Rating:</label>
 <select id="rating">
 <option value="5">★★★★★</option>
 <option value="4">★★★★</option>
@@ -119,172 +157,178 @@ src="https://www.google.com/maps?q=Shivanasamudra+Falls&output=embed">
 <option value="1">★</option>
 </select>
 
-<textarea id="reviewText" placeholder="Write review"></textarea>
+<textarea id="reviewText" placeholder="Write review..."></textarea>
+
 <button onclick="addReview()">Submit Review</button>
+<button onclick="clearReviews()">Clear All</button>
 
 <div id="reviewList"></div>
 </div>
 
-<footer>KA Adventure</footer>
+<!-- WIKIPEDIA LINK (ADDED LAST) -->
+<div class="section">
+<h2>More Details</h2>
+<a href="https://en.wikipedia.org/wiki/Shivanasamudra_Falls" target="_blank">
+Click here to read full Wikipedia details about Shivanasamudra Falls
+</a>
+</div>
+
+<footer>© All Rights Reserved</footer>
+
+<script>
+
+/* NAVIGATION */
+function navigate(place){
+window.open("https://www.google.com/maps/search/" + place);
+}
+
+/* BOOKING */
+function bookHotel(name){
+window.open("https://www.booking.com/searchresults.html?ss=" + name);
+}
+
+/* CROWD */
+function getCrowd(){
+let levels=["Low","Moderate","High","Very Busy"];
+document.getElementById("crowd").innerText =
+levels[Math.floor(Math.random()*levels.length)];
+}
+
+/* HOTELS */
+function getHotels(){
+document.getElementById("hotels").innerHTML=`
+
+<div class="card">
+<b>Hotel Mayura Shivanasamudra</b><p>Near Falls</p>
+
+<div class="button-row">
+<button onclick="navigate('Mayura Hotel Shivanasamudra')">🧭 Navigate</button>
+<button onclick="bookHotel('Mayura Hotel Shivanasamudra')">🏨 Book</button>
+</div>
+
+</div>
+
+<div class="card">
+<b>Green Valley Resort</b><p>5 km</p>
+
+<div class="button-row">
+<button onclick="navigate('Green Valley Resort Shivanasamudra')">🧭 Navigate</button>
+<button onclick="bookHotel('Green Valley Resort Karnataka')">🏨 Book</button>
+</div>
+
+</div>
+
+`;
+}
+
+/* FOOD */
+function getFood(){
+document.getElementById("food").innerHTML=`
+
+<div class="card">
+<b>South Indian Meals</b><p>Near Entrance</p>
+<button onclick="navigate('Shivanasamudra Food Court')">🧭 Navigate</button>
+</div>
+
+<div class="card">
+<b>Tea & Snacks Shop</b><p>View Point Area</p>
+<button onclick="navigate('Shivanasamudra Snacks Point')">🧭 Navigate</button>
+</div>
+
+`;
+}
+
+/* ESSENTIALS */
+function getEssentials(){
+document.getElementById("essentials").innerHTML=`
+
+<div class="card">
+<b>Hospital</b><p>12 km</p>
+<button onclick="navigate('Kollegal Hospital')">🧭 Navigate</button>
+</div>
+
+<div class="card">
+<b>Fuel Station</b><p>6 km</p>
+<button onclick="navigate('Shivanasamudra Petrol Pump')">🧭 Navigate</button>
+</div>
+
+`;
+}
+
+/* REVIEWS */
+function loadReviews(){
+let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+let box = document.getElementById("reviewList");
+box.innerHTML="";
+
+reviews.forEach(r=>{
+box.innerHTML += `
+<div class="card">
+<b>${"★".repeat(r.rating)}</b>
+<p>${r.text}</p>
+</div>`;
+});
+}
+
+function addReview(){
+let rating = document.getElementById("rating").value;
+let text = document.getElementById("reviewText").value;
+
+if(text.trim()=="") return alert("Enter review");
+
+let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+reviews.push({rating,text});
+
+localStorage.setItem("reviews", JSON.stringify(reviews));
+
+document.getElementById("reviewText").value="";
+loadReviews();
+}
+
+function clearReviews(){
+localStorage.removeItem("reviews");
+loadReviews();
+}
+
+loadReviews();
+
+</script>
 
 <!-- SOS -->
 <button id="sosBtn">🆘</button>
 
-<style>
-#sosBtn{
-position:fixed;
-bottom:20px;
-right:20px;
-background:red;
-color:white;
-border:none;
-border-radius:50%;
-width:65px;
-height:65px;
-font-size:26px;
-cursor:pointer;
-}
-</style>
-
 <script>
+document.getElementById("sosBtn").onclick = function () {
 
-/* ---------------- CROWD ---------------- */
-function checkCrowd(){
-  const levels=["Low","Moderate","High","Very Busy"];
-  document.getElementById("crowd").innerText =
-  levels[Math.floor(Math.random()*levels.length)];
+let sos1 = localStorage.getItem("sos1");
+let sos2 = localStorage.getItem("sos2");
+
+if(!sos1 || !sos2){
+alert("Save SOS numbers first!");
+return;
 }
 
-/* ---------------- NAVIGATION ---------------- */
-function navigate(lat,lon){
-  window.open(
-    "https://www.google.com/maps/dir/?api=1&destination=" + lat + "," + lon
-  );
+let placeName = document.getElementById("placeName").innerText;
+
+function send(lat, lon){
+
+let msg = "🚨 EMERGENCY!\nPlace: " + placeName +
+"\nLocation: https://maps.google.com/?q=" + lat + "," + lon;
+
+let encoded = encodeURIComponent(msg);
+
+window.location.href = "sms:" + sos1 + "?body=" + encoded;
+
+setTimeout(()=>{
+window.location.href = "sms:" + sos2 + "?body=" + encoded;
+},3000);
 }
 
-/* ---------------- BOOKING SAFE ---------------- */
-function bookHotel(name){
-  // Safe fallback (no broken API)
-  window.open("https://www.google.com/search?q=" + name + " hotel booking");
-}
-
-/* ---------------- HOTELS ---------------- */
-function loadHotels(){
-  document.getElementById("hotels").innerHTML=`
-  <div class="card">
-    <b>Mayura Hotel</b>
-    <button onclick="navigate(12.30,77.00)">Navigate</button>
-    <button onclick="bookHotel('Mayura Hotel Shivanasamudra')">Book</button>
-  </div>
-
-  <div class="card">
-    <b>River View Resort</b>
-    <button onclick="navigate(12.31,77.01)">Navigate</button>
-    <button onclick="bookHotel('River View Resort Shivanasamudra')">Book</button>
-  </div>
-  `;
-}
-
-/* ---------------- ESSENTIALS ---------------- */
-function loadEssentials(){
-  document.getElementById("essentials").innerHTML=`
-  <div class="card">
-    Hospital
-    <button onclick="navigate(12.32,77.02)">Navigate</button>
-  </div>
-
-  <div class="card">
-    Petrol Pump
-    <button onclick="navigate(12.33,77.03)">Navigate</button>
-  </div>
-
-  <div class="card">
-    Parking Area
-    <button onclick="navigate(12.34,77.04)">Navigate</button>
-  </div>
-  `;
-}
-
-/* ---------------- FOOD ---------------- */
-function loadFood(){
-  document.getElementById("food").innerHTML=`
-  <div class="card">
-    South Indian Meals
-    <button onclick="navigate(12.35,77.05)">Navigate</button>
-  </div>
-
-  <div class="card">
-    Biryani Point
-    <button onclick="navigate(12.36,77.06)">Navigate</button>
-  </div>
-
-  <div class="card">
-    Coffee & Snacks
-    <button onclick="navigate(12.37,77.07)">Navigate</button>
-  </div>
-  `;
-}
-
-/* ---------------- REVIEWS ---------------- */
-function addReview(){
-  let rating=document.getElementById("rating").value;
-  let text=document.getElementById("reviewText").value;
-
-  if(text.trim()===""){
-    alert("Write review first");
-    return;
-  }
-
-  let reviews=JSON.parse(localStorage.getItem("shiv_reviews")||"[]");
-  reviews.push({rating,text});
-  localStorage.setItem("shiv_reviews",JSON.stringify(reviews));
-
-  document.getElementById("reviewText").value="";
-  showReviews();
-}
-
-function showReviews(){
-  let reviews=JSON.parse(localStorage.getItem("shiv_reviews")||"[]");
-  document.getElementById("reviewList").innerHTML =
-    reviews.map(r=>`
-      <div class="card">
-        ${"★".repeat(r.rating)}<br>
-        ${r.text}
-      </div>
-    `).join("");
-}
-showReviews();
-
-/* ---------------- SOS (SAFE VERSION) ---------------- */
-document.getElementById("sosBtn").onclick=function(){
-
-  let s1=localStorage.getItem("sos1");
-  let s2=localStorage.getItem("sos2");
-
-  if(!s1 || !s2){
-    alert("SOS numbers not set in login");
-    return;
-  }
-
-  navigator.geolocation.getCurrentPosition(
-    function(pos){
-
-      let msg="🚨 Emergency at Shivanasamudra Falls\nhttps://maps.google.com/?q="
-      +pos.coords.latitude+","+pos.coords.longitude;
-
-      window.location="sms:"+s1+"?body="+encodeURIComponent(msg);
-
-      setTimeout(()=>{
-        window.location="sms:"+s2+"?body="+encodeURIComponent(msg);
-      },3000);
-
-    },
-    function(){
-      alert("Location permission denied");
-    }
-  );
+navigator.geolocation.getCurrentPosition(
+pos => send(pos.coords.latitude, pos.coords.longitude),
+() => send(0,0)
+);
 };
-
 </script>
 
 </body>
