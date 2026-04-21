@@ -329,5 +329,78 @@
       </div>
     </div>
   </div>
+
+
+  <button id="sosBtn" onclick="sendSOS()">🆘</button>
+
+<style>
+#sosBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    cursor: pointer;
+    z-index: 9999;
+}
+
+#sosBtn:hover {
+    background: darkred;
+}
+</style>
+
+<script>
+function sendSOS() {
+    let sos1 = localStorage.getItem("sos1");
+    let sos2 = localStorage.getItem("sos2");
+
+    // Default place (you can make dynamic)
+    let placeName = "Bangalore";
+
+    // If page has place title, use it
+    let placeElement = document.getElementById("placeName");
+    if(placeElement){
+        placeName = placeElement.innerText;
+    }
+
+    if (!sos1 || !sos2) {
+        alert("SOS numbers not set. Please login first.");
+        return;
+    }
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(pos) {
+
+            let lat = pos.coords.latitude;
+            let lon = pos.coords.longitude;
+
+            let message = "🚨 EMERGENCY!\n" +
+                          "Place: " + placeName + "\n" +
+                          "Location: https://maps.google.com/?q=" + lat + "," + lon;
+
+            let encodedMsg = encodeURIComponent(message);
+
+            // First number
+            window.location.href = "sms:" + sos1 + "?body=" + encodedMsg;
+
+            // Second number after delay
+            setTimeout(() => {
+                window.location.href = "sms:" + sos2 + "?body=" + encodedMsg;
+            }, 3000);
+
+        }, function() {
+            alert("Please enable location access!");
+        });
+    } else {
+        alert("Geolocation not supported");
+    }
+}
+</script>
 </body>
 </html>
