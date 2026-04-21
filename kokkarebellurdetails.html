@@ -1,85 +1,332 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Kokkare Belluru Bird Sanctuary</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ranganathittu Bird Sanctuary</title>
+
 <style>
-    header{
-        background-color: #f2f2f2;
-        padding: 10px;
-        text-align: center;
-        color: green;
-    }
-    h1 {
-        color: blue;
-        
-    }
-    footer{
-        background-color: #f2f2f2;
-        padding: 5px;
-        text-align: center;
-        width: 100%;
-        bottom: 0;
-    }
-    p{
-        text-align: left;
-        line-height: 1.0;
-        margin-bottom: 16px;     
-    }
-    h2{
-        text-align: left;
-    }
-    body{
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        padding-left:40px; padding-right: 40px;
-        max-width: 100%;
-        margin:auto;
-    }
-    /* Responsive Google Maps */
-        .map-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 ratio */
-            height: 0;
-            overflow: hidden;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
+body{
+  font-family: Arial;
+  margin: 0;
+  padding: 20px;
+  background: #e8f5e9;
+}
 
-    </style>
-    <header>
-        <h1> Kokkare Belluru Bird Sanctuary</h1>
-          
-    </header>
-    <body>
-         <h1 style="color: green;">Ticket Fare</h1>
-         <p style="color: red;">No informations</p>
-         <!-- <p>No entry fee</p> -->
-         <!-- <div>Children &#58; &#8377;15-20 </div> -->
-         <!-- <div></div>Adults &#58;&#8377;40</div> -->
-         <!-- <div> child &#58; &#8377;30 &#40;Below10-18years&#41;</p></div> -->
+header{
+  background: #2e7d32;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
 
-          <h2 style="color: green;">Opening dates and timings </h2>
-         <p>Sunday open 24 hours</p>
-          <p>Monday open 24 hours</p>
-          <p>Tuesday open 24 hours</p>
-          <p>Wednesday open 24 hours</p>
-          <p>Thursday open 24 hours</p>
-          <p>Friday open 24 hours</p>
-          <p>Saturday open 24 hours</p>
-          <h4 style="color: green;">Parking and toilet facility </h4>
-    <div> Parking facility  <span style="color: green;">&#x2714;</span> </div>
-    <div>Toilet facility <span style="color: red"> 	&#x274C;</span> </div>
-    
+.section{
+  background: white;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 10px;
+}
 
+button{
+  background: #2e7d32;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin: 5px 5px 0 0;
+  cursor: pointer;
+}
 
-           <div class="map-container">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7790.164043429269!2d77.08842485181916!3d12.510722314239887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bafa9926d957359%3A0xc10de43ddf2a66f0!2sKokkare%20Belluru%20Bird%20Sanctuary!5e0!3m2!1sen!2sin!4v1754308703260!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div><br>
-           <a href="https://en.wikipedia.org/wiki/Kokrebellur" target="_blank" class="nav-link">
-       More details <span class="external-icon">&#x2197;</span>
-    </a>
-          
-<footer>
-        <p style="text-align: center;">All copy rights reserved</p>
-    </footer>
+/* BUTTON ROW */
+.button-row{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.card{
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+textarea{
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+select{
+  padding: 5px;
+  margin-top: 5px;
+}
+
+footer{
+  text-align: center;
+  background: #2e7d32;
+  color: white;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+/* SOS */
+#sosBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  font-size: 26px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1 id="placeName">Ranganathittu Bird Sanctuary</h1>
+</header>
+
+<!-- INFO -->
+<div class="section">
+<h2>Entry Information</h2>
+<p>₹50 – ₹300 (Boat Safari Charges Extra)</p>
+</div>
+
+<!-- FACILITIES -->
+<div class="section">
+<h2>Facilities</h2>
+<p>🚤 Boat Safari Available</p>
+<p>🚗 Parking Available</p>
+<p>🚻 Toilets Available</p>
+<p>🦜 Bird Watching Towers</p>
+</div>
+
+<!-- CROWD -->
+<div class="section">
+<h2>Crowd Status</h2>
+<p id="crowd">Click button</p>
+<button onclick="getCrowd()">Check Crowd</button>
+</div>
+
+<!-- HOTELS -->
+<div class="section">
+<h2>Nearby Hotels</h2>
+<div id="hotels">Click button</div>
+<button onclick="getHotels()">Load Hotels</button>
+</div>
+
+<!-- FOOD -->
+<div class="section">
+<h2>Famous Food Nearby</h2>
+<div id="food">Click button</div>
+<button onclick="getFood()">Load Food</button>
+</div>
+
+<!-- ESSENTIALS -->
+<div class="section">
+<h2>Essential Needs</h2>
+<div id="essentials">Click button</div>
+<button onclick="getEssentials()">Check Essentials</button>
+</div>
+
+<!-- LOCATION -->
+<div class="section">
+<h2>Location</h2>
+<iframe width="100%" height="300"
+src="https://maps.google.com/maps?q=Ranganathittu%20Bird%20Sanctuary&output=embed">
+</iframe>
+</div>
+
+<!-- REVIEWS -->
+<div class="section">
+<h2>User Reviews & Ratings</h2>
+
+<label>Rating:</label>
+<select id="rating">
+<option value="5">★★★★★</option>
+<option value="4">★★★★</option>
+<option value="3">★★★</option>
+<option value="2">★★</option>
+<option value="1">★</option>
+</select>
+
+<textarea id="reviewText" placeholder="Write review..."></textarea>
+
+<button onclick="addReview()">Submit Review</button>
+<button onclick="clearReviews()">Clear All</button>
+
+<div id="reviewList"></div>
+</div>
+
+<!-- WIKIPEDIA -->
+<div class="section">
+<h2>More Details</h2>
+<a href="https://en.wikipedia.org/wiki/Ranganathittu_Bird_Sanctuary" target="_blank">
+Click here for full Wikipedia details of Ranganathittu Bird Sanctuary
+</a>
+</div>
+
+<footer>© All Rights Reserved</footer>
+
+<script>
+
+/* NAVIGATION */
+function navigate(place){
+window.open("https://www.google.com/maps/search/" + place);
+}
+
+/* BOOKING */
+function bookHotel(name){
+window.open("https://www.booking.com/searchresults.html?ss=" + name);
+}
+
+/* CROWD */
+function getCrowd(){
+let levels=["Low","Moderate","High","Very Busy"];
+document.getElementById("crowd").innerText =
+levels[Math.floor(Math.random()*levels.length)];
+}
+
+/* HOTELS */
+function getHotels(){
+document.getElementById("hotels").innerHTML=`
+
+<div class="card">
+<b>Hotel Mayura</b><p>Near Sanctuary</p>
+<div class="button-row">
+<button onclick="navigate('Mayura Hotel Ranganathittu')">🧭 Navigate</button>
+<button onclick="bookHotel('Mayura Hotel Mysore')">🏨 Book</button>
+</div>
+</div>
+
+<div class="card">
+<b>Royal Orchid Mysore</b><p>10 km</p>
+<div class="button-row">
+<button onclick="navigate('Royal Orchid Mysore')">🧭 Navigate</button>
+<button onclick="bookHotel('Royal Orchid Mysore')">🏨 Book</button>
+</div>
+</div>
+
+`;
+}
+
+/* FOOD */
+function getFood(){
+document.getElementById("food").innerHTML=`
+
+<div class="card">
+<b>River Side Food Stall</b><p>Near Entry</p>
+<button onclick="navigate('Ranganathittu Food Court')">🧭 Navigate</button>
+</div>
+
+<div class="card">
+<b>Mysore Style Meals</b><p>5 km</p>
+<button onclick="navigate('Mysore Local Restaurant')">🧭 Navigate</button>
+</div>
+
+`;
+}
+
+/* ESSENTIALS */
+function getEssentials(){
+document.getElementById("essentials").innerHTML=`
+
+<div class="card">
+<b>Hospital</b><p>12 km</p>
+<button onclick="navigate('Srirangapatna Hospital')">🧭 Navigate</button>
+</div>
+
+<div class="card">
+<b>Fuel Station</b><p>6 km</p>
+<button onclick="navigate('Srirangapatna Petrol Pump')">🧭 Navigate</button>
+</div>
+
+`;
+}
+
+/* REVIEWS */
+function loadReviews(){
+let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+let box = document.getElementById("reviewList");
+box.innerHTML="";
+
+reviews.forEach(r=>{
+box.innerHTML += `
+<div class="card">
+<b>${"★".repeat(r.rating)}</b>
+<p>${r.text}</p>
+</div>`;
+});
+}
+
+function addReview(){
+let rating = document.getElementById("rating").value;
+let text = document.getElementById("reviewText").value;
+
+if(text.trim()=="") return alert("Enter review");
+
+let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+reviews.push({rating,text});
+
+localStorage.setItem("reviews", JSON.stringify(reviews));
+
+document.getElementById("reviewText").value="";
+loadReviews();
+}
+
+function clearReviews(){
+localStorage.removeItem("reviews");
+loadReviews();
+}
+
+loadReviews();
+
+</script>
+
+<!-- SOS -->
+<button id="sosBtn">🆘</button>
+
+<script>
+document.getElementById("sosBtn").onclick = function () {
+
+let sos1 = localStorage.getItem("sos1");
+let sos2 = localStorage.getItem("sos2");
+
+if(!sos1 || !sos2){
+alert("Save SOS numbers first!");
+return;
+}
+
+let placeName = document.getElementById("placeName").innerText;
+
+function send(lat, lon){
+
+let msg = "🚨 EMERGENCY!\nPlace: " + placeName +
+"\nLocation: https://maps.google.com/?q=" + lat + "," + lon;
+
+let encoded = encodeURIComponent(msg);
+
+window.location.href = "sms:" + sos1 + "?body=" + encoded;
+
+setTimeout(()=>{
+window.location.href = "sms:" + sos2 + "?body=" + encoded;
+},3000);
+}
+
+navigator.geolocation.getCurrentPosition(
+pos => send(pos.coords.latitude, pos.coords.longitude),
+() => send(0,0)
+);
+};
+</script>
+
+</body>
 </html>
