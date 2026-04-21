@@ -357,51 +357,39 @@ document.getElementById("sosBtn").onclick = function () {
     let sos2 = localStorage.getItem("sos2");
 
     if (!sos1 || !sos2) {
-        alert("Please login first!");
+        alert("Please login and add two SOS numbers!");
         return;
     }
-
-    let placeName = "Current Location";
-    let placeEl = document.getElementById("placeName");
-    if (placeEl) placeName = placeEl.innerText;
 
     if (!navigator.geolocation) {
-        alert("Location not supported on this device");
+        alert("Location not supported");
         return;
     }
 
-    // FORCE HIGH ACCURACY LOCATION
-    navigator.geolocation.getCurrentPosition(
-        function (pos) {
+    navigator.geolocation.getCurrentPosition(function (pos) {
 
-            let lat = pos.coords.latitude;
-            let lon = pos.coords.longitude;
+        let lat = pos.coords.latitude;
+        let lon = pos.coords.longitude;
 
-            let message = "🚨 EMERGENCY!\n" +
-                          "Place: " + placeName + "\n" +
-                          "My Live Location:\n" +
-                          "https://maps.google.com/?q=" + lat + "," + lon;
+        let message = "🚨 EMERGENCY!\n" +
+                      "I need help!\n" +
+                      "Location: https://maps.google.com/?q=" + lat + "," + lon;
 
-            let encoded = encodeURIComponent(message);
+        let encoded = encodeURIComponent(message);
 
-            // Send to first number
-            window.location.href = "sms:" + sos1 + "?body=" + encoded;
+        // 👉 STEP 1: Send to first number
+        alert("Send SOS to Contact 1");
+        window.location.href = "sms:" + sos1 + "?body=" + encoded;
 
-            // Send to second number
-            setTimeout(() => {
-                window.location.href = "sms:" + sos2 + "?body=" + encoded;
-            }, 4000);
+        // 👉 STEP 2: After user returns, send to second number
+        setTimeout(() => {
+            alert("Now send SOS to Contact 2");
+            window.location.href = "sms:" + sos2 + "?body=" + encoded;
+        }, 5000);
 
-        },
-        function (error) {
-            alert("❌ Location access denied. Please allow GPS.");
-        },
-        {
-            enableHighAccuracy: true,
-            timeout: 10000,
-            maximumAge: 0
-        }
-    );
+    }, function () {
+        alert("Please allow location access!");
+    });
 };
 </script>
 </body>
