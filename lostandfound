@@ -215,7 +215,7 @@ document.getElementById("list").innerHTML = html;
 
 }
 
-/* DELETE */
+/* DELET */
 function remove(id){
 let data = JSON.parse(localStorage.getItem("lf_data") || "[]");
 data = data.filter(d=>d.id!==id);
