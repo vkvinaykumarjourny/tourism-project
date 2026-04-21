@@ -1,337 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>MADIKERI DISTRICT</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MADIKERI DISTRICT</title>
 
-    header, footer {
-      color: black;
-      background-color: skyblue;
-      padding: 1%;
-      text-align: center;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
 
-    main {
-      padding: 20px;
-    }
+header, footer {
+  color: black;
+  padding: 1%;
+  text-align: center;
+  background-color: aliceblue;
+}
 
-    .card-section-title {
-      color: green;
-    }
+main { padding: 20px; }
 
-    .card-subtitle {
-      font-family: 'Courier New';
-    }
+.card-section-title { color: green; }
+.card-subtitle { font-family: 'Courier New'; }
 
-    .tour-row {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 30px;
-    }
+.search-container { text-align: right; }
 
-    .row-even {
-      flex-direction: row-reverse;
-    }
+#searchBox {
+  padding: 8px;
+  width: 250px;
+  font-size: 16px;
+}
 
-    .tour-card {
-      width: 300px;
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-      margin: 0 20px;
-    }
+/* GRID */
+.places-wrapper {
+  display: grid;
+  gap: 25px;
+}
 
-    .image-container {
-      position: relative;
-    }
-
-    .tour-image {
-      width: 100%;
-      display: block;
-    }
-
-    .top-overlay {
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      right: 8px;
-      display: flex;
-      justify-content: space-between;
-      pointer-events: none;
-    }
-
-    .badge {
-      background: white;
-      color: green;
-      font-size: 12px;
-      font-weight: bold;
-      padding: 4px 6px;
-      border-radius: 4px;
-    }
-
-    .tour-info {
-      padding: 16px;
-    }
-
-    .state {
-      color: #00aa88;
-      font-size: 12px;
-      font-weight: bold;
-      margin: 0;
-    }
-
-    .title {
-      font-size: 18px;
-      margin: 4px 0 8px;
-    }
-    .back-to-top {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: blue;
-      text-decoration: none;
-    }
-    .search-container{
-      text-align: right;
-      
-    }
-    #searchBox {
-      padding: 8px;
-      width: 250px;
-      font-size: 16px;
-    }
-    #searchBtn {
-      padding: 8px 12px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .result {
-      margin-top: 15px;
-      padding: 10px;
-      border: 1px solid #ddd;
-      background: #f9f9f9;
-      display: none;
-    }
-    .result h3 {
-      margin: 0;
-    }
-    .result a {
-      text-decoration: none;
-      color: blue;
-    }
-    .result a:hover {
-      text-decoration: underline;
-    }
-    
-  </style>
-</head>
-<body>
-<div id="google_translate_element"></div>
-<script >
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement(
-      {pageLanguage: 'en', includedLanguages: 'kn,en,hi'},
-      'google_translate_element'
-    );
+@media (min-width: 769px) {
+  .places-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
-  </script>
+}
 
-<script  src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-</script>
+.tour-card {
+  width: 100%;
+  max-width: 300px;
+  margin: auto;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.image-container { position: relative; }
+.tour-image { width: 100%; display: block; }
+
+.top-overlay {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.badge {
+  background: white;
+  color: green;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
+.tour-info { padding: 16px; }
+
+.state {
+  color: #00aa88;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.title { font-size: 18px; }
+
+@media (max-width:768px){
+  .tour-card { max-width: 90%; }
+}
+
+/* SOS BUTTON */
+#sosBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  font-size: 26px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  z-index: 9999;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
 <header>
-    <h1>KA ADVENTURE</h1>
-    <div class="search-container">
-    <input type="text" id="searchBox" placeholder="Search places...">
-<button id="searchBtn">Search</button>
+<h1>KA ADVENTURE</h1>
+<div class="search-container">
+<input type="text" id="searchBox" placeholder="Search places...">
 </div>
-<div class="result" id="resultBox"></div>
 </header>
-<script>
-  const places = {
-    "abbi falls ": {
-      description: "Click here to know more about abbi falls",
-      link: "abbidetails.html",
-    },
-    "irup waterfalls": {
-      description: "Click here to know more about irup waterfalls",
-      link: "irupdetails.html",
-    },
-    "mallalli waterfalls": {
-      description: "Click here to know more about mallalli waterfalls",
-      link: "mallallidetails.html",
-    },
-    "cheluvara waterfalls": {
-      description: "Click here to know more about cheluvara waterfalls",
-      link: "cheluvadetails.html",
-    },
-    "kote abbe waterfalls": {
-      description: "Click here to know more about kote abbe waterfalls",
-      link: "kotedetails.html",
-    },
-    "devaragundi waterfalls": {
-      description: "Click here to know more about devaragundi waterfalls",
-      link: "Devaradetails.html",
-    },
-    "harangi dam": {
-      description: "Click here to know more about harangi dam",
-      link: "harahgidetails.html",
-    },
-    "talakaveri temple": {
-      description: "Click here to know more about talakaveri temple",
-      link: "talakaveridetails.html",
-    },
-    "sri bhagandeshwara temple": {
-      description: "Click here to know more about sri bhagandeshwara temple",
-      link: "bhaganddetails.html",
-    },
-    "sri omkareshwara temple": {
-      description: "Click here to know more about sri omkareshwara temple",
-      link: "omkaradetails.html",
-    },
-    "madikeri fort": {
-      description: "Click here to know more about madikeri fort",
-      link: "mmfortdetails.htm",
-    },
-    "raja's tombs": {
-      description: "Click here to know more about raja's tombs",
-      link: "rajaetails.htm",
-    },
-    "madikeri namdroling monastery golden temple": {
-      description: "Click here to know more about madikeri namdroling monastery golden temple",
-      link: "goldendetails.html",
-    },
-    "sera mey monastic university": {
-      description: "Click here to know more about sera mey monastic university",
-      link: "seradetails.html",
-    },
-    "the vintage cars museum – coorg": {
-      description: "Click here to know more about the vintage cars museum – coorg",
-      link: "vintagedetails.html",
-    },
-    "government museum –madikeri": {
-      description: "Click here to know more about government museum –madikeri",
-      link: "govmdetalsdetails.html",
-    },
-    "mandalpatti peak": {
-      description: "Click here to know more about mandalpatti peak",
-      link: "mpattidetails.html",
-    },
-    "bhrahmagiri hills viewpoint": {
-      description: "Click here to know more about bhrahmagiri hills viewpoint",
-      link: "brahmadetails.html",
-    },
-    "nishani motte": {
-      description: "Click here to know more about nishani motte",
-      link: "nishanidetails.html",
-    },
-    "makkalagudi betta": {
-      description: "Click here to know more about makkalagudi betta",
-      link: "makkaldetails.html",
-    },
-    "pushpagiri": {
-      description: "Click here to know more about pushpagiri",
-      link: "pushpadetails.html",
-    },
-    "kote betta": {
-      description: "Click here to know more about kote betta",
-      link: "kotedetails.html",
-    },
-    "tadiandamol": {
-      description: "Click here to know more about tadiandamol",
-      link: "tadiandetails.html",
-    },
-    "harangi reservoir": {
-      description: "Click here to know more about harangi reservoir",
-      link: "haragiredetails.html",
-    },
-    "raja's seat garden": {
-      description: "Click here to know more about raja's seat garden",
-      link: "rajagardetails.html",
-    },
-    "dubare elephant camp": {
-      description: "Click here to know more about dubare elephant camp",
-      link: "dubaredetails.html",
-    },
-    "kodagu white water rafting": {
-      description: "Click here to know more about kodagu white water rafting",
-      link: "raftingdetails.html",
-    },
-    "the quarry adventures & cafe quarry": {
-      description: "Click here to know more about the quarry adventures & cafe quarry",
-      link: "quarrydetails.html",
-    },
-    "pushpagiri wildlife sanctuary": {
-      description: "Click here to know more about pushpagiri wildlife sanctuary",
-      link: "pushpagdetails.html",
-    },
-    "kabini wildlife safari ticket": {
-      description: "Click here to know more about kabini wildlife safari ticket",
-      link: "kabinidetails.html",
-    },
-    "nagarahole tiger reserve": {
-      description: "Click here to know more about nagarahole tiger reserve",
-      link: "nagarahdetails.html",
-    },
-    "mercara gold estate coffee plantation": {
-      description: "Click here to know more about mercara gold estate coffee plantation",
-      link: "mercaradetails.html",
-    },
-    "honnamana kere": {
-      description: "Click here to know more about honnamana kere",
-      link: "honnammadetails.html",
-    },
-    "nalkand palace": {
-      description: "Click here to know more about nalkand palace",
-      link: "nalkanddetails.html",
-    },
-    "madikeri museum": {
-      description: "Click here to know more about madikeri museum",
-      link: "madikerimuseumdetails.html",
-    },
-    "greenway coffee island plantation tour":{
-      description:"Click here to know more about greenway coffee island plantation tour",
 
-    },
+<main>
 
- };
-  const searchBox = document.getElementById("searchBox");
-  const resultBox = document.getElementById("resultBox");
+<h1 class="card-section-title">WELCOME MADIKERI DISTRICT</h1>
+<h2 class="card-subtitle">
+Madikeri (Coorg) is famous for waterfalls, hills, coffee plantations, and nature beauty.
+</h2>
 
-  searchBox.addEventListener("input", function() {
-    let query = searchBox.value.trim().toLowerCase();
-    if (query) {
-      let matchKey = Object.keys(places).find(place => place.includes(query));
-      if (matchKey) {
-        resultBox.style.display = "block";
-        resultBox.innerHTML = `
-          <h3><a href="${places[matchKey].link}">${matchKey.toUpperCase()}</a></h3>
-          <p>${places[matchKey].description}</p>
-        `;
-      } else {
-        resultBox.style.display = "block";
-        resultBox.innerHTML = "<p>No details found for: ${query}</p>";
-      }
-    } else {
-      resultBox.style.display = "none";
-      resultBox.innerHTML = "";
-    }
-  });
-</script>
+<div class="places-wrapper">
 
-  <main>
-    <h1 class="card-section-title">WELCOME MADIKERI DISTRICT</h1>
-    <h2 class="card-subtitle"> Madikeri, also known as Mercara, is a city and the headquarters of Kodagu district (Coorg) in the state of Karnataka.<br>
-       one of the world's eight "hottest hotspots" of biological diversity and is also a UNESCO World Heritage Site.</h2>
-
-    <h1 style="text-align: center;">Falls</h1>
-    <div class="tour-row row-even">
+<!-- FALLS -->
+<div class="tour-row row-even">
       <div class="tour-card">
         <div class="image-container">
           <a href="abbidetails.html">
@@ -427,7 +223,7 @@
         </div>
       </div>
     </div>
-    <h1 style="text-align: center;">Dams</h1>
+   
     <div class="tour-row row-even">
       <div class="tour-card">
         <div class="image-container">
@@ -444,7 +240,7 @@
         </div>
       </div>
     </div>
-    <h1 style="text-align: center;">Religeous Architecture and Monuments</h1>
+
     <div class="tour-row row-even">
       <div class="tour-card">
         <div class="image-container">
@@ -493,7 +289,7 @@
         </div>
       </div>
     </div>
-    <h1 style="text-align: center;">Historical Sites</h1>
+    
     <div class="tour-row row-even">
       <div class="tour-card">
         <div class="image-container">
@@ -558,7 +354,7 @@
         </div>
       </div>
     </div>
-    <h1 style="text-align: center;">Museums</h1>
+  
     <div class="tour-row row-even">
       <div class="tour-card">
         <div class="image-container">
@@ -591,7 +387,7 @@
         </div>
       </div>
     </div>
-    <h1 style="text-align: center;">Mountains and hill stations</h1>
+    
     <div class="tour-row row-even">
       <div class="tour-card">
         <div class="image-container">
@@ -704,7 +500,7 @@
         </div>
       </div>
     </div>
-    <h1 style="text-align: center;">Reservoir</h1>
+
     <div class="tour-row row-even">
       <div class="tour-card">
         <div class="image-container">
@@ -721,7 +517,7 @@
         </div>
       </div>
     </div>
-     <h1 style="text-align: center;">Tourist Attraction</h1>
+    
     <div class="tour-row row-even">
       <div class="tour-card">
         <div class="image-container">
@@ -754,7 +550,7 @@
         </div>
       </div>
     </div>
-    <h1 style="text-align: center;">Adeventures Activities</h1>
+  
     <div class="tour-row row-even">
       <div class="tour-card">
         <div class="image-container">
@@ -787,7 +583,7 @@
         </div>
       </div>
     </div>
-    <h1 style="text-align: center;">Wildlife sanctuaries</h1>
+   
     <div class="tour-row row-even">
       <div class="tour-card">
         <div class="image-container">
@@ -836,7 +632,7 @@
         </div>
       </div>
     </div>
-    <h1 style="text-align: center;">Others</h1>
+    
     <div class="tour-row row-even">
       <div class="tour-card">
         <div class="image-container">
@@ -903,9 +699,59 @@
     </div>
   </main>
 
-  <footer>
-    <p>@ALL COPY RIGHTS ARE RESERVED 2025</p>
-  </footer>
+<footer>
+<p>@ALL COPYRIGHTS RESERVED</p>
+</footer>
+
+<!-- SEARCH -->
+<script>
+const searchBox = document.getElementById("searchBox");
+const cards = document.querySelectorAll(".tour-card");
+
+searchBox.addEventListener("input", function() {
+  const query = searchBox.value.toLowerCase();
+  cards.forEach(card => {
+    const name = card.getAttribute("data-name");
+    card.style.display = name.includes(query) ? "block" : "none";
+  });
+});
+</script>
+
+<!-- SOS BUTTON -->
+<button id="sosBtn">🆘</button>
+
+<script>
+document.getElementById("sosBtn").onclick = function () {
+
+    let sos1 = localStorage.getItem("sos1");
+    let sos2 = localStorage.getItem("sos2");
+
+    if (!sos1 || !sos2) {
+        alert("Please login first!");
+        return;
+    }
+
+    let placeName = "Madikeri";
+
+    function sendSMS(lat, lon) {
+        let msg = "🚨 EMERGENCY!\nPlace: " + placeName +
+        "\nLocation: https://maps.google.com/?q=" + lat + "," + lon;
+
+        let encoded = encodeURIComponent(msg);
+
+        window.location.href = "sms:" + sos1 + "?body=" + encoded;
+
+        setTimeout(() => {
+            window.location.href = "sms:" + sos2 + "?body=" + encoded;
+        }, 4000);
+    }
+
+    navigator.geolocation.getCurrentPosition(
+        pos => sendSMS(pos.coords.latitude, pos.coords.longitude),
+        () => alert("Location permission denied")
+    );
+};
+</script>
 
 </body>
 </html>
