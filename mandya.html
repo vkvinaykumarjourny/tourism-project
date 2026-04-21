@@ -329,5 +329,80 @@ searchBox.addEventListener("input", function() {
 });
 </script>
 
+  <button id="sosBtn">🆘</button>
+
+<style>
+#sosBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    font-size: 26px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    z-index: 9999;
+    cursor: pointer;
+}
+#sosBtn:active {
+    background: darkred;
+}
+</style>
+
+<script>
+document.getElementById("sosBtn").onclick = function () {
+
+    let sos1 = localStorage.getItem("sos1");
+    let sos2 = localStorage.getItem("sos2");
+
+    if (!sos1 || !sos2) {
+        alert("Please login and add SOS numbers!");
+        return;
+    }
+
+    // Get place name (if available)
+    let placeName = "Bangalore";
+    let placeEl = document.getElementById("placeName");
+    if (placeEl) placeName = placeEl.innerText;
+
+    function sendMessage(lat = null, lon = null) {
+
+        let msg = "🚨 EMERGENCY!\nPlace: " + placeName;
+
+        if (lat && lon) {
+            msg += "\nLocation: https://maps.google.com/?q=" + lat + "," + lon;
+        } else {
+            msg += "\nLocation: Bangalore";
+        }
+
+        let encoded = encodeURIComponent(msg);
+
+        // First number
+        window.location.href = "sms:" + sos1 + "?body=" + encoded;
+
+        // Second number (after delay)
+        setTimeout(() => {
+            window.location.href = "sms:" + sos2 + "?body=" + encoded;
+        }, 4000);
+    }
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function (pos) {
+                sendMessage(pos.coords.latitude, pos.coords.longitude);
+            },
+            function () {
+                sendMessage(); // fallback if location denied
+            }
+        );
+    } else {
+        sendMessage();
+    }
+};
+</script>
+
 </body>
 </html>
