@@ -331,7 +331,7 @@
   </div>
 
 
- <!-- 🆘 Floating SOS Button -->
+<!-- 🆘 Floating SOS Button -->
 <button id="sosBtn">🆘</button>
 
 <style>
@@ -341,17 +341,12 @@
     right: 20px;
     background: red;
     color: white;
-    border: none;
     border-radius: 50%;
     width: 65px;
     height: 65px;
+    border: none;
     font-size: 26px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
     z-index: 9999;
-    cursor: pointer;
-}
-#sosBtn:active {
-    background: darkred;
 }
 </style>
 
@@ -362,48 +357,51 @@ document.getElementById("sosBtn").onclick = function () {
     let sos2 = localStorage.getItem("sos2");
 
     if (!sos1 || !sos2) {
-        alert("Please login and add SOS numbers!");
+        alert("Please login first!");
         return;
     }
 
-    // Get place name (if available)
-    let placeName = "Bangalore";
+    let placeName = "Current Location";
     let placeEl = document.getElementById("placeName");
     if (placeEl) placeName = placeEl.innerText;
 
-    function sendMessage(lat = null, lon = null) {
+    if (!navigator.geolocation) {
+        alert("Location not supported on this device");
+        return;
+    }
 
-        let msg = "🚨 EMERGENCY!\nPlace: " + placeName;
+    // FORCE HIGH ACCURACY LOCATION
+    navigator.geolocation.getCurrentPosition(
+        function (pos) {
 
-        if (lat && lon) {
-            msg += "\nLocation: https://maps.google.com/?q=" + lat + "," + lon;
-        } else {
-            msg += "\nLocation: Bangalore";
+            let lat = pos.coords.latitude;
+            let lon = pos.coords.longitude;
+
+            let message = "🚨 EMERGENCY!\n" +
+                          "Place: " + placeName + "\n" +
+                          "My Live Location:\n" +
+                          "https://maps.google.com/?q=" + lat + "," + lon;
+
+            let encoded = encodeURIComponent(message);
+
+            // Send to first number
+            window.location.href = "sms:" + sos1 + "?body=" + encoded;
+
+            // Send to second number
+            setTimeout(() => {
+                window.location.href = "sms:" + sos2 + "?body=" + encoded;
+            }, 4000);
+
+        },
+        function (error) {
+            alert("❌ Location access denied. Please allow GPS.");
+        },
+        {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
         }
-
-        let encoded = encodeURIComponent(msg);
-
-        // First number
-        window.location.href = "sms:" + sos1 + "?body=" + encoded;
-
-        // Second number (after delay)
-        setTimeout(() => {
-            window.location.href = "sms:" + sos2 + "?body=" + encoded;
-        }, 4000);
-    }
-
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            function (pos) {
-                sendMessage(pos.coords.latitude, pos.coords.longitude);
-            },
-            function () {
-                sendMessage(); // fallback if location denied
-            }
-        );
-    } else {
-        sendMessage();
-    }
+    );
 };
 </script>
 </body>
