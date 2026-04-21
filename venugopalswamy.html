@@ -180,34 +180,24 @@ loadReviews();
 // SOS
 
 
+
 function sendSOS() {
     let sos1 = localStorage.getItem("sos1");
-    let sos2 = localStorage.getItem("sos2");
     let placeName = document.getElementById("placeName").innerText;
 
-    if (!sos1 || !sos2) {
-        alert("No SOS numbers found!");
+    if (!sos1) {
+        alert("SOS number not found!");
         return;
     }
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(pos) {
-            let lat = pos.coords.latitude;
-            let lon = pos.coords.longitude;
+    let message = "EMERGENCY! I need help at " + placeName;
 
-            let message = "🚨 EMERGENCY!\n" +
-                          "Place: " + placeName + "\n" +
-                          "Location: https://maps.google.com/?q=" + lat + "," + lon;
+    // ✅ IMPORTANT FIX (Android compatible)
+    let smsURL = "sms:" + sos1 + "?body=" + encodeURIComponent(message);
 
-            // Android SMS intent
-            let smsURL = "sms:" + sos1 + "," + sos2 + "?body=" + encodeURIComponent(message);
-
-            window.location.href = smsURL;
-        });
-    } else {
-        alert("Location not supported");
-    }
+    window.location.href = smsURL;
 }
+</script>
 </script>
 
 </body>
