@@ -6,136 +6,59 @@
 <title>Shivanasamudra Falls</title>
 
 <style>
-body{
-  font-family: Arial;
-  margin: 0;
-  padding: 20px;
-  background: #e8f5e9;
-}
-
-header{
-  background: #2e7d32;
-  color: white;
-  padding: 15px;
-  text-align: center;
-}
-
-.section{
-  background: white;
-  padding: 15px;
-  margin: 15px 0;
-  border-radius: 10px;
-}
-
-button{
-  background: #2e7d32;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  margin-top: 5px;
-  cursor: pointer;
-}
-
-.card{
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 8px;
-}
-
-textarea{
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-}
-
-select{
-  padding: 5px;
-  margin-top: 5px;
-}
-
-footer{
-  text-align: center;
-  background: #2e7d32;
-  color: white;
-  padding: 10px;
-  margin-top: 20px;
-}
-
-/* SOS BUTTON */
-#sosBtn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: red;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 65px;
-  height: 65px;
-  font-size: 26px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-  z-index: 9999;
-  cursor: pointer;
-}
+body{font-family:Arial;margin:0;background:#e8f5e9;padding:20px}
+header{background:#2e7d32;color:white;padding:15px;text-align:center}
+.section{background:white;padding:15px;margin:15px 0;border-radius:10px}
+button{background:#2e7d32;color:white;padding:10px;border:none;border-radius:5px;margin:5px;cursor:pointer}
+.card{border:1px solid #ccc;padding:10px;margin:10px 0;border-radius:8px}
+textarea,select{width:100%;padding:8px;margin-top:5px}
+footer{text-align:center;background:#2e7d32;color:white;padding:10px;margin-top:20px}
 </style>
 </head>
 
 <body>
 
 <header>
-<h1 id="placeName">Shivanasamudra Falls</h1>
+<h1>Shivanasamudra Falls</h1>
 </header>
 
 <div class="section">
 <h2>Ticket Fare</h2>
-<p>₹30 – ₹100 (Approx)</p>
-</div>
-
-<div class="section">
-<h2>Facilities</h2>
-<p>🚗 Parking Available</p>
-<p>🚻 Toilet Available</p>
-<p>🍴 Food Stalls Nearby</p>
+<p>₹30 - ₹50 (Approx)</p>
 </div>
 
 <div class="section">
 <h2>Crowd Status</h2>
-<p id="crowd">Click button</p>
+<p id="crowd">Click to check</p>
 <button onclick="getCrowd()">Check Crowd</button>
 </div>
 
 <div class="section">
-<h2>Nearby Hotels</h2>
-<div id="hotels">Click button</div>
-<button onclick="getHotels()">Check Hotels</button>
+<h2>Hotels Nearby</h2>
+<div id="hotels"></div>
+<button onclick="getHotels()">Show Hotels</button>
 </div>
 
 <div class="section">
 <h2>Essential Needs</h2>
-<div id="essentials">Click button</div>
-<button onclick="getEssentials()">Check Essentials</button>
+<div id="essentials"></div>
+<button onclick="getEssentials()">Show Essentials</button>
 </div>
 
 <div class="section">
 <h2>Famous Food Nearby</h2>
-<div id="food">Click button</div>
-<button onclick="getFood()">Check Food</button>
+<div id="food"></div>
+<button onclick="getFood()">Show Food</button>
 </div>
 
 <div class="section">
 <h2>Location</h2>
 <iframe width="100%" height="300"
-src="https://maps.google.com/maps?q=Shivanasamudra%20Falls&output=embed">
-</iframe>
+src="https://www.google.com/maps?q=Shivanasamudra+Falls&output=embed"></iframe>
 </div>
 
-<!-- REVIEWS -->
 <div class="section">
-<h2>User Reviews & Ratings</h2>
-
-<label>Rating:</label>
+<h2>User Reviews</h2>
 <select id="rating">
 <option value="5">★★★★★</option>
 <option value="4">★★★★</option>
@@ -144,132 +67,112 @@ src="https://maps.google.com/maps?q=Shivanasamudra%20Falls&output=embed">
 <option value="1">★</option>
 </select>
 
-<label>Review:</label>
-<textarea id="reviewText" placeholder="Write your review..."></textarea>
+<textarea id="reviewText" placeholder="Write review"></textarea>
+<button onclick="addReview()">Submit</button>
 
-<button onclick="addReview()">Submit Review</button>
-<button onclick="clearReviews()">Clear All</button>
-
-<div id="reviewList"></div>
+<div id="reviews"></div>
 </div>
 
-<footer>© All Copyrights Reserved</footer>
+<footer>KA Adventure</footer>
 
-<!-- FUNCTIONS -->
+<button id="sosBtn">🆘</button>
+
+<style>
+#sosBtn{
+position:fixed;bottom:20px;right:20px;
+background:red;color:white;border:none;
+border-radius:50%;width:65px;height:65px;font-size:26px;
+}
+</style>
+
 <script>
-
-// CROWD STATUS
+// Crowd
 function getCrowd(){
 let levels=["Low","Moderate","High","Very Busy"];
-document.getElementById("crowd").innerText =
+document.getElementById("crowd").innerText=
 levels[Math.floor(Math.random()*4)];
 }
 
-// NAVIGATION
-function navigate(place){
-window.open("https://www.google.com/maps?q=" + place);
+// Navigation
+function nav(lat,lon){
+window.open(https://www.google.com/maps/dir/?api=1&destination=${lat},${lon});
 }
 
-// HOTELS
+// Booking
+function book(){
+window.open("https://www.booking.com");
+}
+
+// Hotels
 function getHotels(){
 document.getElementById("hotels").innerHTML=`
-<div class="card"><b>Hotel Mayura</b><p>Nearby</p>
-<button onclick="navigate('Shivanasamudra Hotels')">Navigate</button></div>
-
-<div class="card"><b>Local Stay Lodge</b><p>2 km</p>
-<button onclick="navigate('Shivanasamudra Lodge')">Navigate</button></div>
-`;
+<div class="card">
+<b>Mayura Hotel</b>
+<button onclick="nav(12.30,77.00)">Navigate</button>
+<button onclick="book()">Book</button>
+</div>
+<div class="card">
+<b>River View Resort</b>
+<button onclick="nav(12.31,77.01)">Navigate</button>
+<button onclick="book()">Book</button>
+</div>`;
 }
 
-// ESSENTIALS
+// Essentials
 function getEssentials(){
 document.getElementById("essentials").innerHTML=`
-<div class="card"><b>Hospital</b><p>5 km</p></div>
-<div class="card"><b>Fuel Station</b><p>3 km</p></div>
-`;
+<div class="card">
+Hospital
+<button onclick="nav(12.32,77.02)">Navigate</button>
+</div>
+<div class="card">
+Fuel Station
+<button onclick="nav(12.33,77.03)">Navigate</button>
+</div>`;
 }
 
-// FOOD
+// Food
 function getFood(){
 document.getElementById("food").innerHTML=`
-<div class="card"><b>South Indian Meals</b><p>Near Entrance</p></div>
-<div class="card"><b>Tea & Snacks</b><p>Local Shops</p></div>
-`;
-}
-
-// REVIEWS
-function loadReviews(){
-let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
-let container = document.getElementById("reviewList");
-container.innerHTML = "";
-
-reviews.forEach(r=>{
-container.innerHTML += `
 <div class="card">
-<b>${"★".repeat(r.rating)}</b>
-<p>${r.text}</p>
+Biryani Point
+<button onclick="nav(12.30,77.04)">Navigate</button>
+</div>
+<div class="card">
+South Meals
+<button onclick="nav(12.29,77.05)">Navigate</button>
 </div>`;
-});
 }
 
+// Reviews
 function addReview(){
-let rating = document.getElementById("rating").value;
-let text = document.getElementById("reviewText").value;
+let r=document.getElementById("rating").value;
+let t=document.getElementById("reviewText").value;
+if(!t) return;
 
-if(text.trim()==="") return alert("Enter review");
-
-let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
-reviews.push({rating,text});
-
-localStorage.setItem("reviews", JSON.stringify(reviews));
-
-document.getElementById("reviewText").value="";
-loadReviews();
+let list=JSON.parse(localStorage.getItem("shiv_reviews")||"[]");
+list.push({r,t});
+localStorage.setItem("shiv_reviews",JSON.stringify(list));
+load();
 }
 
-function clearReviews(){
-localStorage.removeItem("reviews");
-loadReviews();
+function load(){
+let list=JSON.parse(localStorage.getItem("shiv_reviews")||"[]");
+document.getElementById("reviews").innerHTML=
+list.map(x=><div class="card">${"★".repeat(x.r)}<br>${x.t}</div>).join("");
 }
+load();
 
-loadReviews();
-
-</script>
-
-<!-- SOS BUTTON -->
-<button id="sosBtn">🆘</button>
-
-<script>
-document.getElementById("sosBtn").onclick = function () {
-
-    let sos1 = localStorage.getItem("sos1");
-    let sos2 = localStorage.getItem("sos2");
-
-    if (!sos1 || !sos2) {
-        alert("Please save SOS numbers first!");
-        return;
-    }
-
-    let placeName = document.getElementById("placeName").innerText;
-
-    function send(lat, lon){
-
-        let msg = "🚨 EMERGENCY!\nPlace: " + placeName +
-        "\nLocation: https://maps.google.com/?q=" + lat + "," + lon;
-
-        let encoded = encodeURIComponent(msg);
-
-        window.location.href = "sms:" + sos1 + "?body=" + encoded;
-
-        setTimeout(()=>{
-            window.location.href = "sms:" + sos2 + "?body=" + encoded;
-        },3000);
-    }
-
-    navigator.geolocation.getCurrentPosition(
-        pos => send(pos.coords.latitude, pos.coords.longitude),
-        () => send(0,0)
-    );
+// SOS
+document.getElementById("sosBtn").onclick=function(){
+let s1=localStorage.getItem("sos1");
+let s2=localStorage.getItem("sos2");
+if(!s1||!s2){alert("Add SOS numbers");return;}
+navigator.geolocation.getCurrentPosition(pos=>{
+let msg="Emergency Shivanasamudra https://maps.google.com/?q="+pos.coords.latitude+","+pos.coords.longitude;
+window.location="sms:"+s1+"?body="+encodeURIComponent(msg);
+setTimeout(()=>window.location="sms:"+s2+"?body="+encodeURIComponent(msg),3000);
+});
 };
 </script>
 
