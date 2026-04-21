@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, #36d1dc, #5b86e5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            width: 300px;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+        }
+
+        button {
+            background: #007BFF;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Login</h2>
+
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+
+    <h4>SOS Numbers</h4>
+    <input type="text" id="sos1" placeholder="Mobile Number 1">
+    <input type="text" id="sos2" placeholder="Mobile Number 2">
+
+    <button onclick="login()">Login</button>
+</div>
+
+<script>
+function login() {
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+    let sos1 = document.getElementById("sos1").value;
+    let sos2 = document.getElementById("sos2").value;
+
+    if(!user || !pass || !sos1 || !sos2){
+        alert("Fill all fields");
+        return;
+    }
+
+    localStorage.setItem("sos1", sos1);
+    localStorage.setItem("sos2", sos2);
+
+    alert("Login Success");
+    window.location.href = "newhome.html";
+}
+</script>
+
+</body>
+</html>

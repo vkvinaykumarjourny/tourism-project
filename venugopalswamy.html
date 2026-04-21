@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tourist Place</title>
+
+<style>
+body{font-family:Arial;margin:0;padding:20px;background:#e8f5e9}
+header{background:#2e7d32;color:white;padding:15px;text-align:center}
+.section{background:white;padding:15px;margin:15px 0;border-radius:10px}
+button{background:#2e7d32;color:white;padding:10px;border:none;border-radius:5px;margin-top:5px;cursor:pointer}
+.card{border:1px solid #ccc;padding:10px;margin:10px 0;border-radius:8px}
+textarea{width:100%;padding:8px;margin-top:5px}
+select{padding:5px;margin-top:5px}
+footer{text-align:center;background:#2e7d32;color:white;padding:10px;margin-top:20px}
+</style>
+</head>
+
+<body>
+
+<header><h1>Venugopala Swamy Temple</h1></header>
+
+<div class="section">
+<h2>Ticket Fare</h2>
+<p>Free Entry</p>
+</div>
+
+<div class="section">
+<h2>Facilities</h2>
+<p>🚗 Parking Available</p>
+<p>🚻 Toilet Available</p>
+</div>
+
+<div class="section">
+<h2>Crowd Status</h2>
+<p id="crowd">Click button</p>
+<button onclick="getCrowd()">Check Crowd</button>
+</div>
+
+<div class="section">
+<h2>Nearby Hotels</h2>
+<div id="hotels">Click button</div>
+<button onclick="getHotels()">Check Hotels</button>
+</div>
+
+<div class="section">
+<h2>Essential Needs</h2>
+<div id="essentials">Click button</div>
+<button onclick="getEssentials()">Check Essentials</button>
+</div>
+
+<div class="section">
+<h2>Famous Food Nearby</h2>
+<div id="food">Click button</div>
+<button onclick="getFood()">Check Food</button>
+</div>
+
+<!-- ⭐ REVIEWS SECTION -->
+<div class="section">
+<h2>User Reviews & Ratings</h2>
+
+<label>Rating:</label>
+<select id="rating">
+<option value="5">★★★★★</option>
+<option value="4">★★★★</option>
+<option value="3">★★★</option>
+<option value="2">★★</option>
+<option value="1">★</option>
+</select>
+
+<label>Review:</label>
+<textarea id="reviewText" placeholder="Write your review..."></textarea>
+
+<button onclick="addReview()">Submit Review</button>
+<button onclick="clearReviews()">Clear All</button>
+
+<div id="reviewList"></div>
+</div>
+
+<div class="section">
+<h2>Emergency SOS</h2>
+<button onclick="sendSOS()">🚨 Send SOS</button>
+</div>
+
+<div class="section">
+<h2>Location</h2>
+<iframe width="100%" height="300"
+src="https://www.google.com/maps?q=12.421,76.571&output=embed"></iframe>
+</div>
+
+<footer>© All Copyrights Are Reserved</footer>
+
+<script>
+
+// LOCATION
+const lat = 12.421;
+const lon = 76.571;
+
+// CROWD
+function getCrowd(){
+let levels=["Low","Moderate","High","Very Busy"];
+document.getElementById("crowd").innerText=
+levels[Math.floor(Math.random()*4)];
+}
+
+// NAVIGATION
+function navigate(lat,lon){
+window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lon}`);
+}
+
+// BOOK HOTEL
+function bookHotel(lat,lon){
+window.open(`https://www.booking.com/searchresults.html?ss=${lat},${lon}`);
+}
+
+// HOTELS
+function getHotels(){
+document.getElementById("hotels").innerHTML=`
+<div class="card"><b>Hotel Mayura</b><p>1.2 km</p>
+<button onclick="navigate(12.421,76.571)">🧭 Navigate</button>
+<button onclick="bookHotel(12.421,76.571)">🏨 Book</button></div>
+
+<div class="card"><b>Royal Orchid</b><p>2.5 km</p>
+<button onclick="navigate(12.423,76.569)">🧭 Navigate</button>
+<button onclick="bookHotel(12.423,76.569)">🏨 Book</button></div>`;
+}
+
+// ESSENTIALS
+function getEssentials(){
+document.getElementById("essentials").innerHTML=`
+<div class="card"><b>Hospital</b><p>5 km</p><button onclick="navigate(12.43,76.60)">🧭 Navigate</button></div>
+<div class="card"><b>Fuel Station</b><p>3 km</p><button onclick="navigate(12.42,76.58)">🧭 Navigate</button></div>`;
+}
+
+// FOOD
+function getFood(){
+document.getElementById("food").innerHTML=`
+<div class="card"><b>Ragi Mudde Meals</b><p>2 km</p><button onclick="navigate(12.41,76.57)">🧭 Navigate</button></div>
+<div class="card"><b>South Indian Meals</b><p>1.5 km</p><button onclick="navigate(12.42,76.56)">🧭 Navigate</button></div>`;
+}
+
+// ⭐ REVIEWS SYSTEM
+function loadReviews(){
+let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+let container = document.getElementById("reviewList");
+container.innerHTML="";
+
+reviews.forEach(r=>{
+container.innerHTML+=`
+<div class="card">
+<b>${"★".repeat(r.rating)}</b>
+<p>${r.text}</p>
+</div>`;
+});
+}
+
+function addReview(){
+let rating = document.getElementById("rating").value;
+let text = document.getElementById("reviewText").value;
+
+if(text.trim()==="") return alert("Enter review");
+
+let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+reviews.push({rating,text});
+
+localStorage.setItem("reviews", JSON.stringify(reviews));
+document.getElementById("reviewText").value="";
+loadReviews();
+}
+
+function clearReviews(){
+localStorage.removeItem("reviews");
+loadReviews();
+}
+
+// LOAD REVIEWS ON START
+loadReviews();
+
+// SOS
+
+
+function sendSOS() {
+    let sos1 = localStorage.getItem("sos1");
+    let sos2 = localStorage.getItem("sos2");
+    let placeName = document.getElementById("placeName").innerText;
+
+    if (!sos1 || !sos2) {
+        alert("No SOS numbers found!");
+        return;
+    }
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(pos) {
+            let lat = pos.coords.latitude;
+            let lon = pos.coords.longitude;
+
+            let message = "🚨 EMERGENCY!\n" +
+                          "Place: " + placeName + "\n" +
+                          "Location: https://maps.google.com/?q=" + lat + "," + lon;
+
+            // Android SMS intent
+            let smsURL = "sms:" + sos1 + "," + sos2 + "?body=" + encodeURIComponent(message);
+
+            window.location.href = smsURL;
+        });
+    } else {
+        alert("Location not supported");
+    }
+}
+</script>
+
+</body>
+</html>
