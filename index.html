@@ -331,7 +331,8 @@
   </div>
 
 
-  <button id="sosBtn" onclick="sendSOS()">🆘</button>
+ <!-- 🆘 Floating SOS Button -->
+<button id="sosBtn">🆘</button>
 
 <style>
 #sosBtn {
@@ -342,65 +343,68 @@
     color: white;
     border: none;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    font-size: 24px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    cursor: pointer;
+    width: 65px;
+    height: 65px;
+    font-size: 26px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
     z-index: 9999;
+    cursor: pointer;
 }
-
-#sosBtn:hover {
+#sosBtn:active {
     background: darkred;
 }
 </style>
 
 <script>
-function sendSOS() {
+document.getElementById("sosBtn").onclick = function () {
+
     let sos1 = localStorage.getItem("sos1");
     let sos2 = localStorage.getItem("sos2");
 
-    // Default place (you can make dynamic)
-    let placeName = "Bangalore";
-
-    // If page has place title, use it
-    let placeElement = document.getElementById("placeName");
-    if(placeElement){
-        placeName = placeElement.innerText;
-    }
-
     if (!sos1 || !sos2) {
-        alert("SOS numbers not set. Please login first.");
+        alert("Please login and add SOS numbers!");
         return;
     }
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(pos) {
+    // Get place name (if available)
+    let placeName = "Bangalore";
+    let placeEl = document.getElementById("placeName");
+    if (placeEl) placeName = placeEl.innerText;
 
-            let lat = pos.coords.latitude;
-            let lon = pos.coords.longitude;
+    function sendMessage(lat = null, lon = null) {
 
-            let message = "🚨 EMERGENCY!\n" +
-                          "Place: " + placeName + "\n" +
-                          "Location: https://maps.google.com/?q=" + lat + "," + lon;
+        let msg = "🚨 EMERGENCY!\nPlace: " + placeName;
 
-            let encodedMsg = encodeURIComponent(message);
+        if (lat && lon) {
+            msg += "\nLocation: https://maps.google.com/?q=" + lat + "," + lon;
+        } else {
+            msg += "\nLocation: Bangalore";
+        }
 
-            // First number
-            window.location.href = "sms:" + sos1 + "?body=" + encodedMsg;
+        let encoded = encodeURIComponent(msg);
 
-            // Second number after delay
-            setTimeout(() => {
-                window.location.href = "sms:" + sos2 + "?body=" + encodedMsg;
-            }, 3000);
+        // First number
+        window.location.href = "sms:" + sos1 + "?body=" + encoded;
 
-        }, function() {
-            alert("Please enable location access!");
-        });
-    } else {
-        alert("Geolocation not supported");
+        // Second number (after delay)
+        setTimeout(() => {
+            window.location.href = "sms:" + sos2 + "?body=" + encoded;
+        }, 4000);
     }
-}
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function (pos) {
+                sendMessage(pos.coords.latitude, pos.coords.longitude);
+            },
+            function () {
+                sendMessage(); // fallback if location denied
+            }
+        );
+    } else {
+        sendMessage();
+    }
+};
 </script>
 </body>
 </html>
