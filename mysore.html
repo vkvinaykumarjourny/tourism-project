@@ -1,516 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-   <meta charset="UTF-8">
-    <meta name="viewport" content="width=divice-width,initial-scale=1.0">
-   <title>MYSORE DISTRICT</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-    }
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MYSORE DISTRICT</title>
 
-    header, footer {
-      color: black;
-      background-color: aliceblue;
-      padding: 1%;
-      text-align: center;
-    }
+<style>
+body { margin:0; font-family:Arial; background:#f9f9f9; }
+header, footer { text-align:center; background:aliceblue; padding:10px; }
+main { padding:20px; }
 
-    main {
-      padding: 20px;
-    }
+.search-container { text-align:right; }
+#searchBox { padding:8px; width:250px; }
 
-    .card-section-title {
-      color: green;
-    }
-
-    .card-subtitle {
-      font-family: 'Courier New';
-    }
-
-    .tour-row {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 30px;
-    }
-
-    .row-even {
-      flex-direction: row-reverse;
-    }
-
-    .tour-card {
-      width: 300px;
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-      margin: 0 20px;
-    }
-
-    .image-container {
-      position: relative;
-    }
-
-    .tour-image {
-      width: 100%;
-      display: block;
-    }
-
-    .top-overlay {
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      right: 8px;
-      display: flex;
-      justify-content: space-between;
-      pointer-events: none;
-    }
-
-    .badge {
-      background: white;
-      color: green;
-      font-size: 12px;
-      font-weight: bold;
-      padding: 4px 6px;
-      border-radius: 4px;
-    }
-
-    .tour-info {
-      padding: 16px;
-    }
-
-    .state {
-      color: #00aa88;
-      font-size: 12px;
-      font-weight: bold;
-      margin: 0;
-    }
-
-    .title {
-      font-size: 18px;
-      margin: 4px 0 8px;
-    }
-    .back-to-top {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: blue;
-      text-decoration: none;
-    }
-    .search-container{
-      text-align: right;
-      
-    }
-    #searchBox {
-      padding: 8px;
-      width: 250px;
-      font-size: 16px;
-    }
-    #searchBtn {
-      padding: 8px 12px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .result {
-      margin-top: 15px;
-      padding: 10px;
-      border: 1px solid #ddd;
-      background: #f9f9f9;
-      display: none;
-    }
-    .result h3 {
-      margin: 0;
-    }
-    .result a {
-      text-decoration: none;
-      color: blue;
-    }
-    .result a:hover {
-      text-decoration: underline;
-    }
-    
-  </style>
-</head>
-<body>
-<div id="google_translate_element"></div>
-<script >
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement(
-      {pageLanguage: 'en', includedLanguages: 'kn,en,hi'},
-      'google_translate_element'
-    );
+.places-wrapper {
+  display:grid;
+  gap:20px;
+}
+@media (min-width:768px){
+  .places-wrapper {
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
   }
-  </script>
+}
 
-<script  src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-</script>
+.tour-card {
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+.image-container { position:relative; }
+.tour-image { width:100%; }
+
+.badge {
+  position:absolute;
+  top:8px;
+  left:8px;
+  background:white;
+  color:green;
+  padding:4px;
+  font-size:12px;
+}
+
+.tour-info { padding:15px; }
+
+#sosBtn {
+ position:fixed;
+ bottom:20px;
+ right:20px;
+ background:red;
+ color:white;
+ border:none;
+ border-radius:50%;
+ width:65px;
+ height:65px;
+ font-size:26px;
+}
+</style>
+</head>
+
+<body>
+
 <header>
-    <h1>KA ADVENTURE</h1>
-    <div class="search-container">
-    <input type="text" id="searchBox" placeholder="Search places...">
-<button id="searchBtn">Search</button>
+<h1>KA ADVENTURE</h1>
+<div class="search-container">
+<input type="text" id="searchBox" placeholder="Search places...">
 </div>
-<div class="result" id="resultBox"></div>
 </header>
+
+<main>
+
+<h1 id="placeName">WELCOME MYSORE DISTRICT</h1>
+
+<div class="places-wrapper">
+
+<!-- Mysore Palace -->
+<div class="tour-card" data-name="mysore palace">
+<div class="image-container">
+<a href="palacedetails.html"><img src="mp.jpg" class="tour-image"></a>
+<span class="badge">KA ADVENTURE</span>
+</div>
+<div class="tour-info"><h3>Mysore Palace</h3></div>
+</div>
+
+<!-- Jaganmohan -->
+<div class="tour-card" data-name="jaganmohan palace">
+<div class="image-container">
+<a href="jmpdetails.html"><img src="jaganmohan.jpg" class="tour-image"></a>
+<span class="badge">KA ADVENTURE</span>
+</div>
+<div class="tour-info"><h3>Jaganmohan Palace</h3></div>
+</div>
+
+<!-- Chamundi -->
+<div class="tour-card" data-name="chamundeshwari temple">
+<div class="image-container">
+<a href="chamundidetails.html"><img src="chamundi1.jfif" class="tour-image"></a>
+<span class="badge">KA ADVENTURE</span>
+</div>
+<div class="tour-info"><h3>Chamundeshwari Temple</h3></div>
+</div>
+
+<!-- Zoo -->
+<div class="tour-card" data-name="mysore zoo">
+<div class="image-container">
+<a href="zoodetails.html"><img src="mzoo.png" class="tour-image"></a>
+<span class="badge">KA ADVENTURE</span>
+</div>
+<div class="tour-info"><h3>Mysore Zoo</h3></div>
+</div>
+
+<!-- Karanji Lake -->
+<div class="tour-card" data-name="karanji lake">
+<div class="image-container">
+<a href="karanjidetails.html"><img src="karanjilake.png" class="tour-image"></a>
+<span class="badge">KA ADVENTURE</span>
+</div>
+<div class="tour-info"><h3>Karanji Lake</h3></div>
+</div>
+
+<!-- Nagarahole -->
+<div class="tour-card" data-name="nagarahole national park">
+<div class="image-container">
+<a href="nagaraholedetails.html"><img src="nagarhole.jfif" class="tour-image"></a>
+<span class="badge">KA ADVENTURE</span>
+</div>
+<div class="tour-info"><h3>Nagarahole National Park</h3></div>
+</div>
+
+<!-- Rail Museum -->
+<div class="tour-card" data-name="rail museum">
+<div class="image-container">
+<a href="museumdetalis.html"><img src="railmuseum.jfif" class="tour-image"></a>
+<span class="badge">KA ADVENTURE</span>
+</div>
+<div class="tour-info"><h3>Rail Museum</h3></div>
+</div>
+
+<!-- Payana -->
+<div class="tour-card" data-name="payana">
+<div class="image-container">
+<a href="payanadetails.html"><img src="payana.jpg" class="tour-image"></a>
+<span class="badge">KA ADVENTURE</span>
+</div>
+<div class="tour-info"><h3>Payana</h3></div>
+</div>
+
+<!-- Sand Museum -->
+<div class="tour-card" data-name="sand sculpture museum">
+<div class="image-container">
+<a href="sanddetails.html"><img src="sandmuseum.jfif" class="tour-image"></a>
+<span class="badge">KA ADVENTURE</span>
+</div>
+<div class="tour-info"><h3>Sand Sculpture Museum</h3></div>
+</div>
+
+<!-- GRS -->
+<div class="tour-card" data-name="grs fantasy park">
+<div class="image-container">
+<a href="grsdetails.html"><img src="grs.jpeg" class="tour-image"></a>
+<span class="badge">KA ADVENTURE</span>
+</div>
+<div class="tour-info"><h3>GRS Fantasy Park</h3></div>
+</div>
+
+<!-- Shuka Vana -->
+<div class="tour-card" data-name="shuka vana">
+<div class="image-container">
+<a href="shukadetails.html"><img src="shukavan.webp" class="tour-image"></a>
+<span class="badge">KA ADVENTURE</span>
+</div>
+<div class="tour-info"><h3>Shuka Vana</h3></div>
+</div>
+
+<!-- Devaraja Market -->
+<div class="tour-card" data-name="devaraja market">
+<div class="image-container">
+<a href="devarajadetails.html"><img src="dmarket.jfif" class="tour-image"></a>
+<span class="badge">KA ADVENTURE</span>
+</div>
+<div class="tour-info"><h3>Devaraja Market</h3></div>
+</div>
+
+<!-- Kukkrali Kere -->
+<div class="tour-card" data-name="kukkrali kere kukkarahalli lake">
+<div class="image-container">
+<a href="kukkrallidetails.html"><img src="kukkralli.avif" class="tour-image"></a>
+<span class="badge">KA ADVENTURE</span>
+</div>
+<div class="tour-info"><h3>Kukkrali Kere</h3></div>
+</div>
+
+</div>
+</main>
+
+<footer>
+<p>@ALL COPYRIGHTS RESERVED 2025</p>
+</footer>
+
+<!-- SEARCH -->
 <script>
-  const places = {
-    "mysore palace ": {
-      description: "Click here to know more about mysore palace",
-      link: "palacedetails.html",
-    },
-    "jaganmohan palace": {
-      description: "Click here to know more about jaganmohan palace",
-      link: "jmpdetails.html",
-    },
-    "chamundeshwari temple": {
-      description: "Click here to know more about chamundeshwari temple",
-      link: "chamundidetails.html",
-    },
-    "st. philomina church": {
-      description: "Click here to know more about st. philomina church",
-      link: "philominadetails.html",
-    },
-    "shrikanteshwara temple": {
-      description: "Click here to know more about shrikanteshwara temple",
-      link: "sktdetails.html",
-    },
-    "mysore zoo": {
-      description: "Click here to know more about mysore zoo",
-      link: "zoodetails.html",
-    },
-    "karanji lake": {
-      description: "Click here to know more about karanji lake",
-      link: "karanjidetails.html",
-    },
-    "nagarahole national park": {
-      description: "Click here to know more about nagarahole national park",
-      link: "nagaraholedetails.html",
-    },
-    "rail museum": {
-      description: "Click here to know more about rail museum",
-      link: "museumdetalis.html",
-    },
-    "sand sculpture museum": {
-      description: "Click here to know more about sand sculpture museum",
-      link: "sanddetails.html",
-    },
-    "grs fantasy park": {
-      description: "Click here to know more about grs fantasy park",
-      link: "grsdetails.html",
-    },
-    "shuka vana": {
-      description: "Click here to know more about shuka vana",
-      link: "shukadetails.html",
-    },
-    "devaraja market": {
-      description: "Click here to know more about devaraja market",
-      link: "devarajadetails.html",
-    },
-    "kukkralli lake": {
-      description: "Click here to know more about kukkralli lake",
-      link: "kukkrallidetails.html",
-    },
-    "payana": {
-      description: "Click here to know more about payana",
-      link: "payanadetails.html",
-    },
-    
+const searchBox=document.getElementById("searchBox");
+const cards=document.querySelectorAll(".tour-card");
 
-
-
-};
-  const searchBox = document.getElementById("searchBox");
-  const resultBox = document.getElementById("resultBox");
-
-  searchBox.addEventListener("input", function() {
-    let query = searchBox.value.trim().toLowerCase();
-    if (query) {
-      let matchKey = Object.keys(places).find(place => place.includes(query));
-      if (matchKey) {
-        resultBox.style.display = "block";
-        resultBox.innerHTML = `
-          <h3><a href="${places[matchKey].link}">${matchKey.toUpperCase()}</a></h3>
-          <p>${places[matchKey].description}</p>
-        `;
-      } else {
-        resultBox.style.display = "block";
-        resultBox.innerHTML = "<p>No details found for: ${query}</p>";
-      }
-    } else {
-      resultBox.style.display = "none";
-      resultBox.innerHTML = "";
-    }
-  });
+searchBox.addEventListener("input",function(){
+ let q=searchBox.value.toLowerCase();
+ cards.forEach(c=>{
+  c.style.display=c.dataset.name.includes(q)?"block":"none";
+ });
+});
 </script>
 
+<!-- SOS -->
+<button id="sosBtn">🆘</button>
 
-  <main>
-    <h1 class="card-section-title">WELCOME MYSORE DISTRICT</h1>
-    <h2 class="card-subtitle">
-      Mysore district, renowned for its rich cultural heritage and historical significance, offers a plethora of
-      tourist attractions.<br> Here's a comprehensive guide:
-    </h2>
+<script>
+document.getElementById("sosBtn").onclick=function(){
 
-    <h1 style="text-align: center;">Historical & Architectural Marvels</h1>
+let s1=localStorage.getItem("sos1");
+let s2=localStorage.getItem("sos2");
 
-    <!-- Mysore Palace -->
-    <div class="tour-row row-odd">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="palacedetails.html">
-            <img src="mp.jpg" alt="Mysore Palace" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Mysore Palace</h3>
-        </div>
-      </div>
-    </div>
+if(!s1||!s2){alert("Add SOS numbers");return;}
 
-    <!-- Jaganmohan Palace -->
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="jmpdetails.html">
-            <img src="jaganmohan.jpg" alt="Jaganmohan Palace" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Jaganmohan Palace</h3>
-        </div>
-      </div>
-    </div>
-    <h1 style="text-align: center;">Relegious & Spiritual Sites</h1>
-<div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="chamundidetails.html">
-            <img src="chamundi1.jfif" alt="chamundeshwari temple" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Shree chamundeshwari Temple</h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="philominadetails.html">
-            <img src="philomina.jfif" alt="philomina church" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">St. Philomina Church</h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="sktdetails.html">
-            <img src="sritemple.jpg" alt="shrikanteshwara temple" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Shrikanteshwara Temple</h3>
-        </div>
-      </div>
-    </div>
-    <h1 style="text-align: center;"> Nature & Wildlife</h1>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="zoodetails.html">
-            <img src="mzoo.png" alt="mysore zoo" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Mysore Zoo</h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="karanjidetails.html">
-            <img src="karanjilake.png" alt="karanji lake" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Karanji Lake</h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="nagaraholedetails.html">
-            <img src="nagarhole.jfif" alt="Nagarahole National Park" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Nagarahole National Park</h3>
-        </div>
-      </div>
-    </div>
-    <h1 style="text-align: center;">Museums & Cultural Centers</h1>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="museumdetalis.html">
-            <img src="railmuseum.jfif" alt="rail museum" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Rail Museum</h3>
-        </div>
-      </div>
-    </div>
-     <!--payana-->
-     <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="museumdetalis.html">
-            <img src="payana.jpg" alt="Payana" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Payana</h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="sanddetails.html">
-            <img src="sandmuseum.jfif" alt="sank sculpture museum" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Sand Sculpture Museum</h3>
-        </div>
-      </div>
-    </div>
-    <h1 style="text-align: center;"> Family-Friendly Attractions</h1>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="grsdetails.html">
-            <img src="grs.jpeg" alt="GRS" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">GRS Fantasy Park</h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="shukadetails.html">
-            <img src="shukavan.webp" alt="sank sculpture museum" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Shuka Vana</h3>
-        </div>
-      </div>
-    </div>
-    <h1 style="text-align: center;"> Local Markets & Experiences</h1>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="devarajadetails.html">
-            <img src="dmarket.jfif" alt="Devaraja market" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Devaraja Market</h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="kukkrallidetails.html">
-            <img src="kukkralli.avif" alt="kukkralli lake" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title">Kukkralli Lake</h3>
-        </div>
-      </div>
-    </div>
-     <h1 style="text-align: center">Best Time To Visit</h1>
-     <h2 style="text-align: center"> October to March, with the highlight being the Dasara festival</h2>
-  </main>
+navigator.geolocation.getCurrentPosition(function(pos){
 
-  <footer>
-    <p>@ALL COPY RIGHTS ARE RESERVED 2025</p>
-  </footer>
+let msg="🚨 EMERGENCY!\nLocation: https://maps.google.com/?q="
++pos.coords.latitude+","+pos.coords.longitude;
+
+let e=encodeURIComponent(msg);
+
+window.location.href="sms:"+s1+"?body="+e;
+
+setTimeout(()=>{
+window.location.href="sms:"+s2+"?body="+e;
+},5000);
+
+},()=>alert("Allow location"));
+};
+</script>
 
 </body>
 </html>
