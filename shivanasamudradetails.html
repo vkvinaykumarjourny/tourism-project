@@ -1,154 +1,277 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title> Shree Chamundeshwari Temple </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <style>
-        header {
-            background-color: #f2f2f2;
-            padding: 10px;
-            text-align: center;
-            color: green;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shivanasamudra Falls</title>
 
-        h1 {
-            color: blue;
-        }
+<style>
+body{
+  font-family: Arial;
+  margin: 0;
+  padding: 20px;
+  background: #e8f5e9;
+}
 
-        footer {
-            background-color: #f2f2f2;
-            padding: 5px;
-            text-align: center;
-            width: 100%;
-            bottom: 0;
-        }
+header{
+  background: #2e7d32;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
 
-        p {
-            text-align: left;
-            line-height: 1.0;
-            margin-bottom: 16px;
-        }
+.section{
+  background: white;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 10px;
+}
 
-        h2 {
-            text-align: left;
-        }
+button{
+  background: #2e7d32;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            padding-left: 40px;
-            padding-right: 40px;
-            max-width: 100%;
-            margin: auto;
-        }
-         /* Responsive Google Maps */
-        .map-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 ratio */
-            height: 0;
-            overflow: hidden;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
+.card{
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
 
-        .nav-link {
-            color: #0056d2;
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 2.5rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
+textarea{
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
 
-        .nav-link:hover {
-            text-decoration: underline;
-        }
+select{
+  padding: 5px;
+  margin-top: 5px;
+}
 
-        .external-icon {
-            font-size: 0.9em;
-            color: green;
-        }
-        .nav-link {
-            color: #0056d2;
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 1rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
+footer{
+  text-align: center;
+  background: #2e7d32;
+  color: white;
+  padding: 10px;
+  margin-top: 20px;
+}
 
-        .nav-link:hover {
-            text-decoration: underline;
-        }
-
-        .external-icon {
-            font-size: 0.9em;
-            color: green;
-        }
-    </style>
+/* SOS BUTTON */
+#sosBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  font-size: 26px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  z-index: 9999;
+  cursor: pointer;
+}
+</style>
 </head>
+
 <body>
 
-    <header>
-        <h1> Shivanasamudra Falls </h1>
-    </header>
+<header>
+<h1 id="placeName">Shivanasamudra Falls</h1>
+</header>
 
-    <h1 style="color: green;">Ticket Fare</h1>
-    <div>Entry Free</div>
-    <p>There is no entry fee to visit Shivanasamudra Falls. However, if you wish to take a boat ride to get closer to the falls, the ticket prices are as follows:</p>
-<p>fees only applicable for parking private veichales only approx 50rs</p>
-     
-    <h2 style="color: green;">Opening dates and timings</h2>
-    <p>Everyday&#58; 9&#58;00 AM - 18&#58;00PM</p>
-    <!--<p>&nbsp;&nbsp;15&#58;30PM - 18&#58;00PM </p>
-    <p>&nbsp;&nbsp;19&#58;30PM - 21&#58;00PM</p> <br>
-    <p>Monday&#58; 6&#58;00 AM - 14&#58;00PM</p>
-    <p>&nbsp;&nbsp;15&#58;30PM - 18&#58;00PM </p>
-    <p>&nbsp;&nbsp;19&#58;30PM - 21&#58;00PM</p> <br>
-    <p>Tuesday&#58; 6&#58;00 AM - 14&#58;00PM</p>
-    <p>&nbsp;&nbsp;15&#58;30PM - 18&#58;00PM </p>
-    <p>&nbsp;&nbsp;19&#58;30PM - 21&#58;00PM</p> <br>
-    <p>wednesday&#58; 6&#58;00 AM - 14&#58;00PM</p>
-    <p>&nbsp;&nbsp;15&#58;30PM - 18&#58;00PM </p>
-    <p>&nbsp;&nbsp;19&#58;30PM - 21&#58;00PM</p> <br>
-    <p>Thursday&#58; 6&#58;00 AM - 14&#58;00PM</p>
-    <p>&nbsp;&nbsp;15&#58;30PM - 18&#58;00PM </p>
-    <p>&nbsp;&nbsp;19&#58;30PM - 21&#58;00PM</p> <br>
-    <p>Friday&#58; 6&#58;00 AM - 14&#58;00PM</p>
-    <p>&nbsp;&nbsp;15&#58;30PM - 18&#58;00PM </p>
-    <p>&nbsp;&nbsp;19&#58;30PM - 21&#58;00PM</p> <br>
-    <p>Saturday&#58; 6&#58;00 AM - 14&#58;00PM</p>
-    <p>&nbsp;&nbsp;15&#58;30PM - 18&#58;00PM </p>
-    <p>&nbsp;&nbsp;19&#58;30PM - 21&#58;00PM</p> <br>-->
+<div class="section">
+<h2>Ticket Fare</h2>
+<p>₹30 – ₹100 (Approx)</p>
+</div>
 
-  
-  
-  
-    <h4 style="color: green;">parking and toilet facility </h4>
-    <div> Parking facility  <span style="color: green;">&#10004;</span> </div>
-    <div>Toilet facility <span style="color: green">&#10004;</span> </div>
-    
-    
+<div class="section">
+<h2>Facilities</h2>
+<p>🚗 Parking Available</p>
+<p>🚻 Toilet Available</p>
+<p>🍴 Food Stalls Nearby</p>
+</div>
 
-    <br>
-    <h2>July and October best time to visit</h2>
-    
-    <!-- Styled navigation link -->
-     <div class="map-container">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5548.408563648589!2d77.1566413332753!3d12.30110642558288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf1d00248bb42b%3A0xde7e5ebc581a19a5!2sShivasamudra!5e0!3m2!1sen!2sin!4v1769354692522!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>    
+<div class="section">
+<h2>Crowd Status</h2>
+<p id="crowd">Click button</p>
+<button onclick="getCrowd()">Check Crowd</button>
+</div>
 
-    
-    <a href="https://en.wikipedia.org/wiki/Shivanasamudra_Falls" target="_blank" class="nav-link">
-       More details <span class="external-icon">&#x2197;</span>
-    </a>
+<div class="section">
+<h2>Nearby Hotels</h2>
+<div id="hotels">Click button</div>
+<button onclick="getHotels()">Check Hotels</button>
+</div>
 
-    
-        <p style="text-align: center;">All rights reserved</p>
-    </footer>
+<div class="section">
+<h2>Essential Needs</h2>
+<div id="essentials">Click button</div>
+<button onclick="getEssentials()">Check Essentials</button>
+</div>
+
+<div class="section">
+<h2>Famous Food Nearby</h2>
+<div id="food">Click button</div>
+<button onclick="getFood()">Check Food</button>
+</div>
+
+<div class="section">
+<h2>Location</h2>
+<iframe width="100%" height="300"
+src="https://maps.google.com/maps?q=Shivanasamudra%20Falls&output=embed">
+</iframe>
+</div>
+
+<!-- REVIEWS -->
+<div class="section">
+<h2>User Reviews & Ratings</h2>
+
+<label>Rating:</label>
+<select id="rating">
+<option value="5">★★★★★</option>
+<option value="4">★★★★</option>
+<option value="3">★★★</option>
+<option value="2">★★</option>
+<option value="1">★</option>
+</select>
+
+<label>Review:</label>
+<textarea id="reviewText" placeholder="Write your review..."></textarea>
+
+<button onclick="addReview()">Submit Review</button>
+<button onclick="clearReviews()">Clear All</button>
+
+<div id="reviewList"></div>
+</div>
+
+<footer>© All Copyrights Reserved</footer>
+
+<!-- FUNCTIONS -->
+<script>
+
+// CROWD STATUS
+function getCrowd(){
+let levels=["Low","Moderate","High","Very Busy"];
+document.getElementById("crowd").innerText =
+levels[Math.floor(Math.random()*4)];
+}
+
+// NAVIGATION
+function navigate(place){
+window.open("https://www.google.com/maps?q=" + place);
+}
+
+// HOTELS
+function getHotels(){
+document.getElementById("hotels").innerHTML=`
+<div class="card"><b>Hotel Mayura</b><p>Nearby</p>
+<button onclick="navigate('Shivanasamudra Hotels')">Navigate</button></div>
+
+<div class="card"><b>Local Stay Lodge</b><p>2 km</p>
+<button onclick="navigate('Shivanasamudra Lodge')">Navigate</button></div>
+`;
+}
+
+// ESSENTIALS
+function getEssentials(){
+document.getElementById("essentials").innerHTML=`
+<div class="card"><b>Hospital</b><p>5 km</p></div>
+<div class="card"><b>Fuel Station</b><p>3 km</p></div>
+`;
+}
+
+// FOOD
+function getFood(){
+document.getElementById("food").innerHTML=`
+<div class="card"><b>South Indian Meals</b><p>Near Entrance</p></div>
+<div class="card"><b>Tea & Snacks</b><p>Local Shops</p></div>
+`;
+}
+
+// REVIEWS
+function loadReviews(){
+let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+let container = document.getElementById("reviewList");
+container.innerHTML = "";
+
+reviews.forEach(r=>{
+container.innerHTML += `
+<div class="card">
+<b>${"★".repeat(r.rating)}</b>
+<p>${r.text}</p>
+</div>`;
+});
+}
+
+function addReview(){
+let rating = document.getElementById("rating").value;
+let text = document.getElementById("reviewText").value;
+
+if(text.trim()==="") return alert("Enter review");
+
+let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+reviews.push({rating,text});
+
+localStorage.setItem("reviews", JSON.stringify(reviews));
+
+document.getElementById("reviewText").value="";
+loadReviews();
+}
+
+function clearReviews(){
+localStorage.removeItem("reviews");
+loadReviews();
+}
+
+loadReviews();
+
+</script>
+
+<!-- SOS BUTTON -->
+<button id="sosBtn">🆘</button>
+
+<script>
+document.getElementById("sosBtn").onclick = function () {
+
+    let sos1 = localStorage.getItem("sos1");
+    let sos2 = localStorage.getItem("sos2");
+
+    if (!sos1 || !sos2) {
+        alert("Please save SOS numbers first!");
+        return;
+    }
+
+    let placeName = document.getElementById("placeName").innerText;
+
+    function send(lat, lon){
+
+        let msg = "🚨 EMERGENCY!\nPlace: " + placeName +
+        "\nLocation: https://maps.google.com/?q=" + lat + "," + lon;
+
+        let encoded = encodeURIComponent(msg);
+
+        window.location.href = "sms:" + sos1 + "?body=" + encoded;
+
+        setTimeout(()=>{
+            window.location.href = "sms:" + sos2 + "?body=" + encoded;
+        },3000);
+    }
+
+    navigator.geolocation.getCurrentPosition(
+        pos => send(pos.coords.latitude, pos.coords.longitude),
+        () => send(0,0)
+    );
+};
+</script>
 
 </body>
-
 </html>
-
