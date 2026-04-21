@@ -56,6 +56,12 @@ footer{text-align:center;background:#2e7d32;color:white;padding:10px;margin-top:
 <button onclick="getFood()">Check Food</button>
 </div>
 
+    <div class="section">
+<h2>Location</h2>
+<iframe width="100%" height="300"
+src="https://www.google.com/maps?q=12.421,76.571&output=embed"></iframe>
+</div>
+
 <!-- ⭐ REVIEWS SECTION -->
 <div class="section">
 <h2>User Reviews & Ratings</h2>
@@ -78,16 +84,14 @@ footer{text-align:center;background:#2e7d32;color:white;padding:10px;margin-top:
 <div id="reviewList"></div>
 </div>
 
-<div class="section">
-<h2>Emergency SOS</h2>
-<button onclick="sendSOS()">🚨 Send SOS</button>
-</div>
+    <a href="https://en.wikipedia.org/wiki/Venugopala_Swamy_Temple" target="_blank">More Details</a>
 
-<div class="section">
-<h2>Location</h2>
-<iframe width="100%" height="300"
-src="https://www.google.com/maps?q=12.421,76.571&output=embed"></iframe>
-</div>
+
+
+
+
+
+
 
 <footer>© All Copyrights Are Reserved</footer>
 
@@ -181,23 +185,82 @@ loadReviews();
 
 
 
-function sendSOS() {
-    let sos1 = localStorage.getItem("sos1");
-    let placeName = document.getElementById("placeName").innerText;
 
-    if (!sos1) {
-        alert("SOS number not found!");
+</script>
+    <!-- 🆘 Floating SOS Button -->
+<button id="sosBtn">🆘</button>
+
+<style>
+#sosBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    font-size: 26px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    z-index: 9999;
+    cursor: pointer;
+}
+#sosBtn:active {
+    background: darkred;
+}
+</style>
+
+<script>
+document.getElementById("sosBtn").onclick = function () {
+
+    let sos1 = localStorage.getItem("sos1");
+    let sos2 = localStorage.getItem("sos2");
+
+    if (!sos1 || !sos2) {
+        alert("Please login and add SOS numbers!");
         return;
     }
 
-    let message = "EMERGENCY! I need help at " + placeName;
+    // Get place name (if available)
+    let placeName = "Bangalore";
+    let placeEl = document.getElementById("placeName");
+    if (placeEl) placeName = placeEl.innerText;
 
-    // ✅ IMPORTANT FIX (Android compatible)
-    let smsURL = "sms:" + sos1 + "?body=" + encodeURIComponent(message);
+    function sendMessage(lat = null, lon = null) {
 
-    window.location.href = smsURL;
-}
-</script>
+        let msg = "🚨 EMERGENCY!\nPlace: " + placeName;
+
+        if (lat && lon) {
+            msg += "\nLocation: https://maps.google.com/?q=" + lat + "," + lon;
+        } else {
+            msg += "\nLocation: Bangalore";
+        }
+
+        let encoded = encodeURIComponent(msg);
+
+        // First number
+        window.location.href = "sms:" + sos1 + "?body=" + encoded;
+
+        // Second number (after delay)
+        setTimeout(() => {
+            window.location.href = "sms:" + sos2 + "?body=" + encoded;
+        }, 4000);
+    }
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function (pos) {
+                sendMessage(pos.coords.latitude, pos.coords.longitude);
+            },
+            function () {
+                sendMessage(); // fallback if location denied
+            }
+        );
+    } else {
+        sendMessage();
+    }
+};
 </script>
 
 </body>
