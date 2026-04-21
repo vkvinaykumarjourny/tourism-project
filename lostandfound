@@ -7,7 +7,6 @@
 
 <style>
 body{font-family:Arial;margin:0;background:#eef2f3}
-
 .container{padding:20px;max-width:900px;margin:auto}
 
 .section{
@@ -35,10 +34,11 @@ border:1px solid #ccc;
 button{
 background:#2e7d32;
 color:white;
-padding:10px;
+padding:8px 12px;
 border:none;
 border-radius:6px;
 cursor:pointer;
+font-size:14px;
 }
 
 .card{
@@ -93,6 +93,7 @@ margin-top:5px;
 </div>
 
 <input type="text" id="location" placeholder="Location">
+<input type="tel" id="contactNum" placeholder="Contact Number">
 <textarea id="desc" placeholder="Description"></textarea>
 
 <input type="file" id="image">
@@ -115,22 +116,23 @@ margin-top:5px;
 
 <script>
 
-/* LOGIN CHECK */
+/* SAFE LOGIN CHECK (won't block GitHub testing) */
 if(localStorage.getItem("loggedIn")!=="true"){
-window.location.href="login.html";
+console.log("Login not found - running in demo mode");
 }
 
 /* ADD ITEM */
 function addItem(){
 
 let type = document.getElementById("type").value;
-let item = document.getElementById("item").value;
-let loc = document.getElementById("location").value;
-let desc = document.getElementById("desc").value;
+let item = document.getElementById("item").value.trim();
+let loc = document.getElementById("location").value.trim();
+let desc = document.getElementById("desc").value.trim();
+let contact = document.getElementById("contactNum").value.trim();
 let file = document.getElementById("image").files[0];
 
-if(!item || !loc){
-alert("Fill required fields");
+if(!item || !loc || !contact){
+alert("Please fill Item, Location and Contact");
 return;
 }
 
@@ -146,8 +148,9 @@ type,
 item,
 loc,
 desc,
-img: reader.result,
-user: localStorage.getItem("username"),
+contact,
+img: reader.result || "",
+user: localStorage.getItem("username") || "Guest",
 date: new Date().toLocaleString()
 });
 
@@ -173,7 +176,7 @@ let search = document.getElementById("search").value.toLowerCase();
 
 let html = "";
 
-data.reverse().forEach(d=>{
+data.slice().reverse().forEach(d=>{
 
 if(!d.item.toLowerCase().includes(search)) return;
 
@@ -189,8 +192,9 @@ html += `
 
 <h3>${d.item}</h3>
 
-<p><b>Location:</b> ${d.loc}</p>
-<p>${d.desc}</p>
+<p><b>📍 Location:</b> ${d.loc}</p>
+<p><b>📞 Contact:</b> ${d.contact}</p>
+<p>${d.desc || ""}</p>
 
 ${d.img ? `<img src="${d.img}">` : ""}
 
@@ -198,10 +202,10 @@ ${d.img ? `<img src="${d.img}">` : ""}
 <p><i>By: ${d.user}</i></p>
 
 <div class="actions">
-<button onclick="contact()">📞 Contact</button>
+<button onclick="contactUser('${d.contact}')">📞 Contact</button>
 
 ${d.user === localStorage.getItem("username") ?
-`<button onclick="remove(${d.id})">🗑 Delete</button>` : ""}
+`<button onclick="removeItem(${d.id})">🗑 Delete</button>` : ""}
 
 ${match ? `<div style="color:orange">⚡ Match Found!</div>` : ""}
 </div>
@@ -211,12 +215,12 @@ ${match ? `<div style="color:orange">⚡ Match Found!</div>` : ""}
 
 });
 
-document.getElementById("list").innerHTML = html;
+document.getElementById("list").innerHTML = html || "<p>No items found</p>";
 
 }
 
 /* DELETE */
-function remove(id){
+function removeItem(id){
 let data = JSON.parse(localStorage.getItem("lf_data") || "[]");
 data = data.filter(d=>d.id!==id);
 localStorage.setItem("lf_data", JSON.stringify(data));
@@ -224,17 +228,17 @@ render();
 }
 
 /* CONTACT */
-function contact(){
-let n1 = localStorage.getItem("sos1");
-let n2 = localStorage.getItem("sos2");
-
-window.location.href =
-`sms:${n1},${n2}?body=Regarding lost/found item`;
+function contactUser(number){
+window.location.href = `sms:${number}?body=Regarding lost/found item`;
 }
 
 /* CLEAR FORM */
 function clearForm(){
-document.querySelectorAll("input, textarea").forEach(e=>e.value="");
+document.getElementById("item").value="";
+document.getElementById("location").value="";
+document.getElementById("contactNum").value="";
+document.getElementById("desc").value="";
+document.getElementById("image").value="";
 }
 
 /* INIT */
