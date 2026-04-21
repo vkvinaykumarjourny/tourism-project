@@ -202,7 +202,7 @@ ${d.img ? `<img src="${d.img}">` : ""}
 <p><i>By: ${d.user}</i></p>
 
 <div class="actions">
-<button onclick="contactUser('${d.contact}')">📞 Contact</button>
+<button onclick="contactUser('${d.contact}')"> Contact</button>
 
 ${d.user === localStorage.getItem("username") ?
 `<button onclick="removeItem(${d.id})">🗑 Delete</button>` : ""}
