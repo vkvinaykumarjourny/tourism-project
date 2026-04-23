@@ -1,87 +1,306 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Karanji Lake</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karanji Lake</title>
+
 <style>
-    header{
-        background-color: #f2f2f2;
-        padding: 10px;
-        text-align: center;
-        color: green;
-    }
-    h1 {
-        color: blue;
-        
-    }
-    footer{
-        background-color: #f2f2f2;
-        padding: 5px;
-        text-align: center;
-        width: 100%;
-        bottom: 0;
-    }
-    p{
-        text-align: left;
-        line-height: 1.0;
-        margin-bottom: 16px;     
-    }
-    h2{
-        text-align: left;
-    }
-    body{
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        padding-left:40px; padding-right: 40px;
-        max-width: 100%;
-        margin:auto;
-    }
-    /* Responsive Google Maps */
-        .map-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 ratio */
-            height: 0;
-            overflow: hidden;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-    </style>
-    <header>
-        <h1> Karanji Lake</h1>
-          
-    </header>
-    <body>
-         <h1 style="color: green;">Ticket Fare</h1>
-         <p>&#8377;10 per person for Adults</p>
-         <p></p>&#8377;5 per person for Children (5-15 yrs) and Senior Citizens</p>
-         <p>&#8377;10 for Still Camera</p>
-         <p>&#8377;25 for Video Camera</p>
-         <!-- /*optional  */ -->
-         <!-- <div>children &#58;&#8377;60&#40;Below10-12years&#41; </div>
-         <div></div>adults &#58;&#8377;120</div>
-         <div> child &#58; &#8377;Free&#40;Below5years&#41;</p></div> -->
+body{
+  font-family: Arial;
+  margin: 0;
+  padding: 20px;
+  background: #e0f7fa;
+}
 
-          <h2 style="color: green;">Opening dates and timings </h2>
-          <p>Sunday&#58;8&#58;30AM-5&#58;30PM</p>
-          <p>Monday&#58;8&#58;30AM-5&#58;30PM</p>
-          <p>Tuesday&#58;Holiday</p>
-          <p>Wednesday&#58;8&#58;30AM-5&#58;30PM</p>
-          <p>Thursday&#58;8&#58;30AM-5&#58;30PM</p>
-          <p>Friday&#58;8&#58;30AM-5&#58;30PM</p>
-          <p>Saturday&#58;8&#58;30AM-5&#58;30PM</p>
-          <h4 style="color: green;">parking and toilet facility </h4>
-          <!-- /*responsive google maps */ -->
-    <div> parking facility  <span style="color: green;">&#10004;</span>but 1km away form main entrance gate </div>
-    <div>toilet facility <span style="color: green;">&#10004;</span> </div>
+header{
+  background: #00796b;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  border-radius: 10px;
+}
 
-          <div class="map-container">
-         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3898.2279300240407!2d76.66820818885498!3d12.30043160000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf70694b1e58ef%3A0x2a57478f940421bb!2sKaranji%20Nature%20Park!5e0!3m2!1sen!2sin!4v1754150218229!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
-           <a href="https://en.wikipedia.org/wiki/Karanji_Lake" target="_blank" class="nav-link">
-       More details <span class="external-icon">&#x2197;</span>
-    </a>
+.section{
+  background: white;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
 
+button{
+  background: #00796b;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  margin: 5px 5px 0 0;
+  cursor: pointer;
+}
 
-<footer>
-        <p style="text-align: center;">All copy rights reserved</p>
-    </footer>
+.card{
+  border: 1px solid #ddd;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  background: #f0fffb;
+}
+
+textarea{
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+select{
+  padding: 5px;
+  margin-top: 5px;
+}
+
+footer{
+  text-align: center;
+  background: #00796b;
+  color: white;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+/* SOS */
+#sosBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  font-size: 26px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1 id="placeName">Karanji Lake & Nature Park</h1>
+</header>
+
+<!-- INFO -->
+<div class="section">
+<h2>Ticket Fare</h2>
+<p>₹50 (Adults) | ₹20 (Children) | ₹50 (Camera)</p>
+</div>
+
+<div class="section">
+<h2>Facilities</h2>
+<p>🚗 Parking Available</p>
+<p>🚻 Toilets Available</p>
+<p>🚣 Boating Facility</p>
+<p>🦜 Aviary (Bird Park)</p>
+<p>🌿 Nature Walk & Cycling</p>
+</div>
+
+<!-- CROWD -->
+<div class="section">
+<h2>Crowd Status</h2>
+<p id="crowd">Click button</p>
+<button onclick="getCrowd()">Check Crowd</button>
+</div>
+
+<!-- HOTELS -->
+<div class="section">
+<h2>Nearby Hotels</h2>
+<div id="hotels">Click button</div>
+<button onclick="getHotels()">Load Hotels</button>
+</div>
+
+<!-- FOOD -->
+<div class="section">
+<h2>Famous Food Nearby</h2>
+<div id="food">Click button</div>
+<button onclick="getFood()">Load Food</button>
+</div>
+
+<!-- ESSENTIALS -->
+<div class="section">
+<h2>Essential Needs</h2>
+<div id="essentials">Click button</div>
+<button onclick="getEssentials()">Check Essentials</button>
+</div>
+
+<!-- LOCATION -->
+<div class="section">
+<h2>Location</h2>
+<iframe width="100%" height="300"
+src="https://maps.google.com/maps?q=Karanji%20Lake%20Mysore&output=embed">
+</iframe>
+</div>
+
+<!-- REVIEWS -->
+<div class="section">
+<h2>User Reviews & Ratings</h2>
+
+<label>Rating:</label>
+<select id="rating">
+<option value="5">★★★★★</option>
+<option value="4">★★★★</option>
+<option value="3">★★★</option>
+<option value="2">★★</option>
+<option value="1">★</option>
+</select>
+
+<textarea id="reviewText" placeholder="Write review..."></textarea>
+
+<button onclick="addReview()">Submit Review</button>
+<button onclick="clearReviews()">Clear All</button>
+
+<div id="reviewList"></div>
+</div>
+
+<a href="https://en.wikipedia.org/wiki/Karanji_Lake">More details about Karanji Lake</a>
+
+<footer>© All Rights Reserved</footer>
+
+<script>
+
+function navigate(place){
+window.open("https://www.google.com/maps/search/" + place);
+}
+
+function bookHotel(name){
+window.open("https://www.booking.com/searchresults.html?ss=" + name);
+}
+
+function getCrowd(){
+let levels=["Low","Moderate","High","Very Busy"];
+document.getElementById("crowd").innerText =
+levels[Math.floor(Math.random()*4)];
+}
+
+function getHotels(){
+document.getElementById("hotels").innerHTML=`
+<div class="card">
+<b>Hotel Sandesh The Prince</b><p>1 km</p>
+<button onclick="navigate('Sandesh The Prince Mysore')">🧭 Navigate</button>
+<button onclick="bookHotel('Sandesh The Prince Mysore')">🏨 Book</button>
+</div>
+
+<div class="card">
+<b>Radisson Blu Mysore</b><p>2 km</p>
+<button onclick="navigate('Radisson Blu Mysore')">🧭 Navigate</button>
+<button onclick="bookHotel('Radisson Blu Mysore')">🏨 Book</button>
+</div>
+`;
+}
+
+function getFood(){
+document.getElementById("food").innerHTML=`
+<div class="card">
+<b>Lake View Snacks</b><p>Inside park</p>
+<button onclick="navigate('Karanji Lake Food Court')">🧭 Navigate</button>
+</div>
+
+<div class="card">
+<b>South Indian Meals</b><p>Nearby restaurants</p>
+<button onclick="navigate('Hotel RRR Mysore')">🧭 Navigate</button>
+</div>
+`;
+}
+
+function getEssentials(){
+document.getElementById("essentials").innerHTML=`
+<div class="card">
+<b>Hospital</b><p>KR Hospital (2 km)</p>
+<button onclick="navigate('KR Hospital Mysore')">🧭 Navigate</button>
+</div>
+
+<div class="card">
+<b>Fuel Station</b><p>Nearby Petrol Pump</p>
+<button onclick="navigate('Petrol Pump Mysore')">🧭 Navigate</button>
+</div>
+`;
+}
+
+function loadReviews(){
+let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+let box = document.getElementById("reviewList");
+box.innerHTML = "";
+
+reviews.forEach(r=>{
+box.innerHTML += `
+<div class="card">
+<b>${"★".repeat(r.rating)}</b>
+<p>${r.text}</p>
+</div>`;
+});
+}
+
+function addReview(){
+let rating = document.getElementById("rating").value;
+let text = document.getElementById("reviewText").value;
+
+if(text.trim()=="") return alert("Enter review");
+
+let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+reviews.push({rating,text});
+
+localStorage.setItem("reviews", JSON.stringify(reviews));
+
+document.getElementById("reviewText").value="";
+loadReviews();
+}
+
+function clearReviews(){
+localStorage.removeItem("reviews");
+loadReviews();
+}
+
+loadReviews();
+
+</script>
+
+<!-- SOS -->
+<button id="sosBtn">🆘</button>
+
+<script>
+document.getElementById("sosBtn").onclick = function () {
+
+let sos1 = localStorage.getItem("sos1");
+let sos2 = localStorage.getItem("sos2");
+
+if(!sos1 || !sos2){
+alert("Save SOS numbers first!");
+return;
+}
+
+let placeName = document.getElementById("placeName").innerText;
+
+function send(lat, lon){
+
+let msg = "🚨 EMERGENCY!\nPlace: " + placeName +
+"\nLocation: https://maps.google.com/?q=" + lat + "," + lon;
+
+let encoded = encodeURIComponent(msg);
+
+window.location.href = "sms:" + sos1 + "?body=" + encoded;
+
+setTimeout(()=>{
+window.location.href = "sms:" + sos2 + "?body=" + encoded;
+},3000);
+}
+
+navigator.geolocation.getCurrentPosition(
+pos => send(pos.coords.latitude, pos.coords.longitude),
+() => send(0,0)
+);
+};
+</script>
+
+</body>
 </html>
