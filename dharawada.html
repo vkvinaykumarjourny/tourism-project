@@ -249,5 +249,67 @@ searchBox.addEventListener("input", function() {
 });
 </script>
 
+
+<!-- 🆘 Floating SOS Button -->
+<button id="sosBtn">🆘</button>
+
+<style>
+#sosBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    border: none;
+    font-size: 26px;
+    z-index: 9999;
+}
+</style>
+
+<script>
+document.getElementById("sosBtn").onclick = function () {
+
+    let sos1 = localStorage.getItem("sos1");
+    let sos2 = localStorage.getItem("sos2");
+
+    if (!sos1 || !sos2) {
+        alert("Please login and add two SOS numbers!");
+        return;
+    }
+
+    if (!navigator.geolocation) {
+        alert("Location not supported");
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(function (pos) {
+
+        let lat = pos.coords.latitude;
+        let lon = pos.coords.longitude;
+
+        let message = "🚨 EMERGENCY!\n" +
+                      "I need help!\n" +
+                      "Location: https://maps.google.com/?q=" + lat + "," + lon;
+
+        let encoded = encodeURIComponent(message);
+
+        // 👉 STEP 1: Send to first number
+        alert("Send SOS to Contact 1");
+        window.location.href = "sms:" + sos1 + "?body=" + encoded;
+
+        // 👉 STEP 2: After user returns, send to second number
+        setTimeout(() => {
+            alert("Now send SOS to Contact 2");
+            window.location.href = "sms:" + sos2 + "?body=" + encoded;
+        }, 5000);
+
+    }, function () {
+        alert("Please allow location access!");
+    });
+};
+</script>
 </body>
 </html>
