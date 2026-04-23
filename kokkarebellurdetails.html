@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ranganathittu Bird Sanctuary</title>
+<title>Kokkare Bellur Bird Sanctuary</title>
 
 <style>
 body{
@@ -33,15 +33,8 @@ button{
   padding: 10px;
   border: none;
   border-radius: 5px;
-  margin: 5px 5px 0 0;
+  margin: 5px;
   cursor: pointer;
-}
-
-/* BUTTON ROW */
-.button-row{
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
 }
 
 .card{
@@ -51,15 +44,10 @@ button{
   border-radius: 8px;
 }
 
-textarea{
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-}
-
-select{
-  padding: 5px;
-  margin-top: 5px;
+.row{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 footer{
@@ -82,7 +70,6 @@ footer{
   width: 65px;
   height: 65px;
   font-size: 26px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
   cursor: pointer;
 }
 </style>
@@ -91,22 +78,21 @@ footer{
 <body>
 
 <header>
-<h1 id="placeName">Ranganathittu Bird Sanctuary</h1>
+<h1 id="placeName">Kokkare Bellur Bird Sanctuary</h1>
 </header>
 
 <!-- INFO -->
 <div class="section">
-<h2>Entry Information</h2>
-<p>₹50 – ₹300 (Boat Safari Charges Extra)</p>
+<h2>Ticket Fare</h2>
+<p>Free Entry</p>
 </div>
 
-<!-- FACILITIES -->
 <div class="section">
 <h2>Facilities</h2>
-<p>🚤 Boat Safari Available</p>
+<p>🐦 Bird Watching Towers</p>
 <p>🚗 Parking Available</p>
 <p>🚻 Toilets Available</p>
-<p>🦜 Bird Watching Towers</p>
+<p>📸 Photography Allowed</p>
 </div>
 
 <!-- CROWD -->
@@ -141,7 +127,7 @@ footer{
 <div class="section">
 <h2>Location</h2>
 <iframe width="100%" height="300"
-src="https://maps.google.com/maps?q=Ranganathittu%20Bird%20Sanctuary&output=embed">
+src="https://maps.google.com/maps?q=Kokkare%20Bellur%20Bird%20Sanctuary&output=embed">
 </iframe>
 </div>
 
@@ -149,7 +135,6 @@ src="https://maps.google.com/maps?q=Ranganathittu%20Bird%20Sanctuary&output=embe
 <div class="section">
 <h2>User Reviews & Ratings</h2>
 
-<label>Rating:</label>
 <select id="rating">
 <option value="5">★★★★★</option>
 <option value="4">★★★★</option>
@@ -168,9 +153,8 @@ src="https://maps.google.com/maps?q=Ranganathittu%20Bird%20Sanctuary&output=embe
 
 <!-- WIKIPEDIA -->
 <div class="section">
-<h2>More Details</h2>
-<a href="https://en.wikipedia.org/wiki/Ranganathittu_Bird_Sanctuary" target="_blank">
-Click here for full Wikipedia details of Ranganathittu Bird Sanctuary
+<a href="https://en.wikipedia.org/wiki/Kokkare_Bellur" target="_blank">
+More Details on Wikipedia
 </a>
 </div>
 
@@ -192,63 +176,57 @@ window.open("https://www.booking.com/searchresults.html?ss=" + name);
 function getCrowd(){
 let levels=["Low","Moderate","High","Very Busy"];
 document.getElementById("crowd").innerText =
-levels[Math.floor(Math.random()*levels.length)];
+levels[Math.floor(Math.random()*4)];
 }
 
-/* HOTELS */
+/* HOTELS (NAV + BOOK SAME ROW) */
 function getHotels(){
 document.getElementById("hotels").innerHTML=`
+<div class="card">
+<b>Bird View Stay</b>
+<div class="row">
+<button onclick="navigate('Kokkare Bellur Stay')">🧭 Navigate</button>
+<button onclick="bookHotel('Kokkare Bellur Stay')">🏨 Book</button>
+</div>
+</div>
 
 <div class="card">
-<b>Hotel Mayura</b><p>Near Sanctuary</p>
-<div class="button-row">
-<button onclick="navigate('Mayura Hotel Ranganathittu')">🧭 Navigate</button>
-<button onclick="bookHotel('Mayura Hotel Mysore')">🏨 Book</button>
+<b>Mandya Eco Lodge</b>
+<div class="row">
+<button onclick="navigate('Mandya Eco Lodge')">🧭 Navigate</button>
+<button onclick="bookHotel('Mandya Eco Lodge')">🏨 Book</button>
 </div>
 </div>
-
-<div class="card">
-<b>Royal Orchid Mysore</b><p>10 km</p>
-<div class="button-row">
-<button onclick="navigate('Royal Orchid Mysore')">🧭 Navigate</button>
-<button onclick="bookHotel('Royal Orchid Mysore')">🏨 Book</button>
-</div>
-</div>
-
 `;
 }
 
 /* FOOD */
 function getFood(){
 document.getElementById("food").innerHTML=`
-
 <div class="card">
-<b>River Side Food Stall</b><p>Near Entry</p>
-<button onclick="navigate('Ranganathittu Food Court')">🧭 Navigate</button>
+<b>Local Veg Meals</b>
+<button onclick="navigate('Mandya Local Food')">🧭 Navigate</button>
 </div>
 
 <div class="card">
-<b>Mysore Style Meals</b><p>5 km</p>
-<button onclick="navigate('Mysore Local Restaurant')">🧭 Navigate</button>
+<b>Tea & Snacks Stall</b>
+<button onclick="navigate('Kokkare Bellur Tea Point')">🧭 Navigate</button>
 </div>
-
 `;
 }
 
 /* ESSENTIALS */
 function getEssentials(){
 document.getElementById("essentials").innerHTML=`
-
 <div class="card">
-<b>Hospital</b><p>12 km</p>
-<button onclick="navigate('Srirangapatna Hospital')">🧭 Navigate</button>
+<b>Hospital</b>
+<button onclick="navigate('Mandya Hospital')">🧭 Navigate</button>
 </div>
 
 <div class="card">
-<b>Fuel Station</b><p>6 km</p>
-<button onclick="navigate('Srirangapatna Petrol Pump')">🧭 Navigate</button>
+<b>Fuel Station</b>
+<button onclick="navigate('Mandya Petrol Bunk')">🧭 Navigate</button>
 </div>
-
 `;
 }
 
@@ -277,7 +255,6 @@ let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
 reviews.push({rating,text});
 
 localStorage.setItem("reviews", JSON.stringify(reviews));
-
 document.getElementById("reviewText").value="";
 loadReviews();
 }
