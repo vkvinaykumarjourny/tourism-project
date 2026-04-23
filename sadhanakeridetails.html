@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sadhanakeri Lake & Garden</title>
+
+<style>
+body{
+  font-family: Arial;
+  margin: 0;
+  padding: 20px;
+  background: #e8f5e9;
+}
+
+header{
+  background: #2e7d32;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+.section{
+  background: white;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 10px;
+}
+
+button{
+  background: #2e7d32;
+  color: white;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 5px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.card{
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+textarea{
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+select{
+  padding: 5px;
+  margin-top: 5px;
+}
+
+footer{
+  text-align: center;
+  background: #2e7d32;
+  color: white;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+#sosBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  font-size: 26px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1 id="placeName">Sadhanakeri Lake & Garden</h1>
+</header>
+
+<div class="section">
+<h2>Ticket Fare</h2>
+<p>Free Entry</p>
+</div>
+
+<div class="section">
+<h2>Facilities</h2>
+<p>🚗 Parking Available</p>
+<p>🚻 Toilets Available</p>
+<p>🌳 Garden Area</p>
+<p>🚶 Walking Path</p>
+<p>🌅 Lake View</p>
+</div>
+
+<div class="section">
+<h2>Crowd Status</h2>
+<p id="crowd">Click button</p>
+<button onclick="getCrowd()">Check Crowd</button>
+</div>
+
+<div class="section">
+<h2>Nearby Hotels</h2>
+<div id="hotels">Click button</div>
+<button onclick="getHotels()">Load Hotels</button>
+</div>
+
+<div class="section">
+<h2>Famous Food Nearby</h2>
+<div id="food">Click button</div>
+<button onclick="getFood()">Load Food</button>
+</div>
+
+<div class="section">
+<h2>Essential Needs</h2>
+<div id="essentials">Click button</div>
+<button onclick="getEssentials()">Check Essentials</button>
+</div>
+
+<div class="section">
+<h2>Location</h2>
+<iframe width="100%" height="300"
+src="https://maps.google.com/maps?q=Sadhanakeri Lake Dharwad&output=embed">
+</iframe>
+</div>
+
+<!-- REVIEWS -->
+<div class="section">
+<h2>User Reviews & Ratings</h2>
+
+<select id="rating">
+<option value="5">★★★★★</option>
+<option value="4">★★★★</option>
+<option value="3">★★★</option>
+<option value="2">★★</option>
+<option value="1">★</option>
+</select>
+
+<textarea id="reviewText" placeholder="Write review..."></textarea>
+
+<button onclick="addReview()">Submit Review</button>
+<button onclick="clearReviews()">Clear All</button>
+
+<div id="reviewList"></div>
+</div>
+
+<!-- WIKI -->
+<div class="section">
+<a href="https://en.wikipedia.org/wiki/Dharwad" target="_blank">
+📖 More Details (Wikipedia)
+</a>
+</div>
+
+<footer>© All Rights Reserved</footer>
+
+<script>
+
+function navigate(place){
+window.open("https://www.google.com/maps/search/" + place);
+}
+
+function bookHotel(name){
+window.open("https://www.booking.com/searchresults.html?ss=" + name);
+}
+
+function getCrowd(){
+let levels=["Low","Moderate","High","Very Busy"];
+document.getElementById("crowd").innerText =
+levels[Math.floor(Math.random()*4)];
+}
+
+// HOTELS
+function getHotels(){
+document.getElementById("hotels").innerHTML=`
+<div class="card">
+<b>Hotel Naveen</b><p>2 km</p>
+<button onclick="navigate('Hotel Naveen Dharwad')">🧭 Navigate</button>
+<button onclick="bookHotel('Hotel Naveen Dharwad')">🏨 Book</button>
+</div>
+
+<div class="card">
+<b>Hotel Peacock</b><p>3 km</p>
+<button onclick="navigate('Hotel Peacock Dharwad')">🧭 Navigate</button>
+<button onclick="bookHotel('Hotel Peacock Dharwad')">🏨 Book</button>
+</div>`;
+}
+
+// FOOD
+function getFood(){
+document.getElementById("food").innerHTML=`
+<div class="card">
+<b>North Karnataka Meals</b><p>Nearby</p>
+<button onclick="navigate('Dharwad meals hotel')">🧭 Navigate</button>
+</div>
+
+<div class="card">
+<b>Dharwad Peda Shops</b><p>Famous Sweet</p>
+<button onclick="navigate('Dharwad peda shop')">🧭 Navigate</button>
+</div>`;
+}
+
+// ESSENTIALS
+function getEssentials(){
+document.getElementById("essentials").innerHTML=`
+<div class="card">
+<b>Hospital</b><p>2 km</p>
+<button onclick="navigate('Dharwad Hospital')">🧭 Navigate</button>
+</div>
+
+<div class="card">
+<b>Fuel Station</b><p>1.5 km</p>
+<button onclick="navigate('Petrol Pump Dharwad')">🧭 Navigate</button>
+</div>`;
+}
+
+// REVIEWS
+function loadReviews(){
+let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+let box = document.getElementById("reviewList");
+box.innerHTML = "";
+
+reviews.forEach(r=>{
+box.innerHTML += `
+<div class="card">
+<b>${"★".repeat(r.rating)}</b>
+<p>${r.text}</p>
+</div>`;
+});
+}
+
+function addReview(){
+let rating = document.getElementById("rating").value;
+let text = document.getElementById("reviewText").value;
+
+if(text.trim()=="") return alert("Enter review");
+
+let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+reviews.push({rating,text});
+
+localStorage.setItem("reviews", JSON.stringify(reviews));
+
+document.getElementById("reviewText").value="";
+loadReviews();
+}
+
+function clearReviews(){
+localStorage.removeItem("reviews");
+loadReviews();
+}
+
+loadReviews();
+
+</script>
+
+<button id="sosBtn">🆘</button>
+
+<script>
+document.getElementById("sosBtn").onclick = function () {
+
+let sos1 = localStorage.getItem("sos1");
+let sos2 = localStorage.getItem("sos2");
+
+if(!sos1 || !sos2){
+alert("Save SOS numbers first!");
+return;
+}
+
+let placeName = document.getElementById("placeName").innerText;
+
+function send(lat, lon){
+let msg = "EMERGENCY! Place: " + placeName +
+"\nhttps://maps.google.com/?q=" + lat + "," + lon;
+
+let encoded = encodeURIComponent(msg);
+
+window.location.href = "sms:" + sos1 + "?body=" + encoded;
+
+setTimeout(()=>{
+window.location.href = "sms:" + sos2 + "?body=" + encoded;
+},3000);
+}
+
+navigator.geolocation.getCurrentPosition(
+pos => send(pos.coords.latitude, pos.coords.longitude),
+() => send(0,0)
+);
+};
+</script>
+
+</body>
+</html>
