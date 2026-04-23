@@ -6,56 +6,92 @@
 <title>MYSORE DISTRICT</title>
 
 <style>
-body { margin:0; font-family:Arial; background:#f9f9f9; }
-header, footer { text-align:center; background:aliceblue; padding:10px; }
+body {
+  margin:0;
+  font-family:Arial;
+  background:#f9f9f9;
+}
+
+header, footer {
+  text-align:center;
+  background:aliceblue;
+  padding:10px;
+}
+
 main { padding:20px; }
 
 .search-container { text-align:right; }
-#searchBox { padding:8px; width:250px; }
 
+#searchBox {
+  padding:8px;
+  width:250px;
+}
+
+/* ✅ MANDYA GRID */
 .places-wrapper {
   display:grid;
-  gap:20px;
+  gap:25px;
 }
-@media (min-width:768px){
-  .places-wrapper {
-    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+
+@media (min-width:769px){
+  .places-wrapper{
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
   }
 }
 
+/* ✅ MANDYA CARD */
 .tour-card {
+  width:100%;
+  max-width:300px;
+  margin:auto;
   background:white;
-  border-radius:12px;
+  border-radius:16px;
   overflow:hidden;
-  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  box-shadow:0 4px 16px rgba(0,0,0,0.1);
 }
 
 .image-container { position:relative; }
-.tour-image { width:100%; }
 
-.badge {
+.tour-image {
+  width:100%;
+  display:block;
+}
+
+/* ✅ MANDYA BADGE STYLE */
+.top-overlay {
   position:absolute;
   top:8px;
   left:8px;
-  background:white;
-  color:green;
-  padding:4px;
-  font-size:12px;
+  right:8px;
+  display:flex;
+  justify-content:space-between;
 }
 
-.tour-info { padding:15px; }
+.badge {
+  background:white;
+  color:green;
+  font-size:12px;
+  font-weight:bold;
+  padding:4px 6px;
+  border-radius:4px;
+}
 
+.tour-info { padding:16px; }
+
+/* SOS */
 #sosBtn {
- position:fixed;
- bottom:20px;
- right:20px;
- background:red;
- color:white;
- border:none;
- border-radius:50%;
- width:65px;
- height:65px;
- font-size:26px;
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:red;
+  color:white;
+  border:none;
+  border-radius:50%;
+  width:65px;
+  height:65px;
+  font-size:26px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.4);
+  cursor:pointer;
 }
 </style>
 </head>
@@ -73,121 +109,110 @@ main { padding:20px; }
 
 <h1 id="placeName">WELCOME MYSORE DISTRICT</h1>
 
-<div class="places-wrapper">
+<div class="places-wrapper" id="placesWrapper">
 
-<!-- Mysore Palace -->
+<!-- ALL PLACES -->
+
 <div class="tour-card" data-name="mysore palace">
 <div class="image-container">
 <a href="palacedetails.html"><img src="mp.jpg" class="tour-image"></a>
-<span class="badge">KA ADVENTURE</span>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
 </div>
 <div class="tour-info"><h3>Mysore Palace</h3></div>
 </div>
 
-<!-- Jaganmohan -->
 <div class="tour-card" data-name="jaganmohan palace">
 <div class="image-container">
 <a href="jmpdetails.html"><img src="jaganmohan.jpg" class="tour-image"></a>
-<span class="badge">KA ADVENTURE</span>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
 </div>
 <div class="tour-info"><h3>Jaganmohan Palace</h3></div>
 </div>
 
-<!-- Chamundi -->
 <div class="tour-card" data-name="chamundeshwari temple">
 <div class="image-container">
 <a href="chamundidetails.html"><img src="chamundi1.jfif" class="tour-image"></a>
-<span class="badge">KA ADVENTURE</span>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
 </div>
 <div class="tour-info"><h3>Chamundeshwari Temple</h3></div>
 </div>
 
-<!-- Zoo -->
 <div class="tour-card" data-name="mysore zoo">
 <div class="image-container">
 <a href="zoodetails.html"><img src="mzoo.png" class="tour-image"></a>
-<span class="badge">KA ADVENTURE</span>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
 </div>
 <div class="tour-info"><h3>Mysore Zoo</h3></div>
 </div>
 
-<!-- Karanji Lake -->
 <div class="tour-card" data-name="karanji lake">
 <div class="image-container">
 <a href="karanjidetails.html"><img src="karanjilake.png" class="tour-image"></a>
-<span class="badge">KA ADVENTURE</span>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
 </div>
 <div class="tour-info"><h3>Karanji Lake</h3></div>
 </div>
 
-<!-- Nagarahole -->
 <div class="tour-card" data-name="nagarahole national park">
 <div class="image-container">
 <a href="nagaraholedetails.html"><img src="nagarhole.jfif" class="tour-image"></a>
-<span class="badge">KA ADVENTURE</span>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
 </div>
 <div class="tour-info"><h3>Nagarahole National Park</h3></div>
 </div>
 
-<!-- Rail Museum -->
 <div class="tour-card" data-name="rail museum">
 <div class="image-container">
 <a href="museumdetalis.html"><img src="railmuseum.jfif" class="tour-image"></a>
-<span class="badge">KA ADVENTURE</span>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
 </div>
 <div class="tour-info"><h3>Rail Museum</h3></div>
 </div>
 
-<!-- Payana -->
 <div class="tour-card" data-name="payana">
 <div class="image-container">
 <a href="payanadetails.html"><img src="payana.jpg" class="tour-image"></a>
-<span class="badge">KA ADVENTURE</span>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
 </div>
 <div class="tour-info"><h3>Payana</h3></div>
 </div>
 
-<!-- Sand Museum -->
 <div class="tour-card" data-name="sand sculpture museum">
 <div class="image-container">
 <a href="sanddetails.html"><img src="sandmuseum.jfif" class="tour-image"></a>
-<span class="badge">KA ADVENTURE</span>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
 </div>
 <div class="tour-info"><h3>Sand Sculpture Museum</h3></div>
 </div>
 
-<!-- GRS -->
 <div class="tour-card" data-name="grs fantasy park">
 <div class="image-container">
 <a href="grsdetails.html"><img src="grs.jpeg" class="tour-image"></a>
-<span class="badge">KA ADVENTURE</span>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
 </div>
 <div class="tour-info"><h3>GRS Fantasy Park</h3></div>
 </div>
 
-<!-- Shuka Vana -->
 <div class="tour-card" data-name="shuka vana">
 <div class="image-container">
 <a href="shukadetails.html"><img src="shukavan.webp" class="tour-image"></a>
-<span class="badge">KA ADVENTURE</span>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
 </div>
 <div class="tour-info"><h3>Shuka Vana</h3></div>
 </div>
 
-<!-- Devaraja Market -->
 <div class="tour-card" data-name="devaraja market">
 <div class="image-container">
 <a href="devarajadetails.html"><img src="dmarket.jfif" class="tour-image"></a>
-<span class="badge">KA ADVENTURE</span>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
 </div>
 <div class="tour-info"><h3>Devaraja Market</h3></div>
 </div>
 
-<!-- Kukkrali Kere -->
 <div class="tour-card" data-name="kukkrali kere kukkarahalli lake">
 <div class="image-container">
 <a href="kukkrallidetails.html"><img src="kukkralli.avif" class="tour-image"></a>
-<span class="badge">KA ADVENTURE</span>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
 </div>
 <div class="tour-info"><h3>Kukkrali Kere</h3></div>
 </div>
@@ -199,15 +224,31 @@ main { padding:20px; }
 <p>@ALL COPYRIGHTS RESERVED 2025</p>
 </footer>
 
-<!-- SEARCH -->
+<!-- SEARCH (TOP REORDER FIX) -->
 <script>
 const searchBox=document.getElementById("searchBox");
-const cards=document.querySelectorAll(".tour-card");
+const wrapper=document.getElementById("placesWrapper");
+const cards=Array.from(document.querySelectorAll(".tour-card"));
+const original=[...cards];
 
 searchBox.addEventListener("input",function(){
- let q=searchBox.value.toLowerCase();
+ let q=this.value.toLowerCase().trim();
+
+ if(q===""){
+   original.forEach(c=>{
+     c.style.display="block";
+     wrapper.appendChild(c);
+   });
+   return;
+ }
+
  cards.forEach(c=>{
-  c.style.display=c.dataset.name.includes(q)?"block":"none";
+   if(c.dataset.name.includes(q)){
+     c.style.display="block";
+     wrapper.prepend(c);
+   } else {
+     c.style.display="none";
+   }
  });
 });
 </script>
@@ -221,22 +262,33 @@ document.getElementById("sosBtn").onclick=function(){
 let s1=localStorage.getItem("sos1");
 let s2=localStorage.getItem("sos2");
 
-if(!s1||!s2){alert("Add SOS numbers");return;}
+if(!s1||!s2){
+ alert("Add SOS numbers");
+ return;
+}
 
-navigator.geolocation.getCurrentPosition(function(pos){
+let place=document.getElementById("placeName").innerText;
 
-let msg="🚨 EMERGENCY!\nLocation: https://maps.google.com/?q="
-+pos.coords.latitude+","+pos.coords.longitude;
+function send(lat=null,lon=null){
+ let msg="🚨 EMERGENCY!\nPlace: "+place;
 
-let e=encodeURIComponent(msg);
+ if(lat&&lon){
+  msg+="\nLocation: https://maps.google.com/?q="+lat+","+lon;
+ }
 
-window.location.href="sms:"+s1+"?body="+e;
+ let e=encodeURIComponent(msg);
 
-setTimeout(()=>{
-window.location.href="sms:"+s2+"?body="+e;
-},5000);
+ window.location.href="sms:"+s1+"?body="+e;
 
-},()=>alert("Allow location"));
+ setTimeout(()=>{
+  window.location.href="sms:"+s2+"?body="+e;
+ },4000);
+}
+
+navigator.geolocation.getCurrentPosition(
+ pos=>send(pos.coords.latitude,pos.coords.longitude),
+ ()=>send()
+);
 };
 </script>
 
