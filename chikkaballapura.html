@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title> CHIKKABALLAPURA DISTRICT</title>
-  <meta name="viewport" content="width=device-width, initial=scale=1.0">
+  <title>CHIKKABALLAPURA DISTRICT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       margin: 0;
@@ -17,17 +18,10 @@
       text-align: center;
     }
 
-    main {
-      padding: 20px;
-    }
+    main { padding: 20px; }
 
-    .card-section-title {
-      color: green;
-    }
-
-    .card-subtitle {
-      font-family: 'Courier New';
-    }
+    .card-section-title { color: green; }
+    .card-subtitle { font-family: 'Courier New'; }
 
     .tour-row {
       display: flex;
@@ -35,9 +29,7 @@
       margin-bottom: 30px;
     }
 
-    .row-even {
-      flex-direction: row-reverse;
-    }
+    .row-even { flex-direction: row-reverse; }
 
     .tour-card {
       width: 300px;
@@ -48,14 +40,8 @@
       margin: 0 20px;
     }
 
-    .image-container {
-      position: relative;
-    }
-
-    .tour-image {
-      width: 100%;
-      display: block;
-    }
+    .image-container { position: relative; }
+    .tour-image { width: 100%; display: block; }
 
     .top-overlay {
       position: absolute;
@@ -64,7 +50,6 @@
       right: 8px;
       display: flex;
       justify-content: space-between;
-      pointer-events: none;
     }
 
     .badge {
@@ -76,9 +61,7 @@
       border-radius: 4px;
     }
 
-    .tour-info {
-      padding: 16px;
-    }
+    .tour-info { padding: 16px; }
 
     .state {
       color: #00aa88;
@@ -87,10 +70,16 @@
       margin: 0;
     }
 
-    .title {
-      font-size: 18px;
-      margin: 4px 0 8px;
+    .title { font-size: 18px; margin: 4px 0 8px; }
+
+    .search-container { text-align: right; }
+
+    #searchBox {
+      padding: 8px;
+      width: 250px;
+      font-size: 16px;
     }
+
     .back-to-top {
       display: block;
       text-align: center;
@@ -98,388 +87,197 @@
       color: blue;
       text-decoration: none;
     }
-    .search-container{
-      text-align: right;
-      
-    }
-    #searchBox {
-      padding: 8px;
-      width: 250px;
-      font-size: 16px;
-    }
-    #searchBtn {
-      padding: 8px 12px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .result {
-      margin-top: 15px;
-      padding: 10px;
-      border: 1px solid #ddd;
-      background: #f9f9f9;
-      display: none;
-    }
-    .result h3 {
-      margin: 0;
-    }
-    .result a {
-      text-decoration: none;
-      color: blue;
-    }
-    .result a:hover {
-      text-decoration: underline;
-    }
-    </style>
-
+  </style>
 </head>
+
 <body>
-<div id="google_translate_element"></div>
 
-<script type="text/javascript">
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement(
-      {pageLanguage: 'en', includedLanguages: 'kn,en,hi'},
-      'google_translate_element'
-    );
-  }
-  </script>
-
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-</script>
-
-
-  <header>
-    <h1>KA ADVENTURE</h1>
-    <div class="search-container">
+<header>
+  <h1>KA ADVENTURE</h1>
+  <div class="search-container">
     <input type="text" id="searchBox" placeholder="Search places...">
-<button id="searchBtn">Search</button>
+  </div>
+</header>
+
+<main>
+
+<h1 class="card-section-title">WELCOME TO CHIKKABALLAPURA DISTRICT</h1>
+
+
+
+<div class="tour-row row-even">
+  <div class="tour-card" data-name="adiyogi isha">
+    <div class="image-container">
+      <a href="adiyogidetails.html">
+      <img src="adiyogi.jpg" alt="Adiyogi" class="tour-image">
+      </a>
+      <div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+    </div>
+    <div class="tour-info">
+      <p class="state">KARNATAKA</p>
+      <h3 class="title">Adiyogi - Sadhguru Sannidhi Isha</h3>
+    </div>
+  </div>
 </div>
-<div class="result" id="resultBox"></div>
-</header>
+
+<div class="tour-row row-even">
+  <div class="tour-card" data-name="isha foundation">
+    <div class="image-container">
+      <a href="ishadetails.html">
+      <img src="isha.jpg" alt="Isha Foundation" class="tour-image">
+      </a>
+      <div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+    </div>
+    <div class="tour-info">
+      <p class="state">KARNATAKA</p>
+      <h3 class="title">Isha Foundation</h3>
+    </div>
+  </div>
+</div>
+
+<div class="tour-row row-even">
+  <div class="tour-card" data-name="bhoga nandishwara temple">
+    <div class="image-container">
+      <a href="bhogadetails.html">
+      <img src="nandhi.jpg" alt="Bhoga Nandishwara" class="tour-image">
+      </a>
+      <div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+    </div>
+    <div class="tour-info">
+      <p class="state">KARNATAKA</p>
+      <h3 class="title">Sri Bhoga Nandishwara Gudi</h3>
+    </div>
+  </div>
+</div>
+
+<div class="tour-row row-even">
+  <div class="tour-card" data-name="ranganatha swamy temple">
+    <div class="image-container">
+      <a href="ranganathadetails.html">
+      <img src="ranganatha.jpg" alt="Ranganatha Temple" class="tour-image">
+      </a>
+      <div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+    </div>
+    <div class="tour-info">
+      <p class="state">KARNATAKA</p>
+      <h3 class="title">Shri Ranganatha Swamy Temple</h3>
+    </div>
+  </div>
+</div>
+
+<div class="tour-row row-even">
+  <div class="tour-card" data-name="gudibande fort">
+    <div class="image-container">
+      <a href="gudibandedetails.html">
+              <img src="gudibande.jpg" alt="Gudibande Fort" class="tour-image">
+              </a>
+      <div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+    </div>
+    <div class="tour-info">
+      <p class="state">KARNATAKA</p>
+      <h3 class="title">Gudibande Fort</h3>
+    </div>
+  </div>
+</div>
+
+<div class="tour-row row-even">
+  <div class="tour-card" data-name="yoganandeeswara temple">
+    <div class="image-container">
+      <a href="yoganandeeshwaradetails.html">
+      <img src="yoganande.jpg" alt="Yoganandeeswara Temple" class="tour-image">
+      </a>
+      <div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+    </div>
+    <div class="tour-info">
+      <p class="state">KARNATAKA</p>
+      <h3 class="title">Shri Yoganandeeswara Swami Temple</h3>
+    </div>
+  </div>
+</div>
+
+
+<div class="tour-row row-even">
+  <div class="tour-card" data-name="kethanahalli falls">
+    <div class="image-container">
+      <a href="kethenahallidetails.html">
+      <img src="kethana.jpg" alt="Kethanahalli Falls" class="tour-image">
+      </a>
+      <div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+    </div>
+    <div class="tour-info">
+      <p class="state">KARNATAKA</p>
+      <h3 class="title">Kethanahalli Falls</h3>
+    </div>
+  </div>
+</div>
+
+<div class="tour-row row-even">
+  <div class="tour-card" data-name="srinivasa sagar dam">
+    <div class="image-container">
+      <a href=""srinivasadamdetails.html>
+      <img src="dam.jpg" alt="Srinivasa Sagar Dam" class="tour-image">
+      </a>
+      <div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+    </div>
+    <div class="tour-info">
+      <p class="state">KARNATAKA</p>
+      <h3 class="title">Srinivasa Sagar Dam</h3>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="tour-row row-even">
+  <div class="tour-card" data-name="avalabetta">
+    <div class="image-container">
+      <a href="avalabettadetails.html">
+      <img src="avalabetta.jpg" alt="Avalabetta" class="tour-image">
+      </a>
+      <div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+    </div>
+    <div class="tour-info">
+      <p class="state">KARNATAKA</p>
+      <h3 class="title">Avalabetta Top View</h3>
+    </div>
+  </div>
+</div>
+
+<div class="tour-row row-even">
+  <div class="tour-card" data-name="jinke vana park">
+    <div class="image-container">
+      <a href="jinkevanaparkdetails.html"><img src="jinke.jpg" alt="Jinke Vana Park" class="tour-image">
+      </a>
+      <div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+    </div>
+    <div class="tour-info">
+      <p class="state">KARNATAKA</p>
+      <h3 class="title">Jinke Vana Park</h3>
+    </div>
+  </div>
+</div>
+
+<a href="#top" class="back-to-top">Back to Top</a>
+
+</main>
+
+<footer>
+  <p>@ALL COPYRIGHTS RESERVED</p>
+</footer>
+
 <script>
-  const places = {
-    "adiyogi - sadhguru sannidhi isha  ": {
-      description: "Click here to know more about Adiyogi - Sadhguru Sannidhi Isha   ",
-      link: ""
-    },
-    "isha foundation ": {
-      description: "Click here to know more about Isha Foundation  ",
-      link: ""
-    },
-    "sri bhoga nandishwara gudi  ": {
-      description: "Click here to know more about Sri Bhoga Nandishwara Gudi   ",
-      link: ""
-    },
-    "shri ranganatha swamy temple  ": {
-      description: "Click here to know more about Shri Ranganatha Swamy Temple   ",
-      link: ""
-    },
-    "gudibande fort  ": {
-      description: "Click here to know more about Gudibande Fort   ",
-      link: ""
-    },
-    "shri yoganandeeswara swami temple ": {
-      description: "Click here to know more about Shri Yoganandeeswara Swami Temple  ",
-      link: ""
-    },
-    "kethanahalli falls   ": {
-      description: "Click here to know more about Kethanahalli Falls    ",
-      link: ""
-    },
-    "srinivas sagar dam  ": {
-      description: "Click here to know more about Srinivas sagar dam   ",
-      link: ""
-    },
-    "srinivasa sagara falls & trekking place   ": {
-      description: "Click here to know more about Srinivasa sagara Falls & Trekking Place    ",
-      link: ""
-    },
-    "chikkaballapur utsav  ": {
-      description: "Click here to know more about Chikkaballapur Utsav   ",
-      link: ""
-    },
-    "avalabetta top view ": {
-      description: "Click here to know more about Avalabetta Top View  ",
-      link: ""
-    },
-    "hari-hara betta  ": {
-      description: "Click here to know more about Hari-Hara Betta   ",
-      link: ""
-    },
-    "horagina betta   ": {
-      description: "Click here to know more about Horagina Betta    ",
-      link: ""
-    },
-    "jinke vana park  ": {
-      description: "Click here to know more about Jinke Vana Park   ",
-      link: ""
-    },
-    
-    
-};
-  const searchBox = document.getElementById("searchBox");
-  const resultBox = document.getElementById("resultBox");
+const searchBox = document.getElementById("searchBox");
+const cards = document.querySelectorAll(".tour-card");
 
-  searchBox.addEventListener("input", function() {
-    let query = searchBox.value.trim().toLowerCase();
-    if (query) {
-      let matchKey = Object.keys(places).find(place => place.includes(query));
-      if (matchKey) {
-        resultBox.style.display = "block";
-        resultBox.innerHTML = `
-          <h3><a href="${places[matchKey].link}">${matchKey.toUpperCase()}</a></h3>
-          <p>${places[matchKey].description}</p>
-        `;
-      } else {
-        resultBox.style.display = "block";
-        resultBox.innerHTML = "<p>No details found for: ${query}</p>";
-      }
-    } else {
-      resultBox.style.display = "none";
-      resultBox.innerHTML = "";
-    }
+searchBox.addEventListener("input", function() {
+  const query = searchBox.value.toLowerCase().trim();
+
+  cards.forEach(card => {
+    const name = card.getAttribute("data-name");
+    card.style.display = (query === "" || name.includes(query)) ? "" : "none";
   });
+});
 </script>
-</header>
-  
-  <main>
-    <h1 class="card-section-title">WELCOME TO CHIKKABALLAPURA DISTRICT</h1>
-    <h2 class="card-subtitle">C</h2> 
-
-    <h1 style="text-align: center;">Spirtual places  </h1>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="">
-            <img src="" alt="Adiyogi - Sadhguru Sannidhi Isha  " class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>  
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-        <h3 class="title">Adiyogi - Sadhguru Sannidhi Isha  </h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="">
-            <img src="" alt="Isha Foundation " class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>  
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-        <h3 class="title">Isha Foundation </h3>
-        </div>
-      </div>
-    </div>
-
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="">
-            <img src="" alt="Sri Bhoga Nandishwara Gudi  " class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>  
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-        <h3 class="title">Sri Bhoga Nandishwara Gudi  </h3>
-        </div>
-      </div>
-    </div>
-<div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="">
-            <img src="" alt="Shri Ranganatha Swamy Temple " class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>  
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-        <h3 class="title">Shri Ranganatha Swamy Temple  </h3>
-        </div>
-      </div>
-    </div>
-<div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="">
-            <img src="" alt="Gudibande Fort  " class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>  
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-        <h3 class="title">Gudibande Fort  </h3>
-        </div>
-      </div>
-    </div>
-<div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="">
-            <img src="" alt="Shri Yoganandeeswara Swami Temple " class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>  
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-        <h3 class="title">Shri Yoganandeeswara Swami Temple </h3>
-        </div>
-      </div>
-    </div>
-    <h1 style="text-align: center;">Falls and Dams </h1>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="">
-            <img src="" alt="Kethanahalli Falls   " class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>  
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-        <h3 class="title">Kethanahalli Falls  </h3>
-        </div>
-      </div>
-    </div>
-     <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="">
-            <img src="" alt="Srinivas sagar dam  " class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>  
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-        <h3 class="title">Srinivas sagar dam </h3>
-        </div>
-      </div>
-    </div>
- <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="">
-            <img src="" alt="Srinivasa sagara Falls & Trekking Place   " class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>  
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-        <h3 class="title">Srinivasa sagara Falls & Trekking Place   </h3>
-        </div>
-      </div>
-    </div>
-     <h1 style="text-align: center;">Others </h1>
- <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="">
-            <img src="" alt="Chikkaballapur Utsav " class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>  
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-        <h3 class="title">Chikkaballapur Utsav  </h3>
-        </div>
-      </div>
-    </div>
- <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="">
-            <img src="" alt="Avalabetta Top View  " class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>  
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-        <h3 class="title">Avalabetta Top View </h3>
-        </div>
-      </div>
-    </div>
- <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="">
-            <img src="" alt="Hari-Hara Betta " class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>  
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-        <h3 class="title">Hari-Hara Betta  </h3>
-        </div>
-      </div>
-    </div>
- <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="">
-            <img src="" alt="Horagina Betta   " class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>  
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-        <h3 class="title">Horagina Betta </h3>
-        </div>
-      </div>
-    </div>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="">
-            <img src="" alt="Jinke Vana Park  " class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>  
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-        <h3 class="title">Jinke Vana Park </h3>
-        </div>
-      </div>
-    </div>
-    <a href="#top" class="back-to-top">Back to Top</a>
-     </main>
-
-  <footer>
-    <p>footer</p>
-  </footer>
 
 </body>
 </html>
