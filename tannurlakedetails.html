@@ -1,84 +1,291 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Thannur Lake</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thonnur Lake</title>
+
 <style>
-    header{
-        background-color: #f2f2f2;
-        padding: 10px;
-        text-align: center;
-        color: green;
-    }
-    h1 {
-        color: blue;
-        
-    }
-    footer{
-        background-color: #f2f2f2;
-        padding: 5px;
-        text-align: center;
-        width: 100%;
-        bottom: 0;
-    }
-    p{
-        text-align: left;
-        line-height: 1.0;
-        margin-bottom: 16px;     
-    }
-    h2{
-        text-align: left;
-    }
-    body{
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        padding-left:40px; padding-right: 40px;
-        max-width: 100%;
-        margin:auto;
-    }
-    /* Responsive Google Maps */
-        .map-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 ratio */
-            height: 0;
-            overflow: hidden;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
+body{
+  font-family: Arial;
+  margin: 0;
+  padding: 20px;
+  background: #e8f5e9;
+}
 
-    </style>
-    <header>
-        <h1> Thannur Lake</h1>
-          
-    </header>
-    <body>
-         <h1 style="color: green;">Ticket Fare</h1>
-         <p>No entry fee</p>
-         <!-- <div>Children &#58; &#8377;15-20 </div>
-         <div></div>Adults &#58;&#8377;40</div> -->
-         <!-- <div> child &#58; &#8377;30 &#40;Below10-18years&#41;</p></div> -->
+header{
+  background: #2e7d32;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
 
-          <h2 style="color: green;">Opening dates and timings </h2>
-          <p>Sunday open 24 hours</p>
-          <p>Monday open 24 hours</p>
-          <p>Tuesday open 24 hours</p>
-          <p>Wednesday open 24 hours</p>
-          <p>Thursday open 24 hours</p>
-          <p>Friday open 24 hours</p>
-          <p>Saturday open 24 hours</p>
-          <h4 style="color: green;">Parking and toilet facility </h4>
-    <div> Parking facility  <span style="color: green;">&#x2714;</span> </div>
-    <div>Toilet facility <span style="color: red">No informatons  </span> </div>
-    
+.section{
+  background: white;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 10px;
+}
 
+button{
+  background: #2e7d32;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
 
-    <div class="map-container">
-       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11014.826698483992!2d76.62979204101605!3d12.560523079899962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf9cab1d89f5ef%3A0xf0dd81558e40bdb0!2sKere%20Thoondanur!5e0!3m2!1sen!2sin!4v1754309136351!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div><br>
-    <a href="https://en.wikipedia.org/wiki/Kere_Thonnur" target="_blank" class="nav-link">
-       More details <span class="external-icon">&#x2197;</span>
-    </a>
-          
-<footer>
-        <p style="text-align: center;">All copy rights reserved</p>
-    </footer>
+.card{
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+.row{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+footer{
+  text-align: center;
+  background: #2e7d32;
+  color: white;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+/* SOS */
+#sosBtn{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  font-size: 26px;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1 id="placeName">Thonnur Lake (Mandya)</h1>
+</header>
+
+<div class="section">
+<h2>Ticket Fare</h2>
+<p>Free Entry</p>
+</div>
+
+<div class="section">
+<h2>Facilities</h2>
+<p>🌊 Boating Area</p>
+<p>📸 Sunset View</p>
+<p>🚗 Parking Available</p>
+</div>
+
+<div class="section">
+<h2>Crowd Status</h2>
+<p id="crowd">Click button</p>
+<button onclick="getCrowd()">Check Crowd</button>
+</div>
+
+<!-- HOTELS -->
+<div class="section">
+<h2>Nearby Hotels</h2>
+<div id="hotels">Click button</div>
+<button onclick="getHotels()">Load Hotels</button>
+</div>
+
+<!-- FOOD -->
+<div class="section">
+<h2>Famous Food Nearby</h2>
+<div id="food">Click button</div>
+<button onclick="getFood()">Load Food</button>
+</div>
+
+<!-- ESSENTIALS -->
+<div class="section">
+<h2>Essential Needs</h2>
+<div id="essentials">Click button</div>
+<button onclick="getEssentials()">Check Essentials</button>
+</div>
+
+<!-- LOCATION -->
+<div class="section">
+<h2>Location</h2>
+<iframe width="100%" height="300"
+src="https://maps.google.com/maps?q=Thonnur%20Lake%20Mandya&output=embed">
+</iframe>
+</div>
+
+<!-- REVIEWS -->
+<div class="section">
+<h2>User Reviews</h2>
+
+<select id="rating">
+<option value="5">★★★★★</option>
+<option value="4">★★★★</option>
+<option value="3">★★★</option>
+<option value="2">★★</option>
+<option value="1">★</option>
+</select>
+
+<textarea id="reviewText" placeholder="Write review..."></textarea>
+
+<button onclick="addReview()">Submit Review</button>
+<button onclick="clearReviews()">Clear All</button>
+
+<div id="reviewList"></div>
+</div>
+
+<footer>© All Rights Reserved</footer>
+
+<script>
+
+/* NAVIGATION */
+function navigate(place){
+window.open("https://www.google.com/maps/search/" + place);
+}
+
+/* BOOK */
+function bookHotel(name){
+window.open("https://www.booking.com/searchresults.html?ss=" + name);
+}
+
+/* CROWD */
+function getCrowd(){
+let levels=["Low","Moderate","High","Very Busy"];
+document.getElementById("crowd").innerText =
+levels[Math.floor(Math.random()*4)];
+}
+
+/* HOTELS */
+function getHotels(){
+document.getElementById("hotels").innerHTML=`
+<div class="card">
+<b>Lake View Stay</b>
+<div class="row">
+<button onclick="navigate('Thonnur Lake Stay')">🧭 Navigate</button>
+<button onclick="bookHotel('Thonnur Lake Stay')">🏨 Book</button>
+</div>
+</div>
+`;
+}
+
+/* FOOD (NAVIGATION ON NEXT LINE FIXED) */
+function getFood(){
+document.getElementById("food").innerHTML=`
+<div class="card">
+<b>Ragi Mudde Meals</b><br>
+<button onclick="navigate('Mandya Food Stall')">🧭 Navigate</button>
+</div>
+
+<div class="card">
+<b>Fish Fry Point</b><br>
+<button onclick="navigate('Thonnur Lake Food')">🧭 Navigate</button>
+</div>
+`;
+}
+
+/* ESSENTIALS (NAVIGATION ON NEXT LINE FIXED) */
+function getEssentials(){
+document.getElementById("essentials").innerHTML=`
+<div class="card">
+<b>Hospital</b><br>
+<button onclick="navigate('Mandya Hospital')">🧭 Navigate</button>
+</div>
+
+<div class="card">
+<b>Fuel Station</b><br>
+<button onclick="navigate('Mandya Petrol Bunk')">🧭 Navigate</button>
+</div>
+`;
+}
+
+/* REVIEWS */
+function loadReviews(){
+let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+let box = document.getElementById("reviewList");
+box.innerHTML="";
+
+reviews.forEach(r=>{
+box.innerHTML += `
+<div class="card">
+<b>${"★".repeat(r.rating)}</b>
+<p>${r.text}</p>
+</div>`;
+});
+}
+
+function addReview(){
+let rating = document.getElementById("rating").value;
+let text = document.getElementById("reviewText").value;
+
+if(text.trim()=="") return alert("Enter review");
+
+let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+reviews.push({rating,text});
+
+localStorage.setItem("reviews", JSON.stringify(reviews));
+document.getElementById("reviewText").value="";
+loadReviews();
+}
+
+function clearReviews(){
+localStorage.removeItem("reviews");
+loadReviews();
+}
+
+loadReviews();
+
+</script>
+
+<!-- SOS -->
+<button id="sosBtn">🆘</button>
+
+<script>
+document.getElementById("sosBtn").onclick = function () {
+
+let sos1 = localStorage.getItem("sos1");
+let sos2 = localStorage.getItem("sos2");
+
+if(!sos1 || !sos2){
+alert("Save SOS numbers first!");
+return;
+}
+
+let placeName = document.getElementById("placeName").innerText;
+
+function send(lat, lon){
+
+let msg = "🚨 EMERGENCY!\nPlace: " + placeName +
+"\nLocation: https://maps.google.com/?q=" + lat + "," + lon;
+
+let encoded = encodeURIComponent(msg);
+
+window.location.href = "sms:" + sos1 + "?body=" + encoded;
+
+setTimeout(()=>{
+window.location.href = "sms:" + sos2 + "?body=" + encoded;
+},3000);
+}
+
+navigator.geolocation.getCurrentPosition(
+pos => send(pos.coords.latitude, pos.coords.longitude),
+() => send(0,0)
+);
+};
+</script>
+
+</body>
 </html>
