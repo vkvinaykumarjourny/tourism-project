@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horagina Betta</title>
+
+<style>
+body{
+  font-family: Arial;
+  margin: 0;
+  padding: 20px;
+  background: #f1f8e9;
+}
+
+header{
+  background: #33691e;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+.section{
+  background: white;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 10px;
+}
+
+button{
+  background: #33691e;
+  color: white;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 5px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.card{
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+textarea{
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+select{
+  padding: 5px;
+  margin-top: 5px;
+}
+
+footer{
+  text-align: center;
+  background: #33691e;
+  color: white;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+/* SOS */
+#sosBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  font-size: 26px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1 id="placeName">Horagina Betta</h1>
+</header>
+
+<div class="section">
+<h2>Entry</h2>
+<p>Free Entry</p>
+</div>
+
+<div class="section">
+<h2>Facilities</h2>
+<p>🚗 Limited Parking</p>
+<p>🥾 Easy to Moderate Trek</p>
+<p>🌄 Hilltop View Point</p>
+<p>📸 Photography Spot</p>
+<p>⚠️ Carry Water & Be Careful on Rocks</p>
+</div>
+
+<div class="section">
+<h2>Crowd Status</h2>
+<p id="crowd">Click button</p>
+<button onclick="getCrowd()">Check Crowd</button>
+</div>
+
+<div class="section">
+<h2>Nearby Hotels</h2>
+<div id="hotels">Click button</div>
+<button onclick="getHotels()">Load Hotels</button>
+</div>
+
+<div class="section">
+<h2>Food Nearby</h2>
+<div id="food">Click button</div>
+<button onclick="getFood()">Load Food</button>
+</div>
+
+<div class="section">
+<h2>Essential Needs</h2>
+<div id="essentials">Click button</div>
+<button onclick="getEssentials()">Check Essentials</button>
+</div>
+
+<div class="section">
+<h2>Location</h2>
+<iframe width="100%" height="300"
+src="https://maps.google.com/maps?q=Horagina Betta Chikkaballapur&output=embed">
+</iframe>
+</div>
+
+<!-- REVIEWS -->
+<div class="section">
+<h2>User Reviews & Ratings</h2>
+
+<select id="rating">
+<option value="5">★★★★★</option>
+<option value="4">★★★★</option>
+<option value="3">★★★</option>
+<option value="2">★★</option>
+<option value="1">★</option>
+</select>
+
+<textarea id="reviewText" placeholder="Write review..."></textarea>
+
+<button onclick="addReview()">Submit Review</button>
+<button onclick="clearReviews()">Clear All</button>
+
+<div id="reviewList"></div>
+</div>
+
+<!-- INFO LINK -->
+<div class="section">
+<a href="https://www.google.com/search?q=Horagina+Betta+Chikkaballapur" target="_blank">
+🔍 More Details (Google)
+</a>
+</div>
+
+<footer>© All Rights Reserved</footer>
+
+<script>
+
+// NAVIGATION
+function navigate(place){
+window.open("https://www.google.com/maps/search/" + encodeURIComponent(place));
+}
+
+// BOOK HOTEL
+function bookHotel(name){
+window.open("https://www.booking.com/searchresults.html?ss=" + encodeURIComponent(name));
+}
+
+// CROWD
+function getCrowd(){
+let levels=["Low","Moderate","High","Very Busy"];
+document.getElementById("crowd").innerText =
+levels[Math.floor(Math.random()*4)];
+}
+
+// HOTELS
+function getHotels(){
+document.getElementById("hotels").innerHTML=`
+<div class="card">
+<b>Nandi Hills Resort</b><p>25 km</p>
+<button onclick="navigate('Nandi Hills Resort')">🧭 Navigate</button>
+<button onclick="bookHotel('Nandi Hills Resort')">🏨 Book</button>
+</div>
+
+<div class="card">
+<b>Mount Palazzo</b><p>30 km</p>
+<button onclick="navigate('Mount Palazzo Nandi Hills')">🧭 Navigate</button>
+<button onclick="bookHotel('Mount Palazzo')">🏨 Book</button>
+</div>`;
+}
+
+// FOOD
+function getFood(){
+document.getElementById("food").innerHTML=`
+<div class="card">
+<b>Local Meals</b><p>Nearby Villages</p>
+<button onclick="navigate('Restaurants in Chikkaballapur')">🧭 Navigate</button>
+</div>
+
+<div class="card">
+<b>Tea & Snacks</b><p>Nearby Shops</p>
+<button onclick="navigate('Tea shop near Horagina Betta')">🧭 Navigate</button>
+</div>`;
+}
+
+// ESSENTIALS
+function getEssentials(){
+document.getElementById("essentials").innerHTML=`
+<div class="card">
+<b>Hospital</b><p>12 km</p>
+<button onclick="navigate('Chikkaballapur Hospital')">🧭 Navigate</button>
+</div>
+
+<div class="card">
+<b>Fuel Station</b><p>10 km</p>
+<button onclick="navigate('Petrol Pump Chikkaballapur')">🧭 Navigate</button>
+</div>`;
+}
+
+// REVIEWS
+function loadReviews(){
+let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+let box = document.getElementById("reviewList");
+box.innerHTML = "";
+
+reviews.forEach(r=>{
+box.innerHTML += `
+<div class="card">
+<b>${"★".repeat(r.rating)}</b>
+<p>${r.text}</p>
+</div>`;
+});
+}
+
+function addReview(){
+let rating = document.getElementById("rating").value;
+let text = document.getElementById("reviewText").value;
+
+if(text.trim()=="") return alert("Enter review");
+
+let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+reviews.push({rating,text});
+
+localStorage.setItem("reviews", JSON.stringify(reviews));
+
+document.getElementById("reviewText").value="";
+loadReviews();
+}
+
+function clearReviews(){
+localStorage.removeItem("reviews");
+loadReviews();
+}
+
+loadReviews();
+
+</script>
+
+<!-- SOS -->
+<button id="sosBtn">🆘</button>
+
+<script>
+document.getElementById("sosBtn").onclick = function () {
+
+let sos1 = localStorage.getItem("sos1");
+let sos2 = localStorage.getItem("sos2");
+
+if(!sos1 || !sos2){
+alert("Save SOS numbers first!");
+return;
+}
+
+let placeName = document.getElementById("placeName").innerText;
+
+function send(lat, lon){
+let msg = "EMERGENCY! Place: " + placeName +
+"\nhttps://maps.google.com/?q=" + lat + "," + lon;
+
+let encoded = encodeURIComponent(msg);
+
+window.location.href = "sms:" + sos1 + "?body=" + encoded;
+
+setTimeout(()=>{
+window.location.href = "sms:" + sos2 + "?body=" + encoded;
+},3000);
+}
+
+navigator.geolocation.getCurrentPosition(
+pos => send(pos.coords.latitude, pos.coords.longitude),
+() => {
+alert("Location not available");
+send("Location unavailable","Location unavailable");
+}
+);
+};
+</script>
+
+</body>
+</html>
+
