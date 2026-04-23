@@ -1,127 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>CHAMARAJANAGAR DISTRICT</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHAMARAJANAGAR DISTRICT</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
 
-    header, footer {
-      color: black;
-      background-color: skyblue;
-      padding: 1%;
-      text-align: center;
-    }
+header, footer {
+  color: black;
+  background-color: aliceblue;
+  padding: 1%;
+  text-align: center;
+}
 
-    main { padding: 20px; }
+main { padding: 20px; }
 
-    .card-section-title { color: green; }
-    .card-subtitle { font-family: 'Courier New'; }
+.card-section-title { color: green; }
+.card-subtitle { font-family: 'Courier New'; }
 
-    .search-container { text-align: right; }
+.search-container { text-align: right; }
 
-    #searchBox {
-      padding: 8px;
-      width: 250px;
-      font-size: 16px;
-    }
+#searchBox {
+  padding: 8px;
+  width: 250px;
+  font-size: 16px;
+}
 
-    /* GRID */
-    .places-wrapper {
-      display: grid;
-      gap: 25px;
-    }
+/* MANDYA GRID */
+.places-wrapper {
+  display: grid;
+  gap: 25px;
+}
 
-    @media (min-width: 769px) {
-      .places-wrapper {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      }
-    }
+@media (min-width: 769px) {
+  .places-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
 
-    .tour-card {
-      width: 100%;
-      max-width: 300px;
-      margin: auto;
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-    }
+/* MANDYA CARD */
+.tour-card {
+  width: 100%;
+  max-width: 300px;
+  margin: auto;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
 
-    .image-container { position: relative; }
-    .tour-image { width: 100%; display: block; }
+.image-container { position: relative; }
+.tour-image { width: 100%; display: block; }
 
-    .top-overlay {
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      right: 8px;
-      display: flex;
-      justify-content: space-between;
-    }
+/* TOP LEFT BADGE */
+.top-overlay {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}
 
-    .badge {
-      background: white;
-      color: green;
-      font-size: 12px;
-      font-weight: bold;
-      padding: 4px 6px;
-      border-radius: 4px;
-    }
+.badge {
+  background: white;
+  color: green;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
 
-    .tour-info { padding: 16px; }
+.tour-info { padding: 16px; }
 
-    .state {
-      color: #00aa88;
-      font-size: 12px;
-      font-weight: bold;
-    }
+.state {
+  color: #00aa88;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0;
+}
 
-    .title { font-size: 18px; }
+.title {
+  font-size: 18px;
+  margin: 4px 0 8px;
+}
 
-    /* SOS BUTTON */
-    #sosBtn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: red;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 65px;
-      height: 65px;
-      font-size: 26px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-      z-index: 9999;
-      cursor: pointer;
-    }
-  </style>
+/* SOS */
+#sosBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  font-size: 26px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  cursor: pointer;
+}
+</style>
 </head>
 
 <body>
 
-<!-- GOOGLE TRANSLATE -->
-<div id="google_translate_element"></div>
-<script>
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement(
-    {pageLanguage: 'en', includedLanguages: 'kn,en,hi'},
-    'google_translate_element'
-  );
-}
-</script>
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
 <header>
-  <h1>KA ADVENTURE</h1>
-  <div class="search-container">
-    <input type="text" id="searchBox" placeholder="Search places...">
-  </div>
+<h1>KA ADVENTURE</h1>
+<div class="search-container">
+<input type="text" id="searchBox" placeholder="Search places...">
+</div>
 </header>
 
 <main>
@@ -133,61 +124,127 @@ Chamarajanagar is famous for wildlife, temples, hills, and Bandipur National Par
 
 <div class="places-wrapper">
 
-<!-- ALL CARDS -->
+<!-- CARD TEMPLATE APPLIED TO ALL -->
 
 <div class="tour-card" data-name="male mahadeshwara temple">
+<div class="image-container">
 <a href="mmhilldetails.html"><img src="mmhillsimg.jfif" class="tour-image"></a>
-<div class="tour-info"><h3 class="title">Male Mahadeshwara Temple</h3></div>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Male Mahadeshwara Temple</h3>
+</div>
 </div>
 
 <div class="tour-card" data-name="br hills">
+<div class="image-container">
 <a href="brhillsdetails.html"><img src="brhillsimg.jpg" class="tour-image"></a>
-<div class="tour-info"><h3 class="title">B.R Hills</h3></div>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">B.R Hills</h3>
+</div>
 </div>
 
 <div class="tour-card" data-name="thaala betta">
+<div class="image-container">
 <a href="thalabettadetails.html"><img src="thaalabettaimg.jpg" class="tour-image"></a>
-<div class="tour-info"><h3 class="title">Thaala Betta</h3></div>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Thaala Betta</h3>
+</div>
 </div>
 
 <div class="tour-card" data-name="gopalaswamy hills">
+<div class="image-container">
 <a href="gopaldetails.html"><img src="gopalimg.jpg" class="tour-image"></a>
-<div class="tour-info"><h3 class="title">Gopalaswamy Hills</h3></div>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Gopalaswamy Hills</h3>
+</div>
 </div>
 
 <div class="tour-card" data-name="gourishwara temple">
+<div class="image-container">
 <a href="gourishdetails.html"><img src="gouriimg.webp" class="tour-image"></a>
-<div class="tour-info"><h3 class="title">Gourishwara Temple</h3></div>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Gourishwara Temple</h3>
+</div>
 </div>
 
 <div class="tour-card" data-name="lakshmi varadaraja temple">
+<div class="image-container">
 <a href="lakshmidetails.html"><img src="lakshmiimg.avif" class="tour-image"></a>
-<div class="tour-info"><h3 class="title">Lakshmi Varadaraja Temple</h3></div>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Lakshmi Varadaraja Temple</h3>
+</div>
 </div>
 
 <div class="tour-card" data-name="dzogchen monastery">
+<div class="image-container">
 <a href="dzogchendetails.html"><img src="tibetimg.jfif" class="tour-image"></a>
-<div class="tour-info"><h3 class="title">Dzogchen Monastery</h3></div>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Dzogchen Monastery</h3>
+</div>
 </div>
 
 <div class="tour-card" data-name="suvarnavathy">
+<div class="image-container">
 <a href="suvarnavathydetails.html"><img src="suvarnaimg.avif" class="tour-image"></a>
-<div class="tour-info"><h3 class="title">Suvarnavathy</h3></div>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Suvarnavathy</h3>
+</div>
 </div>
 
 <div class="tour-card" data-name="bandipur national park">
+<div class="image-container">
 <a href="cbandipurdetails.html"><img src="bandipurimg.jfif" class="tour-image"></a>
-<div class="tour-info"><h3 class="title">Bandipur National Park</h3></div>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Bandipur National Park</h3>
+</div>
 </div>
 
 <div class="tour-card" data-name="br hills viewpoint">
+<div class="image-container">
 <a href="brviewdetails.html"><img src="brviewimg.jfif" class="tour-image"></a>
-<div class="tour-info"><h3 class="title">BR Hills Viewpoint</h3></div>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">BR Hills Viewpoint</h3>
+</div>
 </div>
 
 <div class="tour-card" data-name="biligiri sampige">
+<div class="image-container">
 <a href="biligiridetails.html"><img src="sampigeimg.webp" class="tour-image"></a>
-<div class="tour-info"><h3 class="title">Biligiri Sampige Mara</h3></div>
+<div class="top-overlay"><span class="badge">KA ADVENTURE</span></div>
+</div>
+<div class="tour-info">
+<p class="state">KARNATAKA</p>
+<h3 class="title">Biligiri Sampige Mara</h3>
+</div>
 </div>
 
 </div>
@@ -197,21 +254,21 @@ Chamarajanagar is famous for wildlife, temples, hills, and Bandipur National Par
 <p>@ALL COPYRIGHTS RESERVED</p>
 </footer>
 
-<!-- SEARCH FILTER -->
+<!-- SEARCH -->
 <script>
 const searchBox = document.getElementById("searchBox");
 const cards = document.querySelectorAll(".tour-card");
 
 searchBox.addEventListener("input", function() {
-  const query = searchBox.value.toLowerCase();
+  const query = this.value.toLowerCase().trim();
   cards.forEach(card => {
     const name = card.getAttribute("data-name");
-    card.style.display = name.includes(query) ? "block" : "none";
+    card.style.display = (query === "" || name.includes(query)) ? "block" : "none";
   });
 });
 </script>
 
-<!-- SOS BUTTON -->
+<!-- SOS -->
 <button id="sosBtn">🆘</button>
 
 <script>
@@ -225,24 +282,22 @@ document.getElementById("sosBtn").onclick = function () {
         return;
     }
 
-    let placeName = "Chamarajanagar";
-
-    function sendSMS(lat, lon) {
-        let msg = "🚨 EMERGENCY!\nPlace: " + placeName +
-        "\nLocation: https://maps.google.com/?q=" + lat + "," + lon;
-
-        let encoded = encodeURIComponent(msg);
-
-        window.location.href = "sms:" + sos1 + "?body=" + encoded;
-
-        setTimeout(() => {
-            window.location.href = "sms:" + sos2 + "?body=" + encoded;
-        }, 4000);
-    }
-
     navigator.geolocation.getCurrentPosition(
-        pos => sendSMS(pos.coords.latitude, pos.coords.longitude),
-        () => alert("Location permission denied")
+        function(pos) {
+            let msg = "🚨 EMERGENCY!\nLocation: https://maps.google.com/?q=" +
+            pos.coords.latitude + "," + pos.coords.longitude;
+
+            let encoded = encodeURIComponent(msg);
+
+            window.location.href = "sms:" + sos1 + "?body=" + encoded;
+
+            setTimeout(() => {
+                window.location.href = "sms:" + sos2 + "?body=" + encoded;
+            }, 4000);
+        },
+        function() {
+            alert("Location permission denied");
+        }
     );
 };
 </script>
