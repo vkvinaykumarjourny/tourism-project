@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adiyogi - Isha Sadhguru Sannidhi</title>
+<title>Isha Foundation - Chikkaballapur</title>
 
 <style>
 body{
@@ -14,7 +14,7 @@ body{
 }
 
 header{
-  background: #1b5e20;
+  background: #004d40;
   color: white;
   padding: 15px;
   text-align: center;
@@ -28,7 +28,7 @@ header{
 }
 
 button{
-  background: #1b5e20;
+  background: #004d40;
   color: white;
   padding: 6px 10px;
   border: none;
@@ -58,7 +58,7 @@ select{
 
 footer{
   text-align: center;
-  background: #1b5e20;
+  background: #004d40;
   color: white;
   padding: 10px;
   margin-top: 20px;
@@ -85,7 +85,7 @@ footer{
 <body>
 
 <header>
-<h1 id="placeName">Adiyogi - Isha Sadhguru Sannidhi</h1>
+<h1 id="placeName">Isha Foundation - Chikkaballapur</h1>
 </header>
 
 <div class="section">
@@ -95,11 +95,11 @@ footer{
 
 <div class="section">
 <h2>Facilities</h2>
-<p>🚗 Large Parking Available</p>
-<p>🚻 Clean Toilets</p>
-<p>🧘 Meditation Space</p>
-<p>🌄 Scenic View & Hills</p>
-<p>🍽️ Food Court Available</p>
+<p>🚗 Parking Available</p>
+<p>🚻 Toilets Available</p>
+<p>🧘 Meditation Programs</p>
+<p>🌿 Peaceful Nature Area</p>
+<p>🍽️ Simple Food Available</p>
 </div>
 
 <div class="section">
@@ -129,7 +129,7 @@ footer{
 <div class="section">
 <h2>Location</h2>
 <iframe width="100%" height="300"
-src="https://maps.google.com/maps?q=Adiyogi Isha Yoga Center Coimbatore&output=embed">
+src="https://maps.google.com/maps?q=Isha Foundation Chikkaballapur&output=embed">
 </iframe>
 </div>
 
@@ -155,8 +155,8 @@ src="https://maps.google.com/maps?q=Adiyogi Isha Yoga Center Coimbatore&output=e
 
 <!-- WIKI -->
 <div class="section">
-<a href="https://en.wikipedia.org/wiki/Adiyogi" target="_blank">
-📖 More Details (Wikipedia)
+<a href="https://isha.sadhguru.org" target="_blank">
+🌐 Official Website
 </a>
 </div>
 
@@ -185,15 +185,15 @@ levels[Math.floor(Math.random()*4)];
 function getHotels(){
 document.getElementById("hotels").innerHTML=`
 <div class="card">
-<b>Isha Yoga Center Stay</b><p>Inside Campus</p>
-<button onclick="navigate('Isha Yoga Center Coimbatore')">🧭 Navigate</button>
-<button onclick="bookHotel('Isha Yoga Center')">🏨 Book</button>
+<b>Nandi Hills Resort</b><p>15 km</p>
+<button onclick="navigate('Nandi Hills Resort')">🧭 Navigate</button>
+<button onclick="bookHotel('Nandi Hills Resort')">🏨 Book</button>
 </div>
 
 <div class="card">
-<b>Hotel Kiscol Grands</b><p>30 km</p>
-<button onclick="navigate('Hotel Kiscol Grands Coimbatore')">🧭 Navigate</button>
-<button onclick="bookHotel('Hotel Kiscol Grands')">🏨 Book</button>
+<b>Mount Palazzo</b><p>18 km</p>
+<button onclick="navigate('Mount Palazzo Nandi Hills')">🧭 Navigate</button>
+<button onclick="bookHotel('Mount Palazzo')">🏨 Book</button>
 </div>`;
 }
 
@@ -201,13 +201,13 @@ document.getElementById("hotels").innerHTML=`
 function getFood(){
 document.getElementById("food").innerHTML=`
 <div class="card">
-<b>Isha Food Court</b><p>Inside Campus</p><br>
-<button onclick="navigate('Isha Food Court')">🧭 Navigate</button>
+<b>Local South Indian Food</b><p>Nearby</p>
+<button onclick="navigate('Restaurants in Chikkaballapur')">🧭 Navigate</button>
 </div>
 
 <div class="card">
-<b>South Indian Meals</b><p>Nearby</p><br>
-<button onclick="navigate('Restaurants near Isha Yoga Center')">🧭 Navigate</button>
+<b>Nandi Hills Cafes</b><p>15 km</p>
+<button onclick="navigate('Nandi Hills Cafe')">🧭 Navigate</button>
 </div>`;
 }
 
@@ -215,13 +215,13 @@ document.getElementById("food").innerHTML=`
 function getEssentials(){
 document.getElementById("essentials").innerHTML=`
 <div class="card">
-<b>Hospital</b><p>25 km</p><br>
-<button onclick="navigate('Coimbatore Hospital')">🧭 Navigate</button>
+<b>Hospital</b><p>10 km</p>
+<button onclick="navigate('Chikkaballapur Hospital')">🧭 Navigate</button>
 </div>
 
 <div class="card">
-<b>Fuel Station</b><p>15 km</p><br>
-<button onclick="navigate('Petrol Pump Coimbatore')">🧭 Navigate</button>
+<b>Fuel Station</b><p>8 km</p>
+<button onclick="navigate('Petrol Pump Chikkaballapur')">🧭 Navigate</button>
 </div>`;
 }
 
