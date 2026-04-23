@@ -1,147 +1,306 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title> Kukkarahalli Lake </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <style>
-        header {
-            background-color: #f2f2f2;
-            padding: 10px;
-            text-align: center;
-            color: green;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kukkarahalli Lake Mysuru</title>
 
-        h1 {
-            color: blue;
-        }
+<style>
+body{
+  font-family: Arial;
+  margin: 0;
+  padding: 20px;
+  background: #e0f7fa;
+}
 
-        footer {
-            background-color: #f2f2f2;
-            padding: 5px;
-            text-align: center;
-            width: 100%;
-            bottom: 0;
-        }
+header{
+  background: #00695c;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  border-radius: 10px;
+}
 
-        p {
-            text-align: left;
-            line-height: 1.0;
-            margin-bottom: 16px;
-        }
+.section{
+  background: white;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
 
-        h2 {
-            text-align: left;
-        }
+button{
+  background: #00695c;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  margin: 5px 5px 0 0;
+  cursor: pointer;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            padding-left: 40px;
-            padding-right: 40px;
-            max-width: 100%;
-            margin: auto;
-        }
-         /* Responsive Google Maps */
-        .map-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 ratio */
-            height: 0;
-            overflow: hidden;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
+.card{
+  border: 1px solid #ddd;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  background: #f4fffd;
+}
 
-        .nav-link {
-            color: #0056d2;
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 2.5rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
+textarea{
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
 
-        .nav-link:hover {
-            text-decoration: underline;
-        }
+select{
+  padding: 5px;
+  margin-top: 5px;
+}
 
-        .external-icon {
-            font-size: 0.9em;
-            color: green;
-        }
-        .nav-link {
-            color: #0056d2;
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 1rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
+footer{
+  text-align: center;
+  background: #00695c;
+  color: white;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
 
-        .nav-link:hover {
-            text-decoration: underline;
-        }
-
-        .external-icon {
-            font-size: 0.9em;
-            color: green;
-        }
-    </style>
+/* SOS */
+#sosBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  font-size: 26px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  cursor: pointer;
+}
+</style>
 </head>
+
 <body>
 
-    <header>
-        <h1> Kukkarahalli Lake </h1>
-    </header>
+<header>
+<h1 id="placeName">Kukkarahalli Lake</h1>
+</header>
 
-    <h1 style="color: green;">Ticket Fare</h1>
-    <p>No entry fee</p>
-    <h2 style="color: green;">Opening dates and timings</h2>
-    <p>Sunday&#58; 5&#58;30 AM - 9&#58;00AM</p>
-    <p>&nbsp;&nbsp;12&#58;00PM - 2&#58;30PM </p>
-    <p>&nbsp;&nbsp;4&#58;30PM - 6&#58;00PM</p> <br>
-    <p>Monday&#58; 5&#48;30 AM - 9&#48;00AM</p>
-    <p>&nbsp;&nbsp;12&#48;00PM - 2&#48;30PM </p>
-    <p>&nbsp;&nbsp;4&#48;30PM - 6&#58;00PM</p> <br>
-    <p>Tuesday&#58; 5&#58;30 AM - 9&#58;00AM</p>
-    <p>&nbsp;&nbsp;12&#58;00PM - 2&#58;30PM </p>
-    <p>&nbsp;&nbsp;4&#58;30PM - 6&#58;00PM</p> <br>
-    <p>wednesday&#58; 5&#58;30 AM - 9&#58;00AM</p>
-    <p>&nbsp;&nbsp;12&#58;00PM - 2&#58;30PM </p>
-    <p>&nbsp;&nbsp;4&#58;30PM - 6&#58;00PM</p> <br>
-    <p>Thursday&#58; 5&#58;30 AM - 9&#58;00AM</p>
-    <p>&nbsp;&nbsp;12&#58;00PM - 2&#58;30PM </p>
-    <p>&nbsp;&nbsp;4&#58;30PM - 6&#58;00PM</p> <br>
-    <p>Friday&#58; 5&#58;30 AM - 9&#58;00AM</p>
-    <p>&nbsp;&nbsp;12&#58;00PM - 2&#58;30PM </p>
-    <p>&nbsp;&nbsp;4&#58;30PM - 6&#58;00PM</p> <br>
-    <p>Saturday&#58; 5&#58;30 AM - 9&#58;00AM</p>
-    <p>&nbsp;&nbsp;12&#58;00PM - 2&#58;30PM </p>
-    <p>&nbsp;&nbsp;4&#58;30PM - 6&#58;00PM</p> <br>
-  
-  
-  
-    <h4 style="color: green;">parking and toilet facility </h4>
-    <div> Parking facility  <span style="color: green;">&#10004;</span> </div>
-    <div>Toilet facility <span style="color: green">&#10004;</span> </div>
-    
-    
+<!-- INFO -->
+<div class="section">
+<h2>Entry Details</h2>
+<p>Free Entry | Open Daily (Approx. 6 AM – 6 PM)</p>
+</div>
 
-    <br>
-    
-    <!-- Styled navigation link -->
-     <div class="map-container">
-   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15592.263197094659!2d76.62152218356877!3d12.311355771531487!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf7aa2faa5063f%3A0x59b6f33a0730ea4e!2sKukkarahalli%20Lake!5e0!3m2!1sen!2sin!4v1754156349813!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
-    
-    <a href="https://en.wikipedia.org/wiki/Kukkarahalli_Lake#:~:text=Kukkarahalli%20Lake%20also%20called%20Kukkarhalli,separated%20by%20the%20Hunsur%20Road)." target="_blank" class="nav-link">
-       More details <span class="external-icon">&#x2197;</span>
-    </a>
+<div class="section">
+<h2>Facilities</h2>
+<p>🚶 Walking Track</p>
+<p>🦆 Bird Watching</p>
+<p>🌅 Scenic Sunrise & Sunset Views</p>
+<p>📸 Photography Spot</p>
+<p>🚗 Parking Nearby</p>
+</div>
 
-    
-        <p style="text-align: center;">All rights reserved</p>
-    </footer>
+<!-- CROWD -->
+<div class="section">
+<h2>Crowd Status</h2>
+<p id="crowd">Click button</p>
+<button onclick="getCrowd()">Check Crowd</button>
+</div>
+
+<!-- HOTELS -->
+<div class="section">
+<h2>Nearby Hotels</h2>
+<div id="hotels">Click button</div>
+<button onclick="getHotels()">Load Hotels</button>
+</div>
+
+<!-- FOOD -->
+<div class="section">
+<h2>Food & Dining</h2>
+<div id="food">Click button</div>
+<button onclick="getFood()">Load Food</button>
+</div>
+
+<!-- ESSENTIALS -->
+<div class="section">
+<h2>Essential Needs</h2>
+<div id="essentials">Click button</div>
+<button onclick="getEssentials()">Check Essentials</button>
+</div>
+
+<!-- LOCATION -->
+<div class="section">
+<h2>Location</h2>
+<iframe width="100%" height="300"
+src="https://maps.google.com/maps?q=Kukkarahalli%20Lake%20Mysore&output=embed">
+</iframe>
+</div>
+
+<!-- REVIEWS -->
+<div class="section">
+<h2>User Reviews & Ratings</h2>
+
+<label>Rating:</label>
+<select id="rating">
+<option value="5">★★★★★</option>
+<option value="4">★★★★</option>
+<option value="3">★★★</option>
+<option value="2">★★</option>
+<option value="1">★</option>
+</select>
+
+<textarea id="reviewText" placeholder="Write review..."></textarea>
+
+<button onclick="addReview()">Submit Review</button>
+<button onclick="clearReviews()">Clear All</button>
+
+<div id="reviewList"></div>
+</div>
+
+<a href="https://en.wikipedia.org/wiki/Kukkarahalli_Lake">More details about Kukkarahalli Lake</a>
+
+<footer>© All Rights Reserved</footer>
+
+<script>
+
+function navigate(place){
+window.open("https://www.google.com/maps/search/" + place);
+}
+
+function bookHotel(name){
+window.open("https://www.booking.com/searchresults.html?ss=" + name);
+}
+
+function getCrowd(){
+let levels=["Low","Moderate","High","Very Busy"];
+document.getElementById("crowd").innerText =
+levels[Math.floor(Math.random()*4)];
+}
+
+function getHotels(){
+document.getElementById("hotels").innerHTML=`
+<div class="card">
+<b>Hotel Sandesh The Prince</b><p>2 km</p>
+<button onclick="navigate('Sandesh The Prince Mysore')">🧭 Navigate</button>
+<button onclick="bookHotel('Sandesh The Prince Mysore')">🏨 Book</button>
+</div>
+
+<div class="card">
+<b>Southern Star Mysore</b><p>2.5 km</p>
+<button onclick="navigate('Southern Star Mysore')">🧭 Navigate</button>
+<button onclick="bookHotel('Southern Star Mysore')">🏨 Book</button>
+</div>
+`;
+}
+
+function getFood(){
+document.getElementById("food").innerHTML=`
+<div class="card">
+<b>Street Food & Snacks</b><p>Nearby stalls</p>
+<button onclick="navigate('Kukkarahalli Lake Food Stalls')">🧭 Navigate</button>
+</div>
+
+<div class="card">
+<b>South Indian Meals</b><p>Nearby restaurants</p>
+<button onclick="navigate('Hotel RRR Mysore')">🧭 Navigate</button>
+</div>
+`;
+}
+
+function getEssentials(){
+document.getElementById("essentials").innerHTML=`
+<div class="card">
+<b>Hospital</b><p>KR Hospital (2 km)</p>
+<button onclick="navigate('KR Hospital Mysore')">🧭 Navigate</button>
+</div>
+
+<div class="card">
+<b>Fuel Station</b><p>Nearby Petrol Pump</p>
+<button onclick="navigate('Petrol Pump Mysore')">🧭 Navigate</button>
+</div>
+`;
+}
+
+function loadReviews(){
+let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+let box = document.getElementById("reviewList");
+box.innerHTML = "";
+
+reviews.forEach(r=>{
+box.innerHTML += `
+<div class="card">
+<b>${"★".repeat(r.rating)}</b>
+<p>${r.text}</p>
+</div>`;
+});
+}
+
+function addReview(){
+let rating = document.getElementById("rating").value;
+let text = document.getElementById("reviewText").value;
+
+if(text.trim()=="") return alert("Enter review");
+
+let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+reviews.push({rating,text});
+
+localStorage.setItem("reviews", JSON.stringify(reviews));
+
+document.getElementById("reviewText").value="";
+loadReviews();
+}
+
+function clearReviews(){
+localStorage.removeItem("reviews");
+loadReviews();
+}
+
+loadReviews();
+
+</script>
+
+<!-- SOS -->
+<button id="sosBtn">🆘</button>
+
+<script>
+document.getElementById("sosBtn").onclick = function () {
+
+let sos1 = localStorage.getItem("sos1");
+let sos2 = localStorage.getItem("sos2");
+
+if(!sos1 || !sos2){
+alert("Save SOS numbers first!");
+return;
+}
+
+let placeName = document.getElementById("placeName").innerText;
+
+function send(lat, lon){
+
+let msg = "🚨 EMERGENCY!\nPlace: " + placeName +
+"\nLocation: https://maps.google.com/?q=" + lat + "," + lon;
+
+let encoded = encodeURIComponent(msg);
+
+window.location.href = "sms:" + sos1 + "?body=" + encoded;
+
+setTimeout(()=>{
+window.location.href = "sms:" + sos2 + "?body=" + encoded;
+},3000);
+}
+
+navigator.geolocation.getCurrentPosition(
+pos => send(pos.coords.latitude, pos.coords.longitude),
+() => send(0,0)
+);
+};
+</script>
 
 </body>
 </html>
-
