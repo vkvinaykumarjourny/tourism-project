@@ -6,70 +6,112 @@
 <title>Lost & Found</title>
 
 <style>
-body{font-family:Arial;margin:0;background:#eef2f3}
-
-.container{padding:20px;max-width:900px;margin:auto}
-
-.section{
-background:white;
-padding:20px;
-margin:20px 0;
-border-radius:12px;
-box-shadow:0 2px 6px rgba(0,0,0,0.1)
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #74ebd5, #ACB6E5);
 }
 
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
 }
 
-input, textarea, select{
-width:100%;
-padding:10px;
-margin:5px 0;
-border-radius:5px;
-border:1px solid #ccc;
+h1 {
+    text-align: center;
 }
 
-button{
-background:#2e7d32;
-color:white;
-padding:10px;
-border:none;
-border-radius:6px;
-cursor:pointer;
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
-.card{
-border:1px solid #ddd;
-padding:12px;
-border-radius:10px;
-margin:10px 0;
-background:#fafafa;
+.tabs button {
+    padding: 10px 20px;
+    border: none;
+    background: white;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 20px;
+    margin: 5px;
 }
 
-.card img{
-width:100%;
-max-height:180px;
-object-fit:cover;
-border-radius:8px;
-margin-top:5px;
+.tabs button.active {
+    background: #4CAF50;
+    color: white;
 }
 
-.badge{
-padding:4px 8px;
-border-radius:5px;
-color:white;
-font-size:12px;
+.form-section {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-.lost{background:#d32f2f}
-.found{background:#388e3c}
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
 
-.actions button{
-margin-right:5px;
-margin-top:5px;
+.preview {
+    width: 100%;
+    max-height: 200px;
+    margin-top: 10px;
+    border-radius: 10px;
+    display: none;
+}
+
+button.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.cards {
+    margin-top: 30px;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    border-left: 6px solid #4CAF50;
+}
+
+.card.found {
+    border-left-color: #2196F3;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.delete-btn {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.small {
+    font-size: 12px;
+    color: gray;
 }
 </style>
 </head>
@@ -77,169 +119,143 @@ margin-top:5px;
 <body>
 
 <div class="container">
+    <h1>🔍 Lost & Found</h1>
 
-<h2>🔍 Lost & Found</h2>
+    <div class="tabs">
+        <button onclick="setType('lost')" id="lostBtn" class="active">Lost</button>
+        <button onclick="setType('found')" id="foundBtn">Found</button>
+    </div>
 
-<!-- FORM -->
-<div class="section">
+    <div class="form-section">
+        <input type="text" id="title" placeholder="Item Name">
+        <textarea id="description" placeholder="Description"></textarea>
+        <input type="text" id="location" placeholder="Location">
+        <input type="text" id="contact" placeholder="Contact Number">
 
-<div class="grid">
-<select id="type">
-<option value="Lost">Lost</option>
-<option value="Found">Found</option>
-</select>
+        <input type="file" id="image" accept="image/*" onchange="previewImage()">
+        <img id="preview" class="preview">
 
-<input type="text" id="item" placeholder="Item name">
-</div>
+        <button class="submit-btn" onclick="submitItem()">Submit</button>
+    </div>
 
-<input type="text" id="location" placeholder="Location">
-<textarea id="desc" placeholder="Description"></textarea>
-
-<input type="file" id="image">
-
-<button onclick="addItem()">Submit</button>
-
-</div>
-
-<!-- SEARCH -->
-<div class="section">
-<input type="text" id="search" placeholder="Search items..." onkeyup="render()">
-</div>
-
-<!-- LIST -->
-<div class="section">
-<div id="list"></div>
-</div>
-
+    <div class="cards" id="cards"></div>
 </div>
 
 <script>
-
-/* LOGIN CHECK */
-if(localStorage.getItem("loggedIn")!=="true"){
-window.location.href="login.html";
+// 🔥 RESET STORAGE ON LOAD (only runs once)
+if (!localStorage.getItem("resetDone")) {
+    localStorage.removeItem("lostfound"); // clear all items
+    localStorage.setItem("resetDone", "true");
 }
 
-/* ADD ITEM */
-function addItem(){
-
-let type = document.getElementById("type").value;
-let item = document.getElementById("item").value;
-let loc = document.getElementById("location").value;
-let desc = document.getElementById("desc").value;
-let file = document.getElementById("image").files[0];
-
-if(!item || !loc){
-alert("Fill required fields");
-return;
+// USER ID SYSTEM
+let userId = localStorage.getItem("userId");
+if (!userId) {
+    userId = "user_" + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem("userId", userId);
 }
 
-let reader = new FileReader();
+let currentType = "lost";
+let imageData = "";
 
-reader.onload = function(){
-
-let data = JSON.parse(localStorage.getItem("lf_data") || "[]");
-
-data.push({
-id: Date.now(),
-type,
-item,
-loc,
-desc,
-img: reader.result,
-user: localStorage.getItem("username"),
-date: new Date().toLocaleString()
-});
-
-localStorage.setItem("lf_data", JSON.stringify(data));
-
-clearForm();
-render();
-};
-
-if(file){
-reader.readAsDataURL(file);
-}else{
-reader.onload();
+function setType(type) {
+    currentType = type;
+    document.getElementById("lostBtn").classList.remove("active");
+    document.getElementById("foundBtn").classList.remove("active");
+    document.getElementById(type + "Btn").classList.add("active");
 }
 
+function previewImage() {
+    const file = document.getElementById("image").files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        imageData = e.target.result;
+        let preview = document.getElementById("preview");
+        preview.src = imageData;
+        preview.style.display = "block";
+    };
+
+    if (file) reader.readAsDataURL(file);
 }
 
-/* RENDER */
-function render(){
+function submitItem() {
+    let title = document.getElementById("title").value;
+    if (!title) {
+        alert("Enter item name");
+        return;
+    }
 
-let data = JSON.parse(localStorage.getItem("lf_data") || "[]");
-let search = document.getElementById("search").value.toLowerCase();
+    let item = {
+        id: Date.now(),
+        userId: userId,
+        title,
+        desc: document.getElementById("description").value,
+        location: document.getElementById("location").value,
+        contact: document.getElementById("contact").value,
+        type: currentType,
+        image: imageData,
+        date: new Date().toLocaleString()
+    };
 
-let html = "";
+    let items = JSON.parse(localStorage.getItem("lostfound")) || [];
+    items.push(item);
+    localStorage.setItem("lostfound", JSON.stringify(items));
 
-data.reverse().forEach(d=>{
+    alert("Submitted!");
 
-if(!d.item.toLowerCase().includes(search)) return;
+    document.getElementById("title").value = "";
+    document.getElementById("description").value = "";
+    document.getElementById("location").value = "";
+    document.getElementById("contact").value = "";
+    document.getElementById("image").value = "";
+    document.getElementById("preview").style.display = "none";
+    imageData = "";
 
-let match = data.find(m =>
-m.item.toLowerCase() === d.item.toLowerCase() &&
-m.type !== d.type
-);
-
-html += `
-<div class="card">
-
-<span class="badge ${d.type==='Lost'?'lost':'found'}">${d.type}</span>
-
-<h3>${d.item}</h3>
-
-<p><b>Location:</b> ${d.loc}</p>
-<p>${d.desc}</p>
-
-${d.img ? <img src="${d.img}"> : ""}
-
-<p><small>${d.date}</small></p>
-<p><i>By: ${d.user}</i></p>
-
-<div class="actions">
-<button onclick="contact()">📞 Contact</button>
-
-${d.user === localStorage.getItem("username") ?
-<button onclick="remove(${d.id})">🗑 Delete</button> : ""}
-
-${match ? <div style="color:orange">⚡ Match Found!</div> : ""}
-</div>
-
-</div>
-`;
-
-});
-
-document.getElementById("list").innerHTML = html;
-
+    displayItems();
 }
 
-/* DELETE */
-function remove(id){
-let data = JSON.parse(localStorage.getItem("lf_data") || "[]");
-data = data.filter(d=>d.id!==id);
-localStorage.setItem("lf_data", JSON.stringify(data));
-render();
+function deleteItem(id) {
+    let items = JSON.parse(localStorage.getItem("lostfound")) || [];
+    items = items.filter(item => item.id !== id);
+    localStorage.setItem("lostfound", JSON.stringify(items));
+    displayItems();
 }
 
-/* CONTACT */
-function contact(){
-let n1 = localStorage.getItem("sos1");
-let n2 = localStorage.getItem("sos2");
+function displayItems() {
+    let items = JSON.parse(localStorage.getItem("lostfound")) || [];
+    let container = document.getElementById("cards");
+    container.innerHTML = "";
 
-window.location.href =
-sms:${n1},${n2}?body=Regarding lost/found item;
+    if (items.length === 0) {
+        container.innerHTML = "<p style='text-align:center;'>No items reported yet.</p>";
+        return;
+    }
+
+    items.reverse().forEach(item => {
+        let div = document.createElement("div");
+        div.className = "card " + (item.type === "found" ? "found" : "");
+
+        let deleteBtn = "";
+        if (item.userId === userId) {
+            deleteBtn = `<button class="delete-btn" onclick="deleteItem(${item.id})">Delete My Item</button>`;
+        }
+
+        div.innerHTML = `
+            <h3>${item.title}</h3>
+            <p>${item.desc}</p>
+            <p><b>📍</b> ${item.location}</p>
+            <p><b>📞</b> ${item.contact}</p>
+            ${item.image ? `<img src="${item.image}">` : ""}
+            <p class="small">${item.type.toUpperCase()} • ${item.date}</p>
+            ${deleteBtn}
+        `;
+
+        container.appendChild(div);
+    });
 }
 
-/* CLEAR FORM */
-function clearForm(){
-document.querySelectorAll("input, textarea").forEach(e=>e.value="");
-}
-
-/* INIT */
-render();
-
+displayItems();
 </script>
 
 </body>
