@@ -338,106 +338,146 @@
 <!-- 🆘 Floating SOS Button -->
 <button id="sosBtn">🆘</button>
 
+<!-- 📡 Offline Floating Button -->
+<button id="offlineBtn" onclick="openOfflinePage()">📡</button>
+
 <style>
-#sosBtn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: red;
-    color: white;
-    border-radius: 50%;
-    width: 65px;
-    height: 65px;
-    border: none;
-    font-size: 26px;
-    z-index: 9999;
+
+/* SOS BUTTON */
+#sosBtn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+
+    width:65px;
+    height:65px;
+
+    border:none;
+    border-radius:50%;
+
+    background:red;
+    color:white;
+
+    font-size:26px;
+    cursor:pointer;
+
+    z-index:9999;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:0 4px 10px rgba(0,0,0,0.3);
 }
+
+/* OFFLINE BUTTON */
+#offlineBtn{
+    position:fixed;
+    bottom:95px;
+    right:20px;
+
+    width:65px;
+    height:65px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#007bff;
+    color:white;
+
+    font-size:26px;
+    cursor:pointer;
+
+    z-index:9999;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* MOBILE VIEW */
+@media screen and (max-width:600px){
+
+    #sosBtn{
+        width:60px;
+        height:60px;
+        right:15px;
+        bottom:15px;
+        font-size:24px;
+    }
+
+    #offlineBtn{
+        width:60px;
+        height:60px;
+        right:15px;
+        bottom:85px;
+        font-size:24px;
+    }
+}
+
 </style>
 
 <script>
-document.getElementById("sosBtn").onclick = function () {
+
+/* SOS BUTTON */
+document.getElementById("sosBtn").onclick = function(){
 
     let sos1 = localStorage.getItem("sos1");
     let sos2 = localStorage.getItem("sos2");
 
-    if (!sos1 || !sos2) {
+    if(!sos1 || !sos2){
         alert("Please login and add two SOS numbers!");
         return;
     }
 
-    if (!navigator.geolocation) {
+    if(!navigator.geolocation){
         alert("Location not supported");
         return;
     }
 
-    navigator.geolocation.getCurrentPosition(function (pos) {
+    navigator.geolocation.getCurrentPosition(function(pos){
 
         let lat = pos.coords.latitude;
         let lon = pos.coords.longitude;
 
-        let message = "🚨 EMERGENCY!\n" +
-                      "I need help!\n" +
-                      "Location: https://maps.google.com/?q=" + lat + "," + lon;
+        let message =
+            "🚨 EMERGENCY!\n" +
+            "I need help!\n" +
+            "Location: https://maps.google.com/?q=" +
+            lat + "," + lon;
 
         let encoded = encodeURIComponent(message);
 
-        // 👉 STEP 1: Send to first number
         alert("Send SOS to Contact 1");
-        window.location.href = "sms:" + sos1 + "?body=" + encoded;
 
-        // 👉 STEP 2: After user returns, send to second number
-        setTimeout(() => {
+        window.location.href =
+            "sms:" + sos1 + "?body=" + encoded;
+
+        setTimeout(function(){
+
             alert("Now send SOS to Contact 2");
-            window.location.href = "sms:" + sos2 + "?body=" + encoded;
-        }, 5000);
 
-    }, function () {
+            window.location.href =
+                "sms:" + sos2 + "?body=" + encoded;
+
+        },5000);
+
+    },function(){
+
         alert("Please allow location access!");
+
     });
 };
 
-<!-- OFFLINE FLOATING BUTTON -->
-<style>
-#offlineBtn {
-  position: fixed;
-  right: 20px;        /* Same right alignment */
-  bottom: 90px;       /* Proper gap above SOS */
-  width: 60px;        /* Same size */
-  height: 60px;       /* Same size */
-  border-radius: 50%;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  font-size: 26px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  z-index: 9999;
+/* OFFLINE BUTTON */
+function openOfflinePage(){
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    window.location.href = "offline.html";
+
 }
 
-/* Mobile */
-@media screen and (max-width: 600px) {
-  #offlineBtn {
-    right: 15px;
-    bottom: 85px;
-    width: 55px;
-    height: 55px;
-    font-size: 24px;
-  }
-}
-</style>
-
-<button id="offlineBtn" onclick="openOfflinePage()">
-📡
-</button>
-
-<script>
-function openOfflinePage() {
-  window.location.href = "offline.html";
-}
 </script>
 
 </body>
