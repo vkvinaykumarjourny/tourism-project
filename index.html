@@ -395,74 +395,50 @@ document.getElementById("sosBtn").onclick = function () {
         alert("Please allow location access!");
     });
 };
-</script>
 
-
-!-- FLOATING BUTTONS -->
+<!-- OFFLINE FLOATING BUTTON -->
 <style>
-/* Common Floating Button Style */
-.floating-btn {
+#offlineBtn {
   position: fixed;
-  right: 20px;
-  width: 60px;
-  height: 60px;
+  right: 20px;        /* Same right alignment */
+  bottom: 90px;       /* Proper gap above SOS */
+  width: 60px;        /* Same size */
+  height: 60px;       /* Same size */
   border-radius: 50%;
   border: none;
+  background-color: #007bff;
   color: white;
-  font-size: 24px;
+  font-size: 26px;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   z-index: 9999;
-  transition: 0.3s;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Hover Effect */
-.floating-btn:hover {
-  transform: scale(1.08);
-}
-
-/* SOS Button */
-.sos-btn {
-  bottom: 20px;
-  background-color: red;
-}
-
-/* Offline Button */
-.offline-btn {
-  bottom: 95px; /* Positioned above SOS */
-  background-color: #007bff;
-}
-
-/* Mobile Responsive */
-@media (max-width: 600px) {
-  .floating-btn {
+/* Mobile */
+@media screen and (max-width: 600px) {
+  #offlineBtn {
+    right: 15px;
+    bottom: 85px;
     width: 55px;
     height: 55px;
-    font-size: 22px;
-    right: 15px;
-  }
-
-  .sos-btn {
-    bottom: 15px;
-  }
-
-  .offline-btn {
-    bottom: 85px;
+    font-size: 24px;
   }
 }
 </style>
 
-<button class="floating-btn offline-btn"
-onclick="openOfflineMode()">
+<button id="offlineBtn" onclick="openOfflinePage()">
 📡
 </button>
 
-
 <script>
-function openOfflineMode() {
+function openOfflinePage() {
   window.location.href = "offline.html";
 }
-
 </script>
+
 </body>
 </html>
