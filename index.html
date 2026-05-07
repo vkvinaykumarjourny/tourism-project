@@ -396,5 +396,80 @@ document.getElementById("sosBtn").onclick = function () {
     });
 };
 </script>
+<!-- FLOATING BUTTONS -->
+<style>
+/* Common Floating Button Style */
+.floating-btn {
+  position: fixed;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 9999;
+  transition: 0.3s;
+}
+
+/* Hover Effect */
+.floating-btn:hover {
+  transform: scale(1.08);
+}
+
+/* SOS Button */
+.sos-btn {
+  bottom: 20px;
+  background-color: red;
+}
+
+/* Offline Button */
+.offline-btn {
+  bottom: 95px; /* Positioned above SOS */
+  background-color: #007bff;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .floating-btn {
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
+    right: 15px;
+  }
+
+  .sos-btn {
+    bottom: 15px;
+  }
+
+  .offline-btn {
+    bottom: 85px;
+  }
+}
+</style>
+
+<!-- OFFLINE MODE BUTTON -->
+<button class="floating-btn offline-btn"
+onclick="openOfflineMode()">
+📡
+</button>
+
+<!-- SOS BUTTON -->
+<button class="floating-btn sos-btn"
+onclick="openSOS()">
+🆘
+</button>
+
+<script>
+function openOfflineMode() {
+  window.location.href = "offline.html";
+}
+
+function openSOS() {
+  window.location.href = "sos.html";
+}
+</script>
 </body>
 </html>
