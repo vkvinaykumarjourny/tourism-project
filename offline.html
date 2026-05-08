@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<meta name=viewport content="width=device-width">
+<style>
+body{background:#0b0f14;color:#e6e6e6;font-family:system-ui;margin:0}
+.card{background:#111827;border-radius:12px;padding:10px;margin:10px}
+canvas{width:100%;height:200px}
+#log{max-height:250px;overflow:auto}
+.rx{background:#1f2937;margin:5px;padding:6px;border-radius:8px}
+.tx{background:#065f46;margin:5px;padding:6px;border-radius:8px;text-align:right}
+input,button{width:100%;padding:10px;margin-top:10px;border-radius:8px;border:none}
+button{background:#00ffd5}
+.header{
+  background:linear-gradient(135deg,#020617,#020617,#022c22);
+  padding:15px;
+  margin:10px;
+  border-radius:14px;
+  box-shadow:0 0 20px rgba(0,255,200,.2);
+}
+
+.title{
+  font-size:22px;
+  letter-spacing:2px;
+  color:#00ffd5;
+  font-weight:600;
+}
+
+.status{
+  margin-top:6px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#6ee7b7;
+}
+
+#beaconDot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#00ff88;
+  box-shadow:0 0 10px #00ff88;
+}
+
+#beaconBtn{
+  background:#00ffd5;
+  color:black;
+  font-weight:600;
+}
+
+</style>
+<div class=header>
+  <div class=title>LORA on ESP8266</div>
+  <div class=status>
+    <span id=beaconDot></span>
+    <span id=beaconText>BEACON ON</span>
+  </div>
+</div>
+
+<div class=card>
+  <button id=beaconBtn onclick="toggleBeacon()">TURN BEACON OFF</button>
+</div>
+
+
+<div class=card><canvas id=g></canvas></div>
+
+<div class=card>
+RSSI <span id=rssi></span> dBm |
+SNR <span id=snr></span> dB |
+Packets <span id=pkt></span> |<br>
+
+
+
+<div class=card>
+<input id=m placeholder="Message">
+<button onclick=send()>SEND</button>
+</div>
+
+<div class=card id=log></div>
+<div>
+  <footer style="text-align:center;margin-top:2px;"> Subscribe <a href="https://www.youtube.com/@kartis_">KARTIS</a> 💖</footer>
+</div>
+
+<script>
+
+const c=document.getElementById("g");
+const ctx=c.getContext("2d");
+
+let beaconState = true;
+
+// ---------------- MOCK DATA ----------------
+
+let fakeRSSI = -70;
+let fakeSNR = 8;
+let fakePkt = 0;
+
+// history buffer (like ESP side)
+let rh = new Array(60).fill(-120);
+
+// fake log
+let fakeLog = "";
+
+function addLog(type,msg){
+ fakeLog += `<div class=${type}>${msg}</div>`;
+ if(fakeLog.length>6000) fakeLog="";
+}
+
+// -----------------------------------------
+
+function toggleBeacon(){
+ beaconState = !beaconState;
+ addLog("tx","Beacon toggled " + (beaconState?"ON":"OFF"));
+}
+
+// make canvas real resolution
+function resize(){
+ c.width=c.offsetWidth;
+ c.height=200;
+}
+resize();
+window.onresize=resize;
+
+// moving average
+function smooth(arr,w=3){
+ let o=[];
+ for(let i=0;i<arr.length;i++){
+  let s=0,n=0;
+  for(let j=-w;j<=w;j++){
+   if(arr[i+j]!=undefined){s+=arr[i+j];n++;}
+  }
+  o.push(s/n);
+ }
+ return o;
+}
+
+// map RSSI
+function mapRSSI(v){
+ const t=20,b=20;
+ return c.height-b-((v+120)*(c.height-t-b)/90);
+}
+
+function reorder(buf,idx){
+ let o=[];
+ for(let i=0;i<buf.length;i++) o.push(buf[(idx+i)%buf.length]);
+ return o;
+}
+
+function draw(r){
+
+ ctx.clearRect(0,0,c.width,c.height);
+
+ ctx.strokeStyle="#222";
+ for(let i=0;i<5;i++){
+  ctx.beginPath();
+  ctx.moveTo(0,i*c.height/5);
+  ctx.lineTo(c.width,i*c.height/5);
+  ctx.stroke();
+ }
+
+ ctx.fillStyle="#6ee7b7";
+ ctx.font="12px system-ui";
+ ctx.fillText("-30",5,mapRSSI(-30));
+ ctx.fillText("-60",5,mapRSSI(-60));
+ ctx.fillText("-90",5,mapRSSI(-90));
+ ctx.fillText("-120",5,mapRSSI(-120));
+
+ r=r.map(v=>v==0?-120:v);
+ let sr=smooth(r);
+
+ ctx.strokeStyle="#00ff88";
+ ctx.beginPath();
+ sr.forEach((v,i)=>{
+  let x=i*c.width/r.length;
+  ctx.lineTo(x,mapRSSI(v));
+ });
+ ctx.stroke();
+
+ ctx.fillStyle="#00ff88";
+ ctx.fillText("RSSI vs Time",10,12);
+}
+
+function send(){
+ addLog("tx","Kartis from future: "+m.value);
+ m.value="";
+}
+
+// ----------- FAKE UPDATE LOOP ------------
+
+function update(){
+
+ // simulate signal drift
+ fakeRSSI += (Math.random()*6-3);
+ fakeRSSI = Math.max(-105,Math.min(-45,fakeRSSI));
+
+ fakeSNR = (Math.random()*10+3).toFixed(1);
+ fakePkt++;
+
+ rh.push(Math.round(fakeRSSI));
+ rh.shift();
+
+
+ rssi.innerHTML=fakeRSSI.toFixed(1);
+ snr.innerHTML=fakeSNR;
+ pkt.innerHTML=fakePkt;
+
+ beaconText.innerHTML = beaconState?"BEACON ON":"BEACON OFF";
+ beaconBtn.innerHTML = beaconState?"TURN BEACON OFF":"TURN BEACON ON";
+
+ beaconDot.style.background = beaconState?"#00ff88":"#ff0033";
+ beaconDot.style.boxShadow = beaconState?"0 0 10px #00ff88":"0 0 10px #ff0033";
+
+ log.innerHTML=fakeLog;
+ log.scrollTop=log.scrollHeight;
+
+ let idx=rh.findIndex(v=>v!=-120);
+ if(idx<0) idx=0;
+
+ draw(reorder(rh,idx));
+}
+
+// refresh every 2s like ESP
+setInterval(update,1000);
+
+</script>
+
+
+
+
+
+
+
+</html>
