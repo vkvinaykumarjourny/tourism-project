@@ -24,6 +24,8 @@
     }
 
     header img:first-child{
+      width:100%;
+      height:250px;
       border-radius:40px 40px 40px 0px;
       box-shadow:0 4px 16px rgba(0,0,0,0.08);
     }
@@ -33,6 +35,7 @@
       top:20px;
       left:20px;
       width:80px;
+      height:auto;
       z-index:2;
       border-radius:40px;
     }
@@ -41,19 +44,15 @@
       position:absolute;
       top:25px;
       right:50px;
-      z-index:9999;
+      z-index:3;
       cursor:pointer;
-
       display:flex;
       flex-direction:column;
       gap:5px;
-
       padding:8px;
-
       background:#ffffffcc;
       border:2px solid #ccc;
       border-radius:10px;
-
       box-shadow:0 4px 12px rgba(0,0,0,0.2);
     }
 
@@ -66,33 +65,24 @@
 
     .menu{
       display:none;
-
       position:absolute;
       top:65px;
       right:20px;
-
       background:linear-gradient(to bottom right,#ffffff,#f0f8ff);
-
       border:2px solid #2f6e31;
       border-radius:12px;
-
-      z-index:9999;
-
+      z-index:1000;
       box-shadow:0 4px 16px rgba(0,0,0,0.2);
-
       min-width:150px;
-
       overflow:hidden;
     }
 
     .menu a{
       display:block;
       padding:12px 16px;
-
       color:#2f6e31;
       text-decoration:none;
       font-weight:bold;
-
       border-bottom:1px solid #e0e0e0;
     }
 
@@ -133,12 +123,9 @@
     .tour{
       background:white;
       color:black;
-
       border-radius:10px;
-
       margin:1rem 0;
       padding:1rem;
-
       display:flex;
       gap:1rem;
       align-items:center;
@@ -147,9 +134,7 @@
     .tour img{
       width:100px;
       height:80px;
-
       border-radius:10px;
-
       object-fit:cover;
     }
 
@@ -164,12 +149,11 @@
     .header-img{
       width:100%;
       height:250px;
-
       border-radius:40px;
-
       box-shadow:0 4px 16px rgba(0,0,0,0.08);
-
       transition:opacity 0.5s;
+      position:relative;
+      z-index:1;
     }
 
     .dropdown{
@@ -181,55 +165,37 @@
     .dropdown-btn{
       width:100%;
       padding:12px;
-
       border:1px solid #ccc;
-      border-radius:10px;
-
       background:#fff;
-
       cursor:pointer;
-
+      border-radius:10px;
       font-size:16px;
       text-align:center;
     }
 
     .dropdown-content{
       display:none;
-
       position:absolute;
-
       background:#fff;
-
       width:100%;
       max-height:280px;
-
       overflow-y:auto;
-
       border:1px solid #ccc;
       border-radius:10px;
-
       margin-top:5px;
-
       z-index:1000;
-
       box-shadow:0 4px 6px rgba(0,0,0,0.1);
-
       text-align:center;
     }
 
     .dropdown-content input[type="text"]{
       width:90%;
-
       padding:10px;
       margin:10px auto;
-
       border:1px solid #ccc;
       border-radius:8px;
-
       outline:none;
-
       font-size:15px;
-
       display:block;
       text-align:center;
     }
@@ -238,13 +204,14 @@
       display:flex;
       justify-content:space-between;
       align-items:center;
-
       padding:12px;
-
       border-bottom:1px solid #eee;
-
       cursor:pointer;
       font-size:16px;
+    }
+
+    .option-item:last-child{
+      border-bottom:none;
     }
 
     .option-item:hover{
@@ -257,56 +224,44 @@
     }
 
     /* SOS BUTTON */
+
     #sosBtn{
       position:fixed;
       bottom:20px;
       right:20px;
-
       width:65px;
       height:65px;
-
       border:none;
       border-radius:50%;
-
       background:red;
       color:white;
-
       font-size:26px;
       cursor:pointer;
-
       z-index:9999;
-
       display:flex;
       align-items:center;
       justify-content:center;
-
       box-shadow:0 4px 10px rgba(0,0,0,0.3);
     }
 
     /* OFFLINE BUTTON */
+
     #offlineBtn{
       position:fixed;
       bottom:95px;
       right:20px;
-
       width:65px;
       height:65px;
-
       border:none;
       border-radius:50%;
-
       background:#007bff;
       color:white;
-
       font-size:26px;
       cursor:pointer;
-
       z-index:9999;
-
       display:flex;
       align-items:center;
       justify-content:center;
-
       box-shadow:0 4px 10px rgba(0,0,0,0.3);
     }
 
@@ -315,20 +270,16 @@
       #sosBtn{
         width:60px;
         height:60px;
-
         right:15px;
         bottom:15px;
-
         font-size:24px;
       }
 
       #offlineBtn{
         width:60px;
         height:60px;
-
         right:15px;
         bottom:85px;
-
         font-size:24px;
       }
 
@@ -342,14 +293,9 @@
 
 <header style="position:relative;">
 
-  <img id="header-slider"
-       class="header-img"
-       src="mp.jpg"
-       alt="Header Image">
+  <img id="header-slider" class="header-img" src="mp.jpg" alt="Header Image">
 
-  <img src="activelogo.jpeg"
-       alt="Logo"
-       class="logo">
+  <img src="activelogo.jpeg" alt="Logo" class="logo">
 
   <div class="hamburger" onclick="toggleMenu()">
     <span></span>
@@ -358,23 +304,19 @@
   </div>
 
   <div class="menu" id="menu">
-
     <a href="login.html">Login</a>
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
     <a href="districts.html">Districts</a>
     <a href="lostandfound.html">Lost and Found</a>
-
   </div>
 
 </header>
 
 <div class="main-heading">
 
-  <h1 style="font-family:Urban Jungle">
-    KA ADVENTURE
-  </h1>
+  <h1 style="font-family:Urban Jungle">KA ADVENTURE</h1>
 
   <p>... Try to explore the world!</p>
 
@@ -382,37 +324,105 @@
 
   <div class="dropdown">
 
-    <div class="dropdown-btn"
-         onclick="toggleDropdown()">
-
+    <div class="dropdown-btn" onclick="toggleDropdown()">
       --Select District--
-
     </div>
 
     <div class="dropdown-content" id="dropdown">
 
-      <input type="text"
-             id="search"
-             placeholder="Search district..."
-             onkeyup="filterFunction()">
+      <input type="text" id="search"
+      placeholder="Search district..."
+      onkeyup="filterFunction()">
 
-      <label class="option-item">
-        Mandya
-        <input type="radio"
-               name="district"
-               onclick="selectOption(this)"
-               value="Mandya"
-               data-link="mandya.html">
-      </label>
+      <label class="option-item">Mandya
+      <input type="radio" name="district"
+      onclick="selectOption(this)"
+      value="Mandya"
+      data-link="mandya.html"></label>
 
-      <label class="option-item">
-        Mysuru
-        <input type="radio"
-               name="district"
-               onclick="selectOption(this)"
-               value="Mysuru"
-               data-link="mysore.html">
-      </label>
+      <label class="option-item">Mysuru
+      <input type="radio" name="district"
+      onclick="selectOption(this)"
+      value="Mysuru"
+      data-link="mysore.html"></label>
+
+      <label class="option-item">Bengaluru
+      <input type="radio" name="district"
+      onclick="selectOption(this)"
+      value="Bengaluru"
+      data-link="bengaluru.html"></label>
+
+      <label class="option-item">Chikkamagaluru
+      <input type="radio" name="district"
+      onclick="selectOption(this)"
+      value="Chikkamagaluru"
+      data-link="chikmagaluru.html"></label>
+
+      <label class="option-item">Hassan
+      <input type="radio" name="district"
+      onclick="selectOption(this)"
+      value="Hassan"
+      data-link="hassan.html"></label>
+
+      <label class="option-item">Shivamogga
+      <input type="radio" name="district"
+      onclick="selectOption(this)"
+      value="Shivamogga"
+      data-link="shivamogga.html"></label>
+
+      <label class="option-item">Mangaluru
+      <input type="radio" name="district"
+      onclick="selectOption(this)"
+      value="Mangaluru"
+      data-link="mangaluru.html"></label>
+
+      <label class="option-item">Udupi
+      <input type="radio" name="district"
+      onclick="selectOption(this)"
+      value="Udupi"
+      data-link="udupi.html"></label>
+
+      <label class="option-item">Tumakuru
+      <input type="radio" name="district"
+      onclick="selectOption(this)"
+      value="Tumakuru"
+      data-link="tumakuru.html"></label>
+
+      <label class="option-item">Kodagu
+      <input type="radio" name="district"
+      onclick="selectOption(this)"
+      value="Kodagu"
+      data-link="madikeri.html"></label>
+
+      <label class="option-item">Chitradurga
+      <input type="radio" name="district"
+      onclick="selectOption(this)"
+      value="Chitradurga"
+      data-link="chitradurga.html"></label>
+
+      <label class="option-item">Belagavi
+      <input type="radio" name="district"
+      onclick="selectOption(this)"
+      value="Belagavi"
+      data-link="belagavi.html"></label>
+
+      <label class="option-item">Ballari
+      <input type="radio" name="district"
+      onclick="selectOption(this)"
+      value="Ballari"
+      data-link="ballari.html"></label>
+
+      <label class="option-item">Raichur
+      <input type="radio" name="district"
+      onclick="selectOption(this)"
+      value="Raichur"
+      data-link="raichur.html"></label>
+
+      <label class="option-item">Bidar
+      <input type="radio" name="district"
+      onclick="selectOption(this)"
+      value="Bidar"
+      data-link="bidar.html"></label>
 
     </div>
 
@@ -431,13 +441,23 @@
     </a>
 
     <div class="tour-info">
-
-      <strong>Mysore palace</strong>
-
+      <strong>Mysore Palace</strong><br>
       <p>Click on image to more info about the place</p>
-
       <span class="stars">★★★★★</span>
+    </div>
 
+  </div>
+
+  <div class="tour">
+
+    <a href="krs.html">
+      <img src="krs1.jfif" alt="KRS">
+    </a>
+
+    <div class="tour-info">
+      <strong>Krishna Raja Sagara Dam</strong><br>
+      <p>Click on image to more info about the place</p>
+      <span class="stars">★★★★★</span>
     </div>
 
   </div>
@@ -448,14 +468,12 @@
 <button id="sosBtn">🆘</button>
 
 <!-- OFFLINE BUTTON -->
-<button id="offlineBtn"
-        onclick="openOfflinePage()">
-📡
-</button>
+<button id="offlineBtn" onclick="openOfflinePage()">📡</button>
 
 <script>
 
-  /* HEADER IMAGE SLIDER */
+  // HEADER SLIDER
+
   document.addEventListener("DOMContentLoaded", function(){
 
     const images = [
@@ -476,7 +494,7 @@
 
       headerImg.style.opacity = 0;
 
-      setTimeout(function(){
+      setTimeout(() => {
 
         headerImg.src = images[idx];
 
@@ -488,7 +506,8 @@
 
   });
 
-  /* HAMBURGER MENU */
+  // HAMBURGER MENU
+
   function toggleMenu(){
 
     const menu =
@@ -506,25 +525,22 @@
 
   }
 
-  /* DROPDOWN */
+  // DROPDOWN
+
   function toggleDropdown(){
 
-    const dropdown =
+    let dropdown =
       document.getElementById("dropdown");
 
-    if(dropdown.style.display === "block"){
-
-      dropdown.style.display = "none";
-
-    }else{
-
-      dropdown.style.display = "block";
-
-    }
+    dropdown.style.display =
+      dropdown.style.display === "block"
+      ? "none"
+      : "block";
 
   }
 
-  /* SEARCH */
+  // SEARCH FILTER
+
   function filterFunction(){
 
     let input =
@@ -535,7 +551,7 @@
     let items =
       document.querySelectorAll(".option-item");
 
-    items.forEach(function(item){
+    items.forEach(item => {
 
       let text =
         item.innerText.toUpperCase();
@@ -549,7 +565,8 @@
 
   }
 
-  /* SELECT DISTRICT */
+  // SELECT DISTRICT
+
   function selectOption(el){
 
     document.querySelector(".dropdown-btn")
@@ -563,17 +580,9 @@
 
   }
 
-  /* CLICK OUTSIDE */
+  // CLOSE MENU & DROPDOWN
+
   window.onclick = function(event){
-
-    if(
-      !event.target.closest('.dropdown')
-    ){
-
-      document.getElementById("dropdown")
-      .style.display = "none";
-
-    }
 
     if(
       !event.target.closest('.hamburger') &&
@@ -585,24 +594,27 @@
 
     }
 
-  };
+    if(
+      !event.target.closest('.dropdown')
+    ){
 
-  /* SOS BUTTON */
-  document.getElementById("sosBtn")
-  .onclick = function(){
+      document.getElementById("dropdown")
+      .style.display = "none";
 
-    let sos1 =
-      localStorage.getItem("sos1");
+    }
 
-    let sos2 =
-      localStorage.getItem("sos2");
+  }
+
+  // SOS BUTTON
+
+  document.getElementById("sosBtn").onclick = function(){
+
+    let sos1 = localStorage.getItem("sos1");
+    let sos2 = localStorage.getItem("sos2");
 
     if(!sos1 || !sos2){
 
-      alert(
-        "Please login and add two SOS numbers!"
-      );
-
+      alert("Please login and add two SOS numbers!");
       return;
 
     }
@@ -610,60 +622,48 @@
     if(!navigator.geolocation){
 
       alert("Location not supported");
-
       return;
 
     }
 
-    navigator.geolocation.getCurrentPosition(
+    navigator.geolocation.getCurrentPosition(function(pos){
 
-      function(pos){
+      let lat = pos.coords.latitude;
+      let lon = pos.coords.longitude;
 
-        let lat = pos.coords.latitude;
-        let lon = pos.coords.longitude;
+      let message =
+      "🚨 EMERGENCY!\nI need help!\nLocation: https://maps.google.com/?q="
+      + lat + "," + lon;
 
-        let message =
-          "🚨 EMERGENCY!\n" +
-          "I need help!\n" +
-          "Location: https://maps.google.com/?q="
-          + lat + "," + lon;
+      let encoded = encodeURIComponent(message);
 
-        let encoded =
-          encodeURIComponent(message);
+      alert("Send SOS to Contact 1");
 
-        alert("Send SOS to Contact 1");
+      window.location.href =
+      "sms:" + sos1 + "?body=" + encoded;
+
+      setTimeout(function(){
+
+        alert("Now send SOS to Contact 2");
 
         window.location.href =
-          "sms:" + sos1 + "?body=" + encoded;
+        "sms:" + sos2 + "?body=" + encoded;
 
-        setTimeout(function(){
+      },5000);
 
-          alert("Now send SOS to Contact 2");
+    },function(){
 
-          window.location.href =
-            "sms:" + sos2 + "?body=" + encoded;
+      alert("Please allow location access!");
 
-        },5000);
-
-      },
-
-      function(){
-
-        alert(
-          "Please allow location access!"
-        );
-
-      }
-
-    );
+    });
 
   };
 
-  /* OFFLINE BUTTON */
+  // OFFLINE BUTTON
+
   function openOfflinePage(){
 
-    window.location.href =
-      "offline.html";
+    window.location.href = "offline.html";
 
   }
 
