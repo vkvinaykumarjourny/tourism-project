@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KA Adventure - Contact Us</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body{
+            background:#e8f5e9;
+        }
+
+        .container{
+            width:90%;
+            max-width:600px;
+            margin:50px auto;
+            background:white;
+            padding:30px;
+            border-radius:12px;
+            box-shadow:0 0 10px rgba(0,0,0,0.2);
+        }
+
+        h1{
+            text-align:center;
+            color:#1b5e20;
+            margin-bottom:10px;
+        }
+
+        p{
+            text-align:center;
+            margin-bottom:25px;
+            color:#555;
+        }
+
+        label{
+            font-weight:bold;
+            color:#2e7d32;
+        }
+
+        input, textarea{
+            width:100%;
+            padding:12px;
+            margin-top:8px;
+            margin-bottom:20px;
+            border:1px solid #81c784;
+            border-radius:6px;
+            outline:none;
+        }
+
+        input:focus,
+        textarea:focus{
+            border-color:#2e7d32;
+        }
+
+        textarea{
+            resize:none;
+            height:120px;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            background:#2e7d32;
+            color:white;
+            border:none;
+            border-radius:6px;
+            font-size:18px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        button:hover{
+            background:#1b5e20;
+        }
+
+        .footer{
+            text-align:center;
+            margin-top:20px;
+            color:#666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Contact KA Adventure</h1>
+
+        <p>Feel free to contact us for tour packages and travel information.</p>
+
+        <form action="mailto:kumarkumarvd16@gmail.com" method="post" enctype="text/plain">
+
+            <label>Full Name</label>
+            <input type="text" name="name" placeholder="Enter your name" required>
+
+            <label>Email Address</label>
+            <input type="email" name="email" placeholder="Enter your email" required>
+
+            <label>Subject</label>
+            <input type="text" name="subject" placeholder="Enter subject" required>
+
+            <label>Message</label>
+            <textarea name="message" placeholder="Write your message here..." required></textarea>
+
+            <button type="submit">Send Message</button>
+
+        </form>
+
+        <div class="footer">
+            © 2026 KA Adventure Tourism Project
+        </div>
+
+    </div>
+
+    <?php
+
+$to = "kumarkumarvd16@gmail.com";
+
+$name = $_POST['name'];
+$email = $_POST['email'];
+$subject = $_POST['subject'];
+$message = $_POST['message'];
+
+$txt = "Name: ".$name."\n";
+$txt .= "Email: ".$email."\n\n";
+$txt .= "Message:\n".$message;
+
+$headers = "From: ".$email;
+
+if(mail($to, $subject, $txt, $headers))
+{
+    echo "<h2 style='color:green;text-align:center;'>Message Sent Successfully</h2>";
+}
+else
+{
+    echo "<h2 style='color:red;text-align:center;'>Message Failed</h2>";
+}
+
+?>
+
+</body>
+</html>
